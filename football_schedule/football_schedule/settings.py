@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+import cloudinary
 
 from decouple import config
 
@@ -31,6 +32,14 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+MY_APPS =[
+    'football_schedule.accounts',
+    'football_schedule.schedules',
+]
+
+ADDITIONAL_APPS = [
+    'cloudinary',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+] + MY_APPS + ADDITIONAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,12 +128,20 @@ USE_I18N = True
 USE_TZ = True
 
 
+AUTH_USER_MODEL = 'accounts.AppUser'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     BASE_DIR / 'static',
+)
+
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME',config('CLOUDINARY_CLOUD_NAME')),
+    api_key=os.getenv('CLOUDINARY_API_KEY',config('CLOUDINARY_API_KEY')),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET',config('CLOUDINARY_API_SECRET'))
 )
 
 # Default primary key field type

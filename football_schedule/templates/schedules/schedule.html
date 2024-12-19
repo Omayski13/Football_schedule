@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button>Sumbit</button>
+</form>
+
+<button id="delete-weeks" class="btn btn-danger">Delete All Weeks</button>
+
+<h1>Sample Table</h1>
+    <table border="1" cellpadding="2" cellspacing="0" style="text-align: center">
+        <thead>
+            <tr style="background-color: cornflowerblue">
+                <th>16.12</th>
+                <th>17.12</th>
+                <th>18.12</th>
+                <th>19.12</th>
+                <th>20.12</th>
+                <th>21.12</th>
+                <th>22.12</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>18:00</td>
+                <td>18:00</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Обеля</td>
+                <td>Обеля</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+</body>
+</html>
+
+
+
+<script>
+    document.getElementById('delete-weeks').addEventListener('click', function () {
+        if (confirm('Are you sure you want to delete all weeks?')) {
+            fetch(window.location.href, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}', // Include CSRF token
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                location.reload(); // Reload the page after deletion
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while deleting weeks.');
+            });
+        }
+    });
+</script>
