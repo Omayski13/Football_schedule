@@ -1,0 +1,82 @@
+
+
+
+table {
+    border-collapse: collapse;
+    width: 40%;
+    table-layout: fixed; /* Ensure fixed column widths */
+}
+
+tr th{
+    background-color: #295F98;
+    color: whitesmoke;
+}
+
+tr.days{
+    background-color: lightsteelblue;
+}
+
+tr.dates{
+    background-color: cornflowerblue;
+}
+
+td.training{
+    background-color: #B1C29E;
+}
+
+td.mach{
+    background-color: #E78F81;
+}
+
+td.None{
+    color: #ECEBDE;
+}
+
+
+
+th, td {
+    /*background-color: darkgrey;*/
+    border: 1px solid black;
+    padding: 2px;
+    text-align: center;
+    word-wrap: break-word; /* Prevent text from overflowing */
+    vertical-align: middle; /* Center content vertically */
+}
+
+
+th {
+    background-color: cornflowerblue;
+}
+
+td {
+    max-width: 60px; /* Limit the width of the cells */
+    min-width: 30px; /* Ensure cells are not too small */
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto; /* Add horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+    }
+
+    table {
+        width: 100%; /* Make the table take full width */
+        table-layout: auto; /* Let content decide table width */
+    }
+
+    th, td {
+        padding: 5px; /* Adjust padding for better fit */
+    }
+}
+
+/* For very small devices like mobile phones, adjust the table further */
+@media (max-width: 480px) {
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        font-size: 12px; /* Smaller text size */
+        padding: 3px; /* Smaller padding */
+    }
+}

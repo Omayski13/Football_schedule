@@ -13,7 +13,7 @@ from football_schedule.schedules.models import Week
 
 
 class ScheduleCreateView(CreateView):
-    template_name = 'schedules/schedule.html'
+    template_name = 'schedules/create-schedule.html'
     form_class = WeekForm
     success_url = reverse_lazy('register')
 
@@ -21,6 +21,15 @@ class ScheduleCreateView(CreateView):
         week = form.save(commit=False)
         week.author = self.request.user
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['weeks'] = Week.objects.filter(author=self.request.user)
+
+        return context
+
+
 
 
     @method_decorator(csrf_exempt)

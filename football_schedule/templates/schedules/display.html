@@ -1,24 +1,23 @@
+{% extends 'base.html' %}
+
+
 {% load static %}
 {% load add_days %}
+{% load add_hours_str %}
 
-<!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="{% static 'style/style.css' %}">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block content %}
+    
 <h1>Sample Table</h1>
 {% for week in weeks %}
-    <table>
-        <thead>
+    <div class="table-responsive mb-2">
+        <table>
+            <thead>
             <tr>
-                <th colspan="7">{{ week.start_date|date:"d.m" }} - {{ week.start_date|add_days:7|date:"d.m"}}</th>
+                <th colspan="7">{{ week.start_date|date:"d.m" }} - {{ week.start_date|add_days:7|date:"d.m" }}</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr>
+            </thead>
+            <tbody>
+            <tr class="days">
                 <td>П</td>
                 <td>В</td>
                 <td>С</td>
@@ -27,23 +26,23 @@
                 <td>С</td>
                 <td>Н</td>
             </tr>
-            <tr>
-                <td>{{ week.start_date|date:"d.m"}}</td>
-                <td>{{ week.start_date|add_days:1|date:"d.m"}}</td>
-                <td>{{ week.start_date|add_days:2|date:"d.m"}}</td>
-                <td>{{ week.start_date|add_days:3|date:"d.m"}}</td>
-                <td>{{ week.start_date|add_days:4|date:"d.m"}}</td>
-                <td>{{ week.start_date|add_days:5|date:"d.m"}}</td>
-                <td>{{ week.start_date|add_days:6|date:"d.m"}}</td>
+            <tr class="dates">
+                <td>{{ week.start_date|date:"d.m" }}</td>
+                <td>{{ week.start_date|add_days:1|date:"d.m" }}</td>
+                <td>{{ week.start_date|add_days:2|date:"d.m" }}</td>
+                <td>{{ week.start_date|add_days:3|date:"d.m" }}</td>
+                <td>{{ week.start_date|add_days:4|date:"d.m" }}</td>
+                <td>{{ week.start_date|add_days:5|date:"d.m" }}</td>
+                <td>{{ week.start_date|add_days:6|date:"d.m" }}</td>
             </tr>
             <tr>
-                <td class="{{ week.monday_type }}">{{ week.monday_time }}</td>
-                <td class="{{ week.tuesday_type }}">{{ week.tuesday_time }}</td>
-                <td class="{{ week.wednesday_type }}">{{ week.wednesday_time }}</td>
-                <td class="{{ week.thursday_type }}">{{ week.thursday_time }}</td>
-                <td class="{{ week.friday_type }}">{{ week.friday_time }}</td>
-                <td class="{{ week.saturday_type }}">{{ week.saturday_time }}</td>
-                <td class="{{ week.sunday_type }}">{{ week.sunday_time }}</td>
+                <td class="{{ week.monday_type }}">{{ week.monday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                <td class="{{ week.tuesday_type }}">{{ week.tuesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                <td class="{{ week.wednesday_type }}">{{ week.wednesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                <td class="{{ week.thursday_type }}">{{ week.thursday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                <td class="{{ week.friday_type }}">{{ week.friday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                <td class="{{ week.saturday_type }}">{{ week.saturday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                <td class="{{ week.sunday_type }}">{{ week.sunday_time|date:"H:i"|add_hours_str:' часа' }}</td>
             </tr>
             <tr>
                 <td class="{{ week.monday_type }}">{{ week.monday_place }}</td>
@@ -54,9 +53,8 @@
                 <td class="{{ week.saturday_type }}">{{ week.saturday_place }}</td>
                 <td class="{{ week.sunday_type }}">{{ week.sunday_place }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 {% endfor %}
-
-</body>
-</html>
+{% endblock %}

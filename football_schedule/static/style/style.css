@@ -1,27 +1,2 @@
-table {
-    border-collapse: collapse;
-    width: 40%;
-    table-layout: fixed; /* Ensure fixed column widths */
-}
-
-th, td {
-    border: 1px solid black;
-    padding: 2px;
-    text-align: center;
-    word-wrap: break-word; /* Prevent text from overflowing */
-    vertical-align: middle; /* Center content vertically */
-}
-
-thead {
-    background-color: darkslategrey;
-    color: white;
-}
-
-th {
-    background-color: cornflowerblue;
-}
-
-td {
-    max-width: 60px; /* Limit the width of the cells */
-    min-width: 30px; /* Ensure cells are not too small */
-}
+@import "table.css";
+@import "base.css";
