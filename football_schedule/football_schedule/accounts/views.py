@@ -11,18 +11,18 @@ from football_schedule.accounts.forms import AppUserCreationForm, AppUserLoginFo
 class UserRegisterView(CreateView):
     template_name = 'accounts/register.html'
     form_class = AppUserCreationForm
-    success_url = reverse_lazy('schedule')
+    success_url = reverse_lazy('create-schedule')
 
 
 class UserLoginView(LoginView):
     template_name = 'accounts/login.html'
     authentication_form = AppUserLoginForm
-    success_url = reverse_lazy('schedule')
+    success_url = reverse_lazy('create-schedule')
 
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('schedule')
+            return redirect('create-schedule')
 
         return super().dispatch(request, *args, **kwargs)
 

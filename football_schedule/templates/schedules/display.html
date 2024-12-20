@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 
-{% load static %}
 {% load add_days %}
 {% load add_hours_str %}
 
+
+
+
 {% block content %}
-    
+{% include 'head.html' with bootstrap=False %}
+
 <h1>Sample Table</h1>
 {% for week in weeks %}
     <div class="table-responsive mb-2">
