@@ -71,6 +71,19 @@ class Profile(models.Model):
         blank=True,
     )
 
+    club_emblem = CloudinaryField(
+        'club_emblem',
+        folder='accounts',
+        null=True,
+        blank=True,
+    )
+
+    generation = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True,
+    )
+
     profile_picture = CloudinaryField(
         'image',
         folder='accounts',

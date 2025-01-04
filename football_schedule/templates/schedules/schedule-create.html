@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load add_days %}
+{% load static %}
+
+
+
+{% block content %}
+    {% include 'head.html' with bootstrap=True %}
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        {% include 'schedules/form-schedule.html' %}
+
+        {% include 'schedules/weeks.html' %}
+
+        {% include 'schedules/form-display.html' %}
+
+
+    </div>
+
+
+
+
+{% endblock %}

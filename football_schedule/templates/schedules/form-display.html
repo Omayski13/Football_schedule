@@ -1,0 +1,64 @@
+<section id="display" class="justify-content-center p-2 m-5">
+    <h2 class="text-center">Създай График</h2>
+    <form method="post" enctype="multipart/form-data" class="d-flex flex-column gap-3 px-5">
+        {% csrf_token %}
+
+        <!-- Club Emblem Image Section -->
+        <div class="d-flex justify-content-center align-items-center">
+            <img style="width: 150px; height: 150px;" src="{{ display_form.initial.club_emblem }}" alt="Club Emblem"
+                 class="me-3"/>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <p style="font-style: italic">Ако не добавите клубна емблема от полето по-долу ще бъде използвана тази
+                снимка</p>
+        </div>
+
+        <!-- Club Emblem Section -->
+        <div id="club-emblem" class="d-flex align-items-center mb-3">
+            <label for="{{ display_form.club_emblem.id_for_label }}" class="form-label me-2 pr-2">Клубна Емблема</label>
+            <p>{{ display_form.club_emblem }}</p>
+        </div>
+
+        <!-- Generation Section -->
+        <div id="generation" class="d-flex align-items-center mb-3">
+            <label for="{{ display_form.generation.id_for_label }}" class="form-label me-2 pr-2">Отбор</label>
+            <p id="generation-p">{{ display_form.generation }}</p>
+        </div>
+
+        <!-- Coach Section -->
+        <div id="coach" class="d-flex  align-items-center mb-3">
+            <label for="{{ display_form.coach.id_for_label }}" class="form-label me-2 pr-2">Треньор</label>
+            <p>{{ display_form.coach }}</p>
+        </div>
+
+        <!-- Coach Photo Image Section -->
+        <div class="d-flex justify-content-center align-items-center ">
+            <img style="width: 150px; height: 150px;" src="{{ display_form.initial.coach_photo }}" alt="Coach Photo"
+                 class="me-3"/>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <p style="font-style: italic">Ако не добавите снимка на треньор от полето по-долу ще бъде използвана тази
+                снимка</p>
+        </div>
+
+        <!-- Coach Photo Section -->
+        <div id="coach-photo" class="d-flex  align-items-center mb-3">
+            <label for="{{ display_form.coach_photo.id_for_label }}" class="form-label me-2 pr-2">Снимка на
+                треньор</label>
+            <p>{{ display_form.coach_photo }}</p>
+        </div>
+
+        <!-- Month Section -->
+        <div id="month" class="d-flex  align-items-center mb-3">
+            <label for="{{ display_form.month.id_for_label }}" class="form-label me-2 pr-2">Месец</label>
+            <p>{{ display_form.month }}</p>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-flex justify-content-center justify-content-start">
+            <button name="submit_display_form" type="submit" class="btn btn-primary px-4 py-2">Създай График</button>
+        </div>
+    </form>
+</section>

@@ -1,7 +1,8 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from football_schedule.schedules.choices import TypeChoices
+from football_schedule.schedules.choices import TypeChoices, MonthChoices
 
 UserModel = get_user_model()
 
@@ -131,6 +132,41 @@ class Week(models.Model):
     )
 
     sunday_place = models.CharField(
+        null=True,
+        blank=True,
+    )
+
+class DisplayScheduleData(models.Model):
+    user=models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+        related_name='display_schedule'
+    )
+
+    club_emblem = CloudinaryField(
+    'club_emblem',
+        folder='accounts',
+        null=True,
+        blank=True,
+    )
+    generation = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True,
+    )
+    coach = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+    )
+    coach_photo = CloudinaryField(
+        'coach_photo',
+        folder='accounts',
+        null=True,
+        blank=True,
+    )
+    month = models.CharField(
+        choices=MonthChoices.choices,
         null=True,
         blank=True,
     )

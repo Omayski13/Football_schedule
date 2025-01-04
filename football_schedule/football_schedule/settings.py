@@ -14,6 +14,7 @@ from pathlib import Path
 import cloudinary
 
 from decouple import config
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,6 +131,9 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'accounts.AppUser'
 
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = reverse_lazy('home')
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -143,6 +147,9 @@ cloudinary.config(
     api_key=os.getenv('CLOUDINARY_API_KEY',config('CLOUDINARY_API_KEY')),
     api_secret=os.getenv('CLOUDINARY_API_SECRET',config('CLOUDINARY_API_SECRET'))
 )
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

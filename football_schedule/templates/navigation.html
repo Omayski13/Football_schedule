@@ -9,10 +9,16 @@
 
         <div class="nav-profile">
             {% if request.user.is_authenticated %}
-            <a href="">Профил</a>
+            <a href="{% url 'details' request.user.pk %}">Профил</a>
+            <a href="{% url 'user-logout' %}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Изход</a>
+
+                <form id="logout-form" method="post" action="{% url 'user-logout' %}" style="display: none;">
+                    {% csrf_token %}
+                </form>
             {% else %}
-                <a href="">Вход</a>
-                <a href="">Регистрация</a>
+                <a href="{% url 'login' %}">Вход</a>
+                <a href="{% url 'register' %}">Регистрация</a>
             {% endif %}
         </div>
     </nav>
