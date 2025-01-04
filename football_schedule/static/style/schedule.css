@@ -1,0 +1,96 @@
+#create-schedule,
+#weeks,
+#display,
+#display-page-section
+{
+    width: 65%;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+section h2{
+    font-weight: bold ;
+    color: blue;
+}
+
+h2#no-weeks{
+    font-weight: normal ;
+    color: black;
+}
+
+
+div label{
+    font-weight: bold;
+}
+
+.wide-input {
+    width: 350px; /* Adjust the width as needed */
+    height: 35px;
+}
+
+.wide-input-small {
+    width: 200px; /* Adjust the width as needed */
+    height: 30px;
+}
+
+#club-emblem,
+#generation,
+#coach,
+#coach-photo,
+#month{
+    margin-left: 200px;
+}
+
+#generation-p{
+    margin-left: 20px
+}
+
+/*display.html */
+
+#display-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#display-page-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 5rem;
+}
+#schedule-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#club-emblem-image{
+    padding: 2rem 2rem 0rem 0rem;
+}
+
+#schedule-info
+{
+    display: flex;
+    text-align: center;
+}
+
+#display-weeks {
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Optional: Arrange items vertically */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 2rem; /* Add padding for spacing */
+}
+
+
+#coach-photo-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+}

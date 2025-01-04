@@ -4,4 +4,17 @@ nav {
 
 nav a{
     font-size: 2em;
+    color: blue;
+    text-decoration: none;
 }
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+header nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+

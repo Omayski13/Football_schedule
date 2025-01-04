@@ -1,0 +1,43 @@
+{% load add_days %}
+
+
+<section id="weeks" class="p-2 m-5">
+    <div>
+        <h2 class="text-center">Създадени седмици</h2>
+    </div>
+    <div class="d-flex justify-content-around">
+        {% if weeks %}
+            <ul>
+                {% for week in weeks %}
+                    <li>
+                        {{ week.start_date|date:"d.m" }} - {{ week.start_date|add_days:7|date:"d.m.Y" }}
+                        <a href="{% url 'edit-week' week.pk %}">
+                            <i class="fa-solid fa-pen"></i>редактирай
+                        </a>
+                        <a href="{% url 'delete-week' week.pk %}"
+                           onclick="return confirm('Сигурен ли си, че искаш да изтриеш тази седмица?');">
+                            <i class="fa-solid fa-trash"></i>изтрий
+                        </a>
+
+                    </li>
+                {% endfor %}
+            </ul>
+
+
+            <form class="px-5" method="post" action="{% url 'delete-all-weeks' %}" onsubmit="return confirmDelete()">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger px-3 py-3">Изтрий всички създадени седмици</button>
+            </form>
+        {% else %}
+            <h2 id="no-weeks"> Все още няма създадени седмици</h2>
+        {% endif %}
+    </div>
+
+</section>
+
+
+<script>
+    function confirmDelete() {
+        return confirm("Сигурен ли си, че искаш да изтриеш всички създадени седмици?");
+    }
+</script>

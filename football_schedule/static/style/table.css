@@ -3,7 +3,7 @@
 
 table {
     border-collapse: collapse;
-    width: 40%;
+    width: 100%;
     table-layout: fixed; /* Ensure fixed column widths */
 }
 

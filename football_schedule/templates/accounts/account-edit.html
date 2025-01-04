@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    {% include 'head.html' with bootstrap=True %}
+    
+    <form method="post" enctype="multipart/form-data">>
+        {% csrf_token %}
+        {{ form }}
+        <button>Редакция</button>
+    </form>
+    
+    
+{% endblock %}

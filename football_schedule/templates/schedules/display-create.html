@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    {% include 'head.html' with bootstrap=True %}
+    Kriso e pich
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button>създай display data</button>
+    </form>
+    
+    
+{% endblock %}
