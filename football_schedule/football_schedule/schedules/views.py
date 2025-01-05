@@ -8,13 +8,14 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, UpdateView, FormView
 
+from football_schedule.common.mixins import DeleteCloudinaryFormValidMixin
 from football_schedule.schedules.forms import WeekForm, WeekEditForm, DisplayForm
 from football_schedule.schedules.models import Week, DisplayScheduleData
 
 
 # Create your views here.
 
-class ScheduleCreateView(View):
+class ScheduleCreateView(DeleteCloudinaryFormValidMixin,View):
     template_name = 'schedules/schedule-create.html'
     success_url = reverse_lazy('create-schedule')
 
@@ -74,51 +75,6 @@ class ScheduleCreateView(View):
             'weeks': Week.objects.filter(author=request.user),
         }
         return render(request, self.template_name, context)
-
-
-
-
-
-# class ScheduleCreateView(CreateView):
-#     template_name = 'schedules/schedule-create.html'
-#     form_class = WeekForm
-#     model = DisplayScheduleData
-#     success_url = reverse_lazy('create-schedule')
-#
-#     def form_valid(self, form):
-#         # First, handle saving the week object
-#         week = form.save(commit=False)
-#         week.author = self.request.user  # Assign the logged-in user
-#         week.save()  # Save the week instan
-#
-#         display_form = DisplayForm(self.request.POST or None)
-#         if display_form.is_valid():
-#             # Save the display data to DisplayScheduleData model
-#             display_data = display_form.save(commit=False)
-#             display_data.user = self.request.user  # Link the user to the display data
-#             display_data.save()  # Save the data to the database
-#             print("Display data saved successfully!")  # Debugging line
-#         else:
-#             print("DisplayForm is not valid:", display_form.errors)  # Debugging line
-#
-#         return super().form_valid(form)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         # Get the user's profile and populate the DisplayForm
-#         user_profile = self.request.user.profile
-#
-#         context['weeks'] = Week.objects.filter(author=self.request.user)
-#         context['display_form'] = DisplayForm(initial={
-#             'club_emblem': user_profile.club_emblem.url if user_profile.club_emblem else None,
-#             'coach_photo': user_profile.profile_picture.url if user_profile.profile_picture else None,
-#             'generation': user_profile.generation,
-#             'coach': user_profile.get_full_name,
-#         })
-#
-#         return context
-
 
 
 

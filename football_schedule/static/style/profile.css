@@ -3,3 +3,23 @@
     border: 1px solid black;
     border-radius: 20px;
 }
+
+#profile-details-profile-picture{
+    width:300px;
+    height: auto;
+}
+#profile-details-club-emblem{
+    width:90px;
+    height: auto;
+}
+
+#profile-edit-form h5{
+    font-weight: bold;
+}
+
+#profile-edit-profile-picture,
+#profile-edit-club-emblem{
+    width:150px;
+    height: auto;
+
+}
