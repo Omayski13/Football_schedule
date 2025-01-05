@@ -7,16 +7,20 @@
 
     <div class="d-flex flex-column justify-content-center align-items-center">
         <section id="profile-details" class="d-flex flex-column justify-content-center align-items-center p-2 m-5">
-            <form id="profile-edit-form" class="d-flex flex-column" method="post" enctype="multipart/form-data">
+            <form id="profile-edit-form" class="d-flex flex-column justify-content-center" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <h5>Профилна снимка: {{ form.profile_picture }}</h5>
+                <img id="profile-edit-profile-picture" src="{{ appuser.profile.profile_picture.url }}">
+                <h5 >Профилна снимка: {{ form.profile_picture }}</h5>
                 <h5>Име: {{ form.first_name }}</h5>
                 <h5>Фамилия: {{ form.last_name }}</h5>
                 <h5>Клуб: {{ form.club }}</h5>
+                <img id="profile-edit-club-emblem" src="{{ appuser.profile.club_emblem.url }}">
                 <h5>Клубна емблема: {{ form.club_emblem }}</h5>
                 <h5>Набор: {{ form.generation }}</h5>
                 <h5>Лиценз: {{ form.license }}</h5>
-                <button class="btn px-2 py-2 m-2 btn-primary text-center">Редакция</button>
+                <div class="d-flex justify-content-center">
+                    <button class="btn px-2 py-2 m-2 btn-primary text-center ">Редакция</button>
+                </div>
             </form>
             
         </section>

@@ -2,6 +2,7 @@ from cloudinary.models import CloudinaryField
 from django import forms
 from django.forms import formset_factory, DateInput, TimeInput
 
+from football_schedule.common.mixins import CloudinaryImageValidatorMixin
 from football_schedule.schedules.choices import MonthChoices
 from football_schedule.schedules.models import Week, DisplayScheduleData
 
@@ -56,10 +57,16 @@ class WeekEditForm(WeekForm):
     pass
 
 
-class DisplayForm(forms.ModelForm):
+class DisplayForm(CloudinaryImageValidatorMixin,forms.ModelForm):
     class Meta:
         model = DisplayScheduleData
         exclude = ('user',)
+
+    def clean_club_emblem(self):
+        return self.validate_field('club_emblem')
+
+    def clean_coach_photo(self):
+        return self.validate_field('coach_photo')
 
     def clean(self):
         cleaned_data = super().clean()

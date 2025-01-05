@@ -5,6 +5,7 @@ from django.views.generic import CreateView, DetailView, UpdateView
 
 from football_schedule.accounts.forms import AppUserCreationForm, AppUserLoginForm, EditProfileForm
 from football_schedule.accounts.models import AppUser, Profile
+from football_schedule.common.mixins import DeleteCloudinaryFormValidMixin
 
 
 # Create your views here.
@@ -31,10 +32,11 @@ class UserDetailsView(DetailView):
     template_name = 'accounts/account-details.html'
     model = AppUser
 
-class UserEditView(UpdateView):
+class UserEditView(DeleteCloudinaryFormValidMixin,UpdateView):
     template_name = 'accounts/account-edit.html'
     form_class = EditProfileForm
     model = Profile
+    cloudinary_delete_fields = ('profile_picture','club_emblem')
 
     def get_success_url(self):
         return reverse_lazy(
@@ -43,5 +45,14 @@ class UserEditView(UpdateView):
                 'pk': self.object.pk
             }
         )
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['appuser'] = self.request.user
+
+        return context
 
 
