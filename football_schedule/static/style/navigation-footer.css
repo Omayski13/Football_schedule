@@ -1,0 +1,31 @@
+nav {
+    background-color: darkgrey;
+}
+
+nav a {
+    font-size: 2em;
+    color: blue;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+
+
+footer {
+      background-color: darkgrey; /* Footer background color */
+      color: blue; /* Footer text color */
+      padding: 2rem; /* Padding for the footer content */
+      text-align: center; /* Center-align the text */
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }

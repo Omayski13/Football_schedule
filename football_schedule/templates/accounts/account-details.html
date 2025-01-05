@@ -5,16 +5,25 @@
 {% block content %}
     {% include 'head.html' with bootstrap=True %}
     
+    <div class="d-flex flex-column justify-content-center align-items-center">
+    <section id="profile-details" class="d-flex flex-column justify-content-center align-items-center p-2 m-5">
+    <h3><strong>{{ appuser.profile.get_full_name }}</strong></h3>
     {% if appuser.profile.profile_picture  %}
-        <img src="{{ appuser.profile.profile_picture.url}}">
-    {% else %}
-        <h3> no pic</h3>
+        <img class="pb-2" id="profile-details-profile-picture" src="{{ appuser.profile.profile_picture.url}}">
     {% endif %}
-    <h3>{{ appuser.email }}</h3>
-    <h3>{{ appuser.profile.get_full_name }}</h3>
-    <h3>{{ appuser.profile.club }}</h3>
-    <h3>{{ appuser.profile.license }}</h3>
-    <a href="{% url 'edit' request.user.pk %}">Редактирай</a>
+    <h3>Имейл: <strong>{{ appuser.email }}</strong></h3>
+    <div class="d-flex">
+        <h3 class="d-flex align-items-center pr-2">Отбор: <strong>{{ appuser.profile.club }}</strong></h3>
+        {% if appuser.profile.club_emblem %}
+            <img id="profile-details-club-emblem" src="{{ appuser.profile.club_emblem.url}}">
+        {% endif %}
+    </div>
+    <h3>Набор: <strong>{{ appuser.profile.generation }}</strong></h3>
+    <h3>Лиценз: <strong>{{ appuser.profile.license }}</strong></h3>
+    <a class="btn px-5 py-2 m-2  btn-primary text-center" href="{% url 'edit' request.user.pk %}">Редактирай</a>
+    </section>
+    </div>
+    
     
     
 {% endblock %}

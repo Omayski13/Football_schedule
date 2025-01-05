@@ -4,5 +4,21 @@
 body {
     font-family: Cousine;
     background-color: #ECEBDE;
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    padding-bottom: 5rem ;
 }
 
+#profile-details-profile-picture{
+    width:300px;
+    height: auto;
+}
+#profile-details-club-emblem{
+    width:90px;
+    height: auto;
+}
+
+#profile-edit-form h5{
+    font-weight: bold;
+}
