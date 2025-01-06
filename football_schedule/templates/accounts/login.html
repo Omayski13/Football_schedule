@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% include 'head.html' %}
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button>Submit</button>
-</form>
+    {% include 'head.html' with bootstrap=True %}
+    
+     <div class="d-flex flex-column justify-content-center align-items-center">
+        <section id="profile-details" class="d-flex flex-column justify-content-center align-items-center p-2 m-5">
+            <form id="profile-edit-form" class="d-flex flex-column justify-content-center" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h3 class="text-center">Имейл</h3>
+                {{ form.username }}
+                <h3 class=" pt-2 text-center">Парола</h3>
+                {{ form.password }}
+                <button class="btn px-2 py-2 m-3 btn-primary text-center ">Вход</button>
+            </form>
+        </section>
+     </div>
+    
 {% endblock %}
