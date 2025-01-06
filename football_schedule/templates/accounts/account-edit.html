@@ -11,11 +11,25 @@
                 {% csrf_token %}
                 <img id="profile-edit-profile-picture" src="{{ appuser.profile.profile_picture.url }}">
                 <h5 >Профилна снимка: {{ form.profile_picture }}</h5>
+                {% if form.profile_picture.errors %}
+                    <ul class="text-danger">
+                        {% for error in form.profile_picture.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 <h5>Име: {{ form.first_name }}</h5>
                 <h5>Фамилия: {{ form.last_name }}</h5>
                 <h5>Клуб: {{ form.club }}</h5>
                 <img id="profile-edit-club-emblem" src="{{ appuser.profile.club_emblem.url }}">
                 <h5>Клубна емблема: {{ form.club_emblem }}</h5>
+                {% if form.club_emblem.errors %}
+                    <ul class="text-danger">
+                        {% for error in form.club_emblem.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 <h5>Набор: {{ form.generation }}</h5>
                 <h5>Лиценз: {{ form.license }}</h5>
                 <div class="d-flex justify-content-center">
