@@ -57,26 +57,34 @@ class WeekEditForm(WeekForm):
     pass
 
 
-class DisplayForm(CloudinaryImageValidatorMixin,forms.ModelForm):
+class DisplayForm(CloudinaryImageValidatorMixin, forms.ModelForm):
     class Meta:
         model = DisplayScheduleData
         exclude = ('user',)
 
     def clean_club_emblem(self):
+        # Validate only if the field has a value
+        club_emblem = self.cleaned_data.get('club_emblem')
+        if not club_emblem:
+            return None
         return self.validate_field('club_emblem')
 
+
     def clean_coach_photo(self):
+        # Validate only if the field has a value
+        coach_photo = self.cleaned_data.get('coach_photo')
+        if not coach_photo:
+            return None
         return self.validate_field('coach_photo')
+
 
     def clean(self):
         cleaned_data = super().clean()
 
-        # Handle club_emblem
-        if not self.cleaned_data.get('club_emblem') and self.initial.get('club_emblem'):
+        # Retain initial values if present and the field is left blank
+        if not cleaned_data.get('club_emblem') and self.initial.get('club_emblem'):
             cleaned_data['club_emblem'] = self.initial['club_emblem']
-
-        # Handle coach_photo
-        if not self.cleaned_data.get('coach_photo') and self.initial.get('coach_photo'):
+        if not cleaned_data.get('coach_photo') and self.initial.get('coach_photo'):
             cleaned_data['coach_photo'] = self.initial['coach_photo']
 
         return cleaned_data
@@ -84,9 +92,12 @@ class DisplayForm(CloudinaryImageValidatorMixin,forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        # Explicitly set optional fields as not required
+        self.fields['coach_photo'].required = False
+        self.fields['club_emblem'].required = False
+
         for field in self.fields.values():
             field.widget.attrs.update({
                 'class': 'wide-input'
             })
-
 

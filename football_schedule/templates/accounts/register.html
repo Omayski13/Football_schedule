@@ -1,20 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
     {% include 'head.html' with bootstrap=True %}
-    
-     <div class="d-flex flex-column justify-content-center align-items-center">
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
         <section id="profile-details" class="d-flex flex-column justify-content-center align-items-center p-2 m-5">
-            <form id="profile-edit-form" class="d-flex flex-column justify-content-center" method="post" enctype="multipart/form-data">
+            <form id="profile-edit-form" class="d-flex flex-column justify-content-center" method="post"
+                  enctype="multipart/form-data">
                 {% csrf_token %}
                 <h3 class="text-center">Имейл</h3>
                 {{ form.email }}
-                <h3 class=" pt-2 text-center">Парола</h3>
+                <h3 class="pt-2 text-center">Парола</h3>
                 {{ form.password1 }}
-                <h3 class=" pt-2 text-center">Повтори парола</h3>
+                {% if form.password1.help_text %}
+                    <small class="text-muted">{{ form.password1.help_text }}</small>
+                {% endif %}
+                <h3 class="pt-2 text-center">Повтори парола</h3>
                 {{ form.password2 }}
-                <button class="btn px-2 py-2 m-3 btn-primary text-center ">Вход</button>
+                {% if form.password2.help_text %}
+                    <small class="text-muted">{{ form.password2.help_text }}</small>
+                {% endif %}
+                <button class="btn px-2 py-2 m-3 btn-primary text-center ">Създай профил</button>
+
             </form>
         </section>
-     </div>
-    
+    </div>
+
 {% endblock %}

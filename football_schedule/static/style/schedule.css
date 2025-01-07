@@ -46,7 +46,7 @@ div label{
 }
 
 /*display.html */
-
+#to-screenshot,
 #display-page{
     display: flex;
     flex-direction: column;
@@ -93,4 +93,17 @@ div label{
     justify-content: center;
     align-items: center;
     padding-left: 2rem;
+}
+
+.form-display-p{
+    font-style: italic;
+}
+
+#form-display-club-emblem,
+#form-display-coach-photo{
+    width:150px;
+    height: 150px;
+}
+#form-display-coach-photo{
+    border-radius: 20px;
 }

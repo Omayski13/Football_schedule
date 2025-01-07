@@ -7,11 +7,12 @@
 
     <div class="d-flex flex-column justify-content-center align-items-center">
         <section id="profile-details" class="d-flex flex-column justify-content-center align-items-center p-2 m-5">
-            {% if appuser.profile.get_full_name %}
-                <h3><strong>{{ appuser.profile.get_full_name }}</strong></h3>
-            {% endif %}
+            
             {% if appuser.profile.profile_picture %}
                 <img class="pb-2" id="profile-details-profile-picture" src="{{ appuser.profile.profile_picture.url }}">
+            {% endif %}
+            {% if appuser.profile.get_full_name %}
+                <h3 id="profile-name"><strong>{{ appuser.profile.get_full_name }}</strong></h3>
             {% endif %}
             <h3>Имейл: <strong>{{ appuser.email }}</strong></h3>
             <div class="d-flex">
@@ -19,18 +20,17 @@
                     <h3 class="d-flex align-items-center pr-2">Отбор: <strong>{{ appuser.profile.club }}</strong></h3>
                 {% endif %}
                 {% if appuser.profile.club_emblem %}
-                    <img id="profile-details-club-emblem" src="{{ appuser.profile.club_emblem.url }}">
+                    <img id="profile-details-club-emblem" class="pb-2" src="{{ appuser.profile.club_emblem.url }}">
                 {% endif %}
             </div>
             {% if appuser.profile.generation %}
                 <h3>Набор: <strong>{{ appuser.profile.generation }}</strong></h3>
             {% endif %}
             {% if appuser.profile.license %}
-                <h3>Лиценз: <strong>{{ appuser.profile.license }}</strong></h3>
+                <h3 class="py-2">Лиценз: <strong>{{ appuser.profile.license }}</strong></h3>
             {% endif %}
             <a class="btn px-5 py-2 m-2  btn-primary text-center" href="{% url 'edit' request.user.pk %}">Редактирай</a>
             <a class="btn px-5 py-2 m-2  btn-primary text-center" href="{% url 'change-password' %}">Смени парола</a>
-            <a class="btn px-5 py-2 m-2  btn-primary text-center" href="{% url 'password-reset' %}">Reset парола</a>
         </section>
     </div>
 

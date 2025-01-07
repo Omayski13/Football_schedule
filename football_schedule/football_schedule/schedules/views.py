@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
@@ -15,28 +16,22 @@ from football_schedule.schedules.models import Week, DisplayScheduleData
 
 # Create your views here.
 
-class ScheduleCreateView(DeleteCloudinaryFormValidMixin,View):
+class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View):
     template_name = 'schedules/schedule-create.html'
     success_url = reverse_lazy('create-schedule')
 
     def get_user_profile_data(self):
-        """
-        Helper method to get initial data for the DisplayForm based on the user's profile.
-        """
         user_profile = self.request.user.profile
         return {
-            'club_emblem': user_profile.club_emblem.url if user_profile.club_emblem else None,
-            'coach_photo': user_profile.profile_picture.url if user_profile.profile_picture else None,
+            'club_emblem': user_profile.club_emblem if user_profile.club_emblem else None,
+            'coach_photo': user_profile.profile_picture if user_profile.profile_picture else None,
             'generation': user_profile.generation,
             'coach': user_profile.get_full_name,
         }
 
     def get(self, request, *args, **kwargs):
-        # Initialize forms
         form = WeekForm()
         display_form = DisplayForm(initial=self.get_user_profile_data())
-
-        # Prepare context
         context = {
             'form': form,
             'display_form': display_form,
@@ -45,10 +40,7 @@ class ScheduleCreateView(DeleteCloudinaryFormValidMixin,View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        # Get user profile data for DisplayForm initialization
         initial_display_data = self.get_user_profile_data()
-
-        # Initialize forms with default or posted data
         form = WeekForm()
         display_form = DisplayForm(initial=initial_display_data)
 
@@ -59,16 +51,15 @@ class ScheduleCreateView(DeleteCloudinaryFormValidMixin,View):
                 week.author = request.user
                 week.save()
                 return redirect(self.success_url)
+
         elif 'submit_display_form' in request.POST:
-            # Include request.FILES to handle file uploads
             display_form = DisplayForm(request.POST, request.FILES, initial=initial_display_data)
             if display_form.is_valid():
                 display_data = display_form.save(commit=False)
                 display_data.user = request.user
                 display_data.save()
-                return redirect(reverse('display-schedule'))  # Redirect to 'display-schedule'
+                return redirect(reverse('display-schedule'))
 
-        # Re-render the page with errors if forms are invalid
         context = {
             'form': form,
             'display_form': display_form,
@@ -78,7 +69,7 @@ class ScheduleCreateView(DeleteCloudinaryFormValidMixin,View):
 
 
 
-class ScheduleDisplayView(ListView):
+class ScheduleDisplayView(LoginRequiredMixin,ListView):
     template_name = 'schedules/display.html'
     context_object_name = 'weeks'
 
@@ -99,7 +90,7 @@ class ScheduleDisplayView(ListView):
 
         return context
 
-class ScheduleWeekEditView(UpdateView):
+class ScheduleWeekEditView(LoginRequiredMixin,UpdateView):
     template_name = 'schedules/schedule-edit.html'
     form_class = WeekEditForm
     model = Week

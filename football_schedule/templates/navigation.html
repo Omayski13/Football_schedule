@@ -1,12 +1,18 @@
+{% load static %}
+
 <header>
-    <nav class="d-flex justify-content-between p-4">
+    <nav class="d-flex justify-content-between align-items-center ">
         <div class=" p-2 nav-image">
+            <a class="text-decoration-none" href="{% url 'home' %}">
+                <img id="nav-image" src="{% static 'images/nav-image.png' %}">
+            </a>
         </div>
+            
 
-        <div class=" nav-schedule">
-            <a class="text-decoration-none" href="{% url 'create-schedule' %}">Създай графикa</a>
+        <div class="nav-schedule">
+            <a class="text-decoration-none " href="{% url 'create-schedule' %}">Създай графикa</a>
         </div>
-
+    
         <div class="nav-profile">
             {% if request.user.is_authenticated %}
             <a href="{% url 'details' request.user.pk %}">Профил</a>
