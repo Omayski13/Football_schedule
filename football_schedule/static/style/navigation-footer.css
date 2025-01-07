@@ -15,10 +15,17 @@ nav a:hover {
 header nav {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem;
+    align-items: center;
 }
 
+#nav-image{
+    width: 300px;
+    height: 100px;
+}
 
+.nav-schedule{
+    padding-right: 6.5rem;
+}
 
 footer {
       background-color: darkgrey; /* Footer background color */

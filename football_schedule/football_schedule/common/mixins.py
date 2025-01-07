@@ -6,20 +6,25 @@ from django.core.exceptions import ValidationError
 
 
 
-class CloudinaryImageValidatorMixin():
+class CloudinaryImageValidatorMixin:
     def validate_field(self, field_name):
         field_value = self.cleaned_data.get(field_name)
 
-        if isinstance(field_value,CloudinaryResource):
+        # If the field is blank, return None (valid case for optional fields)
+        if not field_value:
+            return None
+
+        # Validate Cloudinary resource
+        if isinstance(field_value, CloudinaryResource):
             return field_value
 
-        if field_value:
-            try:
-                img = Image.open(field_value)
-                img.verify()  # Ensure the file is a valid image
-                return field_value
-            except Exception:
-                raise ValidationError('Това поле трябва да бъде изображение.')
+        # Validate uploaded image
+        try:
+            img = Image.open(field_value)
+            img.verify()  # Ensure the file is a valid image
+            return field_value
+        except Exception:
+            raise ValidationError('Това поле трябва да бъде изображение.')
 
         return field_value
 

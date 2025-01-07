@@ -1,3 +1,5 @@
+.reset-password,
+.change-password,
 #profile-details {
     width: 65%;
     border: 1px solid black;
@@ -5,6 +7,7 @@
 }
 
 #profile-details-profile-picture{
+    border-radius: 20px;
     width:300px;
     height: auto;
 }
@@ -21,5 +24,14 @@
 #profile-edit-club-emblem{
     width:150px;
     height: auto;
+    margin-left: 5rem;
 
+}
+
+#profile-edit-profile-picture{
+    border-radius: 20px;
+}
+
+#profile-name{
+    font-size: 2.5rem;
 }

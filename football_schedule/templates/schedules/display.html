@@ -1,92 +1,150 @@
 {% extends 'base.html' %}
-
-
-{% load add_days %}
 {% load add_hours_str %}
-
-
-
+{% load add_days %}
 
 {% block content %}
     {% include 'head.html' with bootstrap=False %}
 
-    <div id="display-page" >
-
-        <section id="display-page-section" >
-            <div id="schedule-info" >
-                {% if display_data.club_emblem %}
-                    <div>
-                        <img id="club-emblem-image" style="width: 170px; height: auto"
-                             src="{{ display_data.club_emblem.url }}">
+    <div id="display-page">
+    <button id="download-screenshot">Свали график</button>
+        <!-- Div to capture -->
+        <div id="to-screenshot">
+            <section id="display-page-section">
+                <!-- Your section content here -->
+                <div id="schedule-info">
+                    {% if display_data.club_emblem %}
+                        <div>
+                            <img id="club-emblem-image" style="width: 170px; height: auto"
+                                 src="{{ display_data.club_emblem.url }}">
+                        </div>
+                    {% endif %}
+                    <div id="schedule-text">
+                        <h1>Набор {{ display_data.generation }}</h1>
+                        <h1>Треньор {{ display_data.coach }}</h1>
+                        {% if display_data.month %}
+                            <h1>Месец {{ display_data.month }}</h1>
+                        {% endif %}
                     </div>
-                {% endif %}
-                <div id="schedule-text">
-                    <h1>Набор {{ display_data.generation }}</h1>
-                    <h1>Треньор {{ display_data.coach }}</h1>
-                    {% if display_data.month %}
-                        <h1>Месец {{ display_data.month }}</h1>
+                    {% if display_data.coach_photo %}
+                        <div id="coach-photo-image">
+                            <img style="width: 75px; height: 75px ;border-radius: 50%"
+                                 src="{{ display_data.coach_photo.url }}">
+                        </div>
                     {% endif %}
                 </div>
-                {% if display_data.coach_photo %}
-                    <div id="coach-photo-image">
-                        <img style="width: 75px; height: 75px ;border-radius: 50%"
-                             src="{{ display_data.coach_photo.url }}">
-                    </div>
-                {% endif %}
+                <div id="display-weeks">
+                    {% for week in weeks %}
+                        <div class="table-responsive mb-2">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th colspan="7">{{ week.start_date|date:"d.m" }}
+                                        - {{ week.start_date|add_days:7|date:"d.m" }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="days">
+                                    <td>П</td>
+                                    <td>В</td>
+                                    <td>С</td>
+                                    <td>Ч</td>
+                                    <td>П</td>
+                                    <td>С</td>
+                                    <td>Н</td>
+                                </tr>
+                                <tr class="dates">
+                                    <td>{{ week.start_date|date:"d.m" }}</td>
+                                    <td>{{ week.start_date|add_days:1|date:"d.m" }}</td>
+                                    <td>{{ week.start_date|add_days:2|date:"d.m" }}</td>
+                                    <td>{{ week.start_date|add_days:3|date:"d.m" }}</td>
+                                    <td>{{ week.start_date|add_days:4|date:"d.m" }}</td>
+                                    <td>{{ week.start_date|add_days:5|date:"d.m" }}</td>
+                                    <td>{{ week.start_date|add_days:6|date:"d.m" }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="{{ week.monday_type }}">{{ week.monday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                                    <td class="{{ week.tuesday_type }}">{{ week.tuesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                                    <td class="{{ week.wednesday_type }}">{{ week.wednesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                                    <td class="{{ week.thursday_type }}">{{ week.thursday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                                    <td class="{{ week.friday_type }}">{{ week.friday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                                    <td class="{{ week.saturday_type }}">{{ week.saturday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                                    <td class="{{ week.sunday_type }}">{{ week.sunday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="{{ week.monday_type }}">{{ week.monday_place }}</td>
+                                    <td class="{{ week.tuesday_type }}">{{ week.tuesday_place }}</td>
+                                    <td class="{{ week.wednesday_type }}">{{ week.wednesday_place }}</td>
+                                    <td class="{{ week.thursday_type }}">{{ week.thursday_place }}</td>
+                                    <td class="{{ week.friday_type }}">{{ week.friday_place }}</td>
+                                    <td class="{{ week.saturday_type }}">{{ week.saturday_place }}</td>
+                                    <td class="{{ week.sunday_type }}">{{ week.sunday_place }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                </div>
 
-            </div>
-            <div id="display-weeks">
-                {% for week in weeks %}
-                     <div class="table-responsive mb-2">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th colspan="7">{{ week.start_date|date:"d.m" }}
-                                    - {{ week.start_date|add_days:7|date:"d.m" }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="days">
-                                <td>П</td>
-                                <td>В</td>
-                                <td>С</td>
-                                <td>Ч</td>
-                                <td>П</td>
-                                <td>С</td>
-                                <td>Н</td>
-                            </tr>
-                            <tr class="dates">
-                                <td>{{ week.start_date|date:"d.m" }}</td>
-                                <td>{{ week.start_date|add_days:1|date:"d.m" }}</td>
-                                <td>{{ week.start_date|add_days:2|date:"d.m" }}</td>
-                                <td>{{ week.start_date|add_days:3|date:"d.m" }}</td>
-                                <td>{{ week.start_date|add_days:4|date:"d.m" }}</td>
-                                <td>{{ week.start_date|add_days:5|date:"d.m" }}</td>
-                                <td>{{ week.start_date|add_days:6|date:"d.m" }}</td>
-                            </tr>
-                            <tr>
-                                <td class="{{ week.monday_type }}">{{ week.monday_time|date:"H:i"|add_hours_str:' часа' }}</td>
-                                <td class="{{ week.tuesday_type }}">{{ week.tuesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
-                                <td class="{{ week.wednesday_type }}">{{ week.wednesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
-                                <td class="{{ week.thursday_type }}">{{ week.thursday_time|date:"H:i"|add_hours_str:' часа' }}</td>
-                                <td class="{{ week.friday_type }}">{{ week.friday_time|date:"H:i"|add_hours_str:' часа' }}</td>
-                                <td class="{{ week.saturday_type }}">{{ week.saturday_time|date:"H:i"|add_hours_str:' часа' }}</td>
-                                <td class="{{ week.sunday_type }}">{{ week.sunday_time|date:"H:i"|add_hours_str:' часа' }}</td>
-                            </tr>
-                            <tr>
-                                <td class="{{ week.monday_type }}">{{ week.monday_place }}</td>
-                                <td class="{{ week.tuesday_type }}">{{ week.tuesday_place }}</td>
-                                <td class="{{ week.wednesday_type }}">{{ week.wednesday_place }}</td>
-                                <td class="{{ week.thursday_type }}">{{ week.thursday_place }}</td>
-                                <td class="{{ week.friday_type }}">{{ week.friday_place }}</td>
-                                <td class="{{ week.saturday_type }}">{{ week.saturday_place }}</td>
-                                <td class="{{ week.sunday_type }}">{{ week.sunday_place }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                {% endfor %}
-            </div>
-        </section>
+            </section>
+        
+        </div>
     </div>
+    
+
+    <!-- Include html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- JavaScript to handle the screenshot -->
+
+    <script>
+        window.onload = function () {
+            document.getElementById("download-screenshot").addEventListener("click", function () {
+                const elementToCapture = document.getElementById("to-screenshot");
+
+                // Capture the element using html2canvas
+                html2canvas(elementToCapture, {
+                    backgroundColor: "#ECEBDE", // Set the background color
+                    useCORS: true, // Enable CORS for external images
+                }).then(function (canvas) {
+                    // Define crop margins
+                    const cropLeftRight = 280; // Crop 180px from left and right
+                    const cropTopBottom = 90;  // Crop 90px from top and bottom
+                    const cropWidth = canvas.width - cropLeftRight * 2; // Adjusted width
+                    const cropHeight = canvas.height - cropTopBottom * 2; // Adjusted height
+
+                    // Create a new canvas for the cropped image
+                    const croppedCanvas = document.createElement("canvas");
+                    croppedCanvas.width = cropWidth;
+                    croppedCanvas.height = cropHeight;
+
+                    const ctx = croppedCanvas.getContext("2d");
+
+                    // Draw the cropped portion of the original canvas
+                    ctx.drawImage(
+                        canvas, // Source canvas
+                        cropLeftRight, // Source x (start cropping 180px from the left)
+                        cropTopBottom, // Source y (start cropping 90px from the top)
+                        cropWidth, // Source width
+                        cropHeight, // Source height
+                        0, // Destination x
+                        0, // Destination y
+                        cropWidth, // Destination width
+                        cropHeight // Destination height
+                    );
+
+                    // Convert the cropped canvas to an image
+                    const imageData = croppedCanvas.toDataURL("image/jpeg", 1.0); // Save as JPEG
+                    const link = document.createElement("a");
+                    link.href = imageData;
+                    link.download = "football-schedule.jpg"; // Use .jpg extension
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            });
+        };
+
+
+    </script>
 {% endblock %}
+

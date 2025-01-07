@@ -1,11 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     {% include 'head.html' with bootstrap=True %}
-    
-    <h1>Hello</h1>
-    <h1>Hello</h1>
-    <h1>Hello</h1>
-  
+    {% if request.user.profile.get_full_name %}
+        <h1 class="text-center p-3">Здравей, {{ request.user.profile.get_full_name }}!</h1>
+    {% else %}
+        <h1 class="text-center p-3">Здравей!</h1>
+    {% endif %}
+    <h4 class="mx-5 text-center"><strong>Football schedule</strong> e сайт за треньори, от който лесно можеш да създадеш график в
+    табличен вид.
+    <h4 class="mx-5 mb-5 text-center">Имаш свободата да създаваш графици за една или няколко седмици, както и за цял
+        месец.</h4>
+    {% if not request.user.is_authenticated %}
+        <h5 class="mx-4  text-center">За да използваш функционалността на сайта трябва да си <strong>регистриран!</strong></h5>
+        <h5 class="mx-4 text-center">Ако нямаш регистрация можеш да се <a href="{% url 'register' %}">РЕГИСТРИРАШ 
+                ТУК</a>.</h5>
+        <h5 class="mx-4 mb-5 text-center">Ако вече си регистриран можеш да се  <a href="{% url 'login' %}">ЛОГНЕШ ТУК</a>.
+        </h5>
 
-    
+    {% endif %}
+    <h3 class="mx-5 mb-3 text-center">Moжеш да разгледаш създадените примерни графици отдолу:</h3>
+    <div id="home-images" class="mx-5 mb-5 py-2 d-flex justify-content-center">
+        <img id="home-page-schedule-image" src="{% static 'images/football-schedule.jpg' %}">
+        <img id="home-page-schedule-image" src="{% static 'images/football-schedule.jpg' %}">
+    </div>
+
+
+
 {% endblock %}

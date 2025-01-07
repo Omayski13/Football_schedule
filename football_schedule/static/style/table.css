@@ -1,6 +1,4 @@
 
-
-
 table {
     border-collapse: collapse;
     width: 100%;
@@ -13,19 +11,22 @@ tr th{
 }
 
 tr.days{
-    background-color: lightsteelblue;
-}
-
-tr.dates{
+    /*background-color: lightsteelblue;*/
     background-color: cornflowerblue;
 }
 
+tr.dates{
+    /*background-color: cornflowerblue;*/
+    background-color: lightsteelblue;
+}
+
 td.training{
-    background-color: #B1C29E;
+    background-color: #aacd92;
+
 }
 
 td.mach{
-    background-color: #E78F81;
+    background-color: #D17A7A;
 }
 
 td.None{
@@ -51,6 +52,25 @@ th {
 td {
     max-width: 60px; /* Limit the width of the cells */
     min-width: 30px; /* Ensure cells are not too small */
+}
+
+
+#download-screenshot{
+    padding: 0.7rem 1.5rem 0.7rem 1.5rem;/* Equivalent to py-2 (padding-bottom 8px) */
+    margin: 4.5rem 0.5rem 0 0.5rem;         /* Equivalent to m-2 (margin 8px) */
+    background-color: #007bff; /* Primary color (btn-primary) */
+    color: white;           /* Text color */
+    font-size: 1rem;        /* Text size */
+    border: none;           /* Remove border */
+    border-radius: 0.25rem; /* Border radius to make it rounded */
+    cursor: pointer;       /* Pointer cursor on hover */
+    display: inline-block;  /* Align the button as inline block */
+    text-align: center;     /* Text alignment inside the button */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+#download-screenshot:hover{
+    background-color:blue;
 }
 
 @media (max-width: 768px) {

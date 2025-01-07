@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView, PasswordResetCompleteView
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import PermissionDenied
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
@@ -40,7 +41,7 @@ class UserChangePasswordView(PasswordChangeView):
 
 
 class UserPasswordResetView(PasswordResetView):
-    template_name = 'accounts/change-password.html'  # The template for the password reset form
+    template_name = 'accounts/reset-password.html'  # The template for the password reset form
     email_template_name = 'accounts/password_reset_email.html'  # Email template to send password reset link
     subject_template_name = 'accounts/password_reset_subject.txt'  # Subject template for email
     success_url = reverse_lazy('password_reset_done')  # Redirect to 'done' page after successfully sending reset email
@@ -70,6 +71,14 @@ class UserDetailsView(DetailView):
     template_name = 'accounts/account-details.html'
     model = AppUser
 
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.request.user.id != self.object.pk:
+            raise PermissionDenied
+
+        return super().dispatch(request, *args, **kwargs)
+
 
 class UserEditView(DeleteCloudinaryFormValidMixin,UpdateView):
     template_name = 'accounts/account-edit.html'
@@ -85,6 +94,13 @@ class UserEditView(DeleteCloudinaryFormValidMixin,UpdateView):
             }
         )
 
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.request.user.id != self.object.user_id:
+            raise PermissionDenied
+
+        return super().dispatch(request, *args, **kwargs)
 
 
     def get_context_data(self, **kwargs):
