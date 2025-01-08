@@ -18,18 +18,50 @@ header nav {
     align-items: center;
 }
 
+.nav-image{
+    display: flex;
+}
+
+header nav p{
+    text-align: center;
+}
+
+
+header nav a{
+    color: #ECEBDE;
+    padding: 1rem;
+}
+
+
+
+#nav-div-image a:hover{
+    padding: 1rem;
+    background-color: darkgrey;
+}
+
+
+header nav a:hover{
+    color: black;
+    padding: 1rem;
+    background-color: #ECEBDE;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+
+
 #nav-image{
     width: 300px;
     height: 100px;
 }
 
 .nav-schedule{
-    padding-right: 6.5rem;
+    padding-right: 10.5rem;
 }
 
 footer {
       background-color: darkgrey; /* Footer background color */
-      color: blue; /* Footer text color */
+      color: #ECEBDE; /* Footer text color */
       padding: 2rem; /* Padding for the footer content */
       text-align: center; /* Center-align the text */
       position: absolute;

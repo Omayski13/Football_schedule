@@ -4,7 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from football_schedule.accounts.choices import AccountsLicenceChoices
+from football_schedule.accounts.choices import AccountsLicenceChoices, TeamGenerationChoices
 from football_schedule.accounts.managers import AppUserManager
 
 
@@ -78,7 +78,14 @@ class Profile(models.Model):
         blank=True,
     )
 
-    generation = models.CharField(
+    team_generation_choice = models.CharField(
+        max_length=20,
+        choices=TeamGenerationChoices.choices,
+        blank=False,
+        null=False,
+    )
+
+    team_generation = models.CharField(
         max_length=20,
         null=True,
         blank=True,

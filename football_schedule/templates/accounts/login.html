@@ -2,18 +2,49 @@
 {% block content %}
     {% include 'head.html' with bootstrap=True %}
     
-     <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
         <section id="profile-details" class="d-flex flex-column justify-content-center align-items-center p-2 m-5">
             <form id="profile-edit-form" class="d-flex flex-column justify-content-center" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                
+                <!-- Display non-field errors -->
+                {% if form.non_field_errors %}
+                    <div class=" alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
                 <h3 class="text-center">Имейл</h3>
-                {{ form.username }}
-                <h3 class=" pt-2 text-center">Парола</h3>
-                {{ form.password }}
-                <button class="btn px-2 py-2 m-3 btn-primary text-center ">Вход</button>
-                <a class=" px-5 py-2 m-2 text-center" href="{% url 'password-reset' %}">Забравена парола</a>
+                <div class="form-group d-flex justify-content-center">
+                    {{ form.username }}
+                    <!-- Display field-specific errors -->
+                    {% if form.username.errors %}
+                        <div class="text-danger">
+                            {% for error in form.username.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <h3 class="pt-2 text-center">Парола</h3>
+                <div class="form-group d-flex justify-content-center">
+                    {{ form.password }}
+                    <!-- Display field-specific errors -->
+                    {% if form.password.errors %}
+                        <div class="text-danger">
+                            {% for error in form.password.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <button class="btn px-2 py-2 m-3 btn-primary text-center">Вход</button>
+                <a class="px-5 py-2 m-2 text-center" href="{% url 'password-reset' %}">Забравена парола</a>
             </form>
         </section>
-     </div>
-    
+    </div>
 {% endblock %}

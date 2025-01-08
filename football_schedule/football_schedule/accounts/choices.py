@@ -9,3 +9,9 @@ class AccountsLicenceChoices(models.TextChoices):
     NATIONAL_C = 'Национален C', 'Национален C'
     GRASSROOTS_D = 'Grassroots D', 'Grassroots D'
     NONE = 'Без лиценз', 'Без лиценз'
+
+
+class TeamGenerationChoices(models.TextChoices):
+    TEAM = 'Отбор', 'Отбор'
+    GENERATION = 'Набор', 'Набор'
+    NOT_SPECIFIED = 'Без да посочваш', 'Без да посочваш'

@@ -9,7 +9,8 @@ from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic import CreateView, DetailView, UpdateView
 
-from football_schedule.accounts.forms import AppUserCreationForm, AppUserLoginForm, EditProfileForm
+from football_schedule.accounts.forms import AppUserCreationForm, AppUserLoginForm, EditProfileForm, \
+    CustomPasswordResetForm
 from football_schedule.accounts.models import AppUser, Profile
 from football_schedule.common.mixins import DeleteCloudinaryFormValidMixin
 
@@ -45,8 +46,8 @@ class UserPasswordResetView(PasswordResetView):
     email_template_name = 'accounts/password_reset_email.html'  # Email template to send password reset link
     subject_template_name = 'accounts/password_reset_subject.txt'  # Subject template for email
     success_url = reverse_lazy('password_reset_done')  # Redirect to 'done' page after successfully sending reset email
+    form_class = CustomPasswordResetForm
 
-# Password Reset Done View (after email is sent)
 class UserPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'accounts/reset-password-done.html'  # The template to show the message about email being sent
 

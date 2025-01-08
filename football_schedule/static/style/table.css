@@ -1,3 +1,29 @@
+#display-club-emblem-image,
+#display-coach-photo-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+}
+
+#display-coach-photo-image img{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%
+}
+
+#display-club-emblem-image img{
+    width: 170px;
+    height: auto;
+}
+
+
+#schedule-text h1 {
+    margin: 0.5rem;
+}
+
+
+
 
 table {
     border-collapse: collapse;
@@ -58,8 +84,8 @@ td {
 #download-screenshot{
     padding: 0.7rem 1.5rem 0.7rem 1.5rem;/* Equivalent to py-2 (padding-bottom 8px) */
     margin: 4.5rem 0.5rem 0 0.5rem;         /* Equivalent to m-2 (margin 8px) */
-    background-color: #007bff; /* Primary color (btn-primary) */
-    color: white;           /* Text color */
+    background-color: darkgrey; /* Primary color (btn-primary) */
+    color: #ECEBDE;           /* Text color */
     font-size: 1rem;        /* Text size */
     border: none;           /* Remove border */
     border-radius: 0.25rem; /* Border radius to make it rounded */
@@ -70,7 +96,7 @@ td {
 }
 
 #download-screenshot:hover{
-    background-color:blue;
+    background-color: #444444;
 }
 
 @media (max-width: 768px) {
@@ -100,3 +126,4 @@ td {
         padding: 3px; /* Smaller padding */
     }
 }
+

@@ -10,3 +10,41 @@ body {
     padding-bottom: 5rem ;
 }
 
+.btn-primary {
+    background-color: darkgrey !important;  /* Background color */
+    color: #ECEBDE !important;  /* Text color */
+    border-color: darkgrey !important; /* Border color */
+}
+
+.btn-primary:hover {
+    background-color:#444444  !important;
+    border-color: #444444 !important;
+}
+
+form a{
+    color: darkgrey; !important;
+    font-weight: bold;
+}
+
+form a:hover{
+    color: #444444;
+}
+
+li{
+    margin: 0.5rem;
+}
+
+.week-a{
+    color: #ECEBDE;
+    padding: 0.3rem;
+    background-color: darkgrey;
+    border-radius: 20px;
+    margin: 0.5rem;
+}
+
+.week-a:hover{
+    background-color: #444444;
+    text-decoration: none;
+    color: #ECEBDE;
+}
+

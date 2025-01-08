@@ -2,6 +2,7 @@ from cloudinary.models import CloudinaryField
 from django import forms
 from django.forms import formset_factory, DateInput, TimeInput
 
+from football_schedule.accounts.choices import TeamGenerationChoices
 from football_schedule.common.mixins import CloudinaryImageValidatorMixin
 from football_schedule.schedules.choices import MonthChoices
 from football_schedule.schedules.models import Week, DisplayScheduleData
@@ -61,6 +62,9 @@ class DisplayForm(CloudinaryImageValidatorMixin, forms.ModelForm):
     class Meta:
         model = DisplayScheduleData
         exclude = ('user',)
+        widgets = {
+            'team_generation_choice': forms.RadioSelect,
+        }
 
     def clean_club_emblem(self):
         # Validate only if the field has a value
@@ -80,8 +84,7 @@ class DisplayForm(CloudinaryImageValidatorMixin, forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-
-        # Retain initial values if present and the field is left blank
+        #Retain initial values if present and the field is left blank
         if not cleaned_data.get('club_emblem') and self.initial.get('club_emblem'):
             cleaned_data['club_emblem'] = self.initial['club_emblem']
         if not cleaned_data.get('coach_photo') and self.initial.get('coach_photo'):
@@ -92,12 +95,33 @@ class DisplayForm(CloudinaryImageValidatorMixin, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Explicitly set optional fields as not required
-        self.fields['coach_photo'].required = False
-        self.fields['club_emblem'].required = False
-
         for field in self.fields.values():
             field.widget.attrs.update({
                 'class': 'wide-input'
             })
+
+        # Explicitly set optional fields as not required
+        self.fields['coach_photo'].required = False
+        self.fields['club_emblem'].required = False
+
+        self.fields['coach'].widget.attrs.update({
+            'placeholder': 'Въведете име на треньор...'
+        })
+
+        self.fields['team_generation_choice'].required = True
+        self.fields['team_generation_choice'].empty_label = None
+        self.fields['team_generation_choice'].choices = TeamGenerationChoices
+
+        self.fields['team_generation'].widget.attrs.update({
+            'placeholder': 'Въведете набор/отбор...'
+        })
+
+        self.fields['club'].widget.attrs.update({
+            'placeholder': 'Въведете име на клуб...'
+        })
+
+        self.fields['team_generation_choice'].widget.attrs.update({
+            'class': ''
+        })
+
 

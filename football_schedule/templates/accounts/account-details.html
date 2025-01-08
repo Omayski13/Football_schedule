@@ -7,7 +7,7 @@
 
     <div class="d-flex flex-column justify-content-center align-items-center">
         <section id="profile-details" class="d-flex flex-column justify-content-center align-items-center p-2 m-5">
-            
+
             {% if appuser.profile.profile_picture %}
                 <img class="pb-2" id="profile-details-profile-picture" src="{{ appuser.profile.profile_picture.url }}">
             {% endif %}
@@ -23,8 +23,14 @@
                     <img id="profile-details-club-emblem" class="pb-2" src="{{ appuser.profile.club_emblem.url }}">
                 {% endif %}
             </div>
-            {% if appuser.profile.generation %}
-                <h3>Набор: <strong>{{ appuser.profile.generation }}</strong></h3>
+            {% if appuser.profile.team_generation %}
+                {% if appuser.profile.team_generation_choice == 'Набор' %}
+                    <h3>Набор: <strong>{{ appuser.profile.team_generation }}</strong></h3>
+                {% elif appuser.profile.team_generation_choice == 'Отбор' %}
+                    <h3>Отбор: <strong>{{ appuser.profile.team_generation }}</strong></h3>
+                {% elif appuser.profile.team_generation_choice == 'Без да посочваш' %}
+                    <h3><strong>{{ appuser.profile.team_generation }}</strong></h3>
+                {% endif %}
             {% endif %}
             {% if appuser.profile.license %}
                 <h3 class="py-2">Лиценз: <strong>{{ appuser.profile.license }}</strong></h3>

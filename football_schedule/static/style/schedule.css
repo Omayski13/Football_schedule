@@ -10,7 +10,10 @@
 
 section h2{
     font-weight: bold ;
-    color: blue;
+    color: #ECEBDE;
+    padding: 0.2rem;
+    background-color: darkgrey;
+    border-radius: 20px;
 }
 
 h2#no-weeks{
@@ -24,7 +27,7 @@ div label{
 }
 
 .wide-input {
-    width: 350px; /* Adjust the width as needed */
+    width: 250px; /* Adjust the width as needed */
     height: 35px;
 }
 
@@ -33,17 +36,6 @@ div label{
     height: 30px;
 }
 
-#club-emblem,
-#generation,
-#coach,
-#coach-photo,
-#month{
-    margin-left: 200px;
-}
-
-#generation-p{
-    margin-left: 20px
-}
 
 /*display.html */
 #to-screenshot,
@@ -88,15 +80,9 @@ div label{
 }
 
 
-#coach-photo-image{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 2rem;
-}
-
 .form-display-p{
     font-style: italic;
+    text-align: center;
 }
 
 #form-display-club-emblem,
