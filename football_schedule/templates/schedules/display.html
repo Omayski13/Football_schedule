@@ -6,29 +6,38 @@
     {% include 'head.html' with bootstrap=False %}
 
     <div id="display-page">
-    <button id="download-screenshot">Свали график</button>
+        <button id="download-screenshot">Свали график</button>
         <!-- Div to capture -->
         <div id="to-screenshot">
             <section id="display-page-section">
                 <!-- Your section content here -->
                 <div id="schedule-info">
                     {% if display_data.club_emblem %}
-                        <div>
-                            <img id="club-emblem-image" style="width: 170px; height: auto"
-                                 src="{{ display_data.club_emblem.url }}">
+                        <div id="display-club-emblem-image">
+                            <img src="{{ display_data.club_emblem.url }}">
                         </div>
                     {% endif %}
                     <div id="schedule-text">
-                        <h1>Набор {{ display_data.generation }}</h1>
-                        <h1>Треньор {{ display_data.coach }}</h1>
+                        {% if display_data.club %}
+                            <h1>{{ display_data.club }}</h1>
+                        {% endif %}
+                        {% if display_data.team_generation_choice == 'Набор' %}
+                            <h1>Набор {{ display_data.team_generation }}</h1>
+                        {% elif display_data.team_generation_choice == 'Отбор' %}
+                            <h1>Отбор {{ display_data.team_generation }}</h1>
+                        {% elif display_data.team_generation_choice == 'Без да посочваш' %}
+                            <h1>{{ display_data.team_generation }}</h1>
+                        {% endif %}
+                        {% if display_data.coach %}
+                            <h1>Треньор {{ display_data.coach }}</h1>
+                        {% endif %}
                         {% if display_data.month %}
                             <h1>Месец {{ display_data.month }}</h1>
                         {% endif %}
                     </div>
                     {% if display_data.coach_photo %}
-                        <div id="coach-photo-image">
-                            <img style="width: 75px; height: 75px ;border-radius: 50%"
-                                 src="{{ display_data.coach_photo.url }}">
+                        <div id="display-coach-photo-image">
+                            <img src="{{ display_data.coach_photo.url }}">
                         </div>
                     {% endif %}
                 </div>
@@ -39,7 +48,7 @@
                                 <thead>
                                 <tr>
                                     <th colspan="7">{{ week.start_date|date:"d.m" }}
-                                        - {{ week.start_date|add_days:7|date:"d.m" }}</th>
+                                        - {{ week.start_date|add_days:6|date:"d.m" }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -86,10 +95,10 @@
                 </div>
 
             </section>
-        
+
         </div>
     </div>
-    
+
 
     <!-- Include html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -107,8 +116,12 @@
                     useCORS: true, // Enable CORS for external images
                 }).then(function (canvas) {
                     // Define crop margins
-                    const cropLeftRight = 280; // Crop 180px from left and right
-                    const cropTopBottom = 90;  // Crop 90px from top and bottom
+                    const cropLeftRightPercent = 0.14; // 14% crop from the left and right
+                    const cropTopBottomPercent = 0.05; // 10% crop from the top and bottom
+
+// Calculate pixel values based on canvas dimensions
+                    const cropLeftRight = canvas.width * cropLeftRightPercent;
+                    const cropTopBottom = canvas.height * cropTopBottomPercent;
                     const cropWidth = canvas.width - cropLeftRight * 2; // Adjusted width
                     const cropHeight = canvas.height - cropTopBottom * 2; // Adjusted height
 

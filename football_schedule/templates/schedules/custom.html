@@ -1,0 +1,10 @@
+<div class="custom-clearable-file-input">
+    <input type="file" name="{{ widget.name }}" class="{{ widget.attrs.class }}" id="{{ widget.attrs.id }}">
+    {% if widget.is_initial %}
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-outline-danger btn-sm mx-2" onclick="document.getElementById('{{ widget.attrs.id }}').value = '';">
+                Изчисти
+            </button>
+        </div>
+    {% endif %}
+</div>

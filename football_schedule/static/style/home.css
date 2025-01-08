@@ -1,8 +1,25 @@
+
 #home-page-schedule-image{
-    width:900px;
+    width: 700px;
     height: auto;
+    display: block; /* Ensures it's treated as a block element */
+    margin: 0 auto;
+}
+
+h5{
+    padding: 0.5rem 0;
 }
 
 h5 a{
     font-weight: bold;
+    padding: 0.5rem 1rem;
+    background-color: darkgrey;
+    color: #ECEBDE;
+    border-radius: 20px;
+}
+
+h5 a:hover{
+    background-color:#444444;
+    text-decoration: none;
+    color: #ECEBDE;
 }

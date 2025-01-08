@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 MY_APPS =[
     'football_schedule.accounts',
     'football_schedule.schedules',
+    'football_schedule.common',
 ]
 
 ADDITIONAL_APPS = [

@@ -2,6 +2,7 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from football_schedule.accounts.choices import TeamGenerationChoices
 from football_schedule.schedules.choices import TypeChoices, MonthChoices
 
 UserModel = get_user_model()
@@ -143,13 +144,27 @@ class DisplayScheduleData(models.Model):
         related_name='display_schedule'
     )
 
+    club = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+    )
+
     club_emblem = CloudinaryField(
     'club_emblem',
         folder='accounts',
         null=True,
         blank=True,
     )
-    generation = models.CharField(
+
+    team_generation_choice = models.CharField(
+        max_length=20,
+        choices=TeamGenerationChoices.choices,
+        blank=False,
+        null=False,
+    )
+
+    team_generation = models.CharField(
         max_length=20,
         null=True,
         blank=True,

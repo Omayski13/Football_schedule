@@ -10,11 +10,11 @@
             <ul>
                 {% for week in weeks %}
                     <li>
-                        {{ week.start_date|date:"d.m" }} - {{ week.start_date|add_days:7|date:"d.m.Y" }}
-                        <a href="{% url 'edit-week' week.pk %}">
+                        {{ week.start_date|date:"d.m" }} - {{ week.start_date|add_days:6|date:"d.m.Y" }}
+                        <a class="week-a" href="{% url 'edit-week' week.pk %}">
                             <i class="fa-solid fa-pen"></i>редактирай
                         </a>
-                        <a href="{% url 'delete-week' week.pk %}"
+                        <a class="week-a" href="{% url 'delete-week' week.pk %}"
                            onclick="return confirm('Сигурен ли си, че искаш да изтриеш тази седмица?');">
                             <i class="fa-solid fa-trash"></i>изтрий
                         </a>
@@ -24,7 +24,7 @@
             </ul>
 
 
-            <form class="px-5" method="post" action="{% url 'delete-all-weeks' %}" onsubmit="return confirmDelete()">
+            <form class="px-5 d-flex align-items-center justify-content-center" method="post" action="{% url 'delete-all-weeks' %}" onsubmit="return confirmDelete()">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger px-3 py-3">Изтрий всички създадени седмици</button>
             </form>

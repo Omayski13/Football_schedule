@@ -23,9 +23,11 @@ class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View
     def get_user_profile_data(self):
         user_profile = self.request.user.profile
         return {
+            'club': user_profile.club,
             'club_emblem': user_profile.club_emblem if user_profile.club_emblem else None,
             'coach_photo': user_profile.profile_picture if user_profile.profile_picture else None,
-            'generation': user_profile.generation,
+            'team_generation_choice': user_profile.team_generation_choice,
+            'team_generation': user_profile.team_generation,
             'coach': user_profile.get_full_name,
         }
 
@@ -63,7 +65,7 @@ class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View
         context = {
             'form': form,
             'display_form': display_form,
-            'weeks': Week.objects.filter(author=request.user),
+            'weeks': Week.objects.filter(author=request.user).order_by('id'),
         }
         return render(request, self.template_name, context)
 
@@ -74,7 +76,7 @@ class ScheduleDisplayView(LoginRequiredMixin,ListView):
     context_object_name = 'weeks'
 
     def get_queryset(self):
-        return Week.objects.filter(author=self.request.user)
+        return Week.objects.filter(author=self.request.user).order_by('id')
 
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(*args,**kwargs)
