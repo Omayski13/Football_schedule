@@ -3,27 +3,28 @@
 
 <header>
     <nav class="d-flex justify-content-between align-items-center ">
+    
         <div id="nav-div-image" style="padding: 0" class="d-flex  p-2 nav-image">
             <a class="text-decoration-none" href="{% url 'home' %}">
-                <img id="nav-image" src="{% static 'images/fs.png' %}">
+                <img id="nav-image" src="{% static 'images/fs-3-blue.png' %}">
             </a>
             {% count_schedules as count_schedules %}
             {% if count_schedules %}
-                <p style="color:#ECEBDE; margin-bottom: 0" class="text-center">Общо<br>създадени<br>графици<br><strong style="font-size: 1.5rem">{{ count_schedules }}</strong></p>
+                <p style="color:#ECEBDE; margin-bottom: 0" class="text-center">Общо<br>създадени<br>графици<br><strong
+                        style="font-size: 1.5rem">{{ count_schedules }}</strong></p>
             {% endif %}
         </div>
-            
-
+    
         <div class="nav-schedule">
             <a class="text-decoration-none " href="{% url 'create-schedule' %}">Създай графикa</a>
         </div>
-    
-        <div class="nav-profile">
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'details' request.user.pk %}">Профил</a>
-            <a href="{% url 'user-logout' %}"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Изход</a>
 
+        <div class="nav-profile">
+        
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'details' request.user.pk %}">Профил</a>
+                <a href="{% url 'user-logout' %}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit()">Изход</a>
                 <form id="logout-form" method="post" action="{% url 'user-logout' %}" style="display: none;">
                     {% csrf_token %}
                 </form>
@@ -31,6 +32,7 @@
                 <a href="{% url 'login' %}">Вход</a>
                 <a href="{% url 'register' %}">Регистрация</a>
             {% endif %}
+        
         </div>
     </nav>
 </header>

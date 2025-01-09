@@ -1,129 +1,221 @@
+#schedule-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#display-club-emblem-image {
+    padding: 2rem 2rem 0rem 0rem;
+}
+
+#schedule-info {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#display-weeks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+#display-page-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 5rem auto;
+    background-color: #ECEBDE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
 #display-club-emblem-image,
-#display-coach-photo-image{
+#display-coach-photo-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 2rem;
+    padding: 1rem;
 }
 
-#display-coach-photo-image img{
+#display-coach-photo-image img {
     width: 75px;
     height: 75px;
-    border-radius: 50%
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-#display-club-emblem-image img{
+#display-club-emblem-image img {
     width: 170px;
     height: auto;
+    max-width: 100%;
 }
-
 
 #schedule-text h1 {
     margin: 0.5rem;
+    font-size: 1.2rem;
+    text-align: center;
 }
-
-
-
 
 table {
     border-collapse: collapse;
     width: 100%;
-    table-layout: fixed; /* Ensure fixed column widths */
+    table-layout: fixed;
 }
 
-tr th{
+tr th {
     background-color: #295F98;
     color: whitesmoke;
 }
 
-tr.days{
-    /*background-color: lightsteelblue;*/
+tr.days {
     background-color: cornflowerblue;
 }
 
-tr.dates{
-    /*background-color: cornflowerblue;*/
+tr.dates {
     background-color: lightsteelblue;
 }
 
-td.training{
+td.training {
     background-color: #aacd92;
-
 }
 
-td.mach{
+td.mach {
     background-color: #D17A7A;
 }
 
-td.None{
+td.None {
     color: #ECEBDE;
 }
 
-
-
 th, td {
-    /*background-color: darkgrey;*/
     border: 1px solid black;
-    padding: 2px;
+    padding: 0.3rem;
     text-align: center;
-    word-wrap: break-word; /* Prevent text from overflowing */
-    vertical-align: middle; /* Center content vertically */
+    /*word-wrap: break-word;*/
+    vertical-align: middle;
+    font-size: 0.9rem;
+    min-height: 5px;
+    height: 5px;
 }
 
-
-th {
-    background-color: cornflowerblue;
-}
-
-td {
-    max-width: 60px; /* Limit the width of the cells */
-    min-width: 30px; /* Ensure cells are not too small */
-}
-
-
-#download-screenshot{
-    padding: 0.7rem 1.5rem 0.7rem 1.5rem;/* Equivalent to py-2 (padding-bottom 8px) */
-    margin: 4.5rem 0.5rem 0 0.5rem;         /* Equivalent to m-2 (margin 8px) */
-    background-color: darkgrey; /* Primary color (btn-primary) */
-    color: #ECEBDE;           /* Text color */
-    font-size: 1rem;        /* Text size */
-    border: none;           /* Remove border */
-    border-radius: 0.25rem; /* Border radius to make it rounded */
-    cursor: pointer;       /* Pointer cursor on hover */
-    display: inline-block;  /* Align the button as inline block */
-    text-align: center;     /* Text alignment inside the button */
-    transition: background-color 0.3s ease; /* Smooth transition effect */
+#download-screenshot {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    background-color: darkgrey;
+    color: #ECEBDE;
+    border-color: #ECEBDE;
+    border-radius: 10px;
 }
 
 #download-screenshot:hover{
     background-color: #444444;
+    border-color: #444444;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
+    #display-page-section {
+        margin: 2rem 1rem;
+        padding: 1rem;
+        width: calc(100% - 2rem);
+        box-sizing: border-box;
+    }
+
     .table-responsive {
-        overflow-x: auto; /* Add horizontal scrolling */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #schedule-text{
+        margin-bottom: 0 !important;
     }
 
     table {
-        width: 100%; /* Make the table take full width */
-        table-layout: auto; /* Let content decide table width */
+        width: 100%;
+        table-layout: fixed;
     }
 
     th, td {
-        padding: 5px; /* Adjust padding for better fit */
+        font-size: 0.8rem;
+        min-height: 5px;
+        height: 5px;
+    }
+
+    #download-screenshot {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 }
 
-/* For very small devices like mobile phones, adjust the table further */
 @media (max-width: 480px) {
+    #display-weeks{
+        padding: 0 !important;
+    }
+
+    #display-coach-photo-image img {
+        width: 75px;
+        height: auto;
+        border-radius: 50%;
+        object-fit: cover;
+        max-width: 100%;
+    }
+
+    #display-club-emblem-image img {
+        width: 75px;
+        height: auto;
+        max-width: 150%;
+    }
+
+    #display-page-section {
+        padding: 1rem;
+        margin: 1rem;
+        width: calc(100% - 2rem);
+    }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
     table {
         width: 100%;
+        table-layout: fixed;
     }
 
     th, td {
-        font-size: 12px; /* Smaller text size */
-        padding: 3px; /* Smaller padding */
+        font-size: 0.6rem;
+        height: 4px;
+        min-height: 40px;
+    }
+
+    #schedule-text h1 {
+        font-size: 0.8rem;
+        margin: 0;
+        padding: 0.2rem
+    }
+
+    #schedule-text{
+        margin-bottom: 0.3rem !important;
+    }
+
+    .smaller-h1{
+        font-weight: normal;
+    }
+
+    #download-screenshot {
+        font-size: 0.8rem;
+        padding: 0.5rem;
     }
 }
 

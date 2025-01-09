@@ -29,10 +29,10 @@
                             <h1>{{ display_data.team_generation }}</h1>
                         {% endif %}
                         {% if display_data.coach %}
-                            <h1>Треньор {{ display_data.coach }}</h1>
+                            <h1 class="smaller-h1">Треньор {{ display_data.coach }}</h1>
                         {% endif %}
                         {% if display_data.month %}
-                            <h1>Месец {{ display_data.month }}</h1>
+                            <h1 class="smaller-h1">Месец {{ display_data.month }}</h1>
                         {% endif %}
                     </div>
                     {% if display_data.coach_photo %}
@@ -116,8 +116,8 @@
                     useCORS: true, // Enable CORS for external images
                 }).then(function (canvas) {
                     // Define crop margins
-                    const cropLeftRightPercent = 0.14; // 14% crop from the left and right
-                    const cropTopBottomPercent = 0.05; // 10% crop from the top and bottom
+                    const cropLeftRightPercent = 0; // 14% crop from the left and right
+                    const cropTopBottomPercent = 0; // 10% crop from the top and bottom
 
 // Calculate pixel values based on canvas dimensions
                     const cropLeftRight = canvas.width * cropLeftRightPercent;
