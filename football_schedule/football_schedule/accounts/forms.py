@@ -132,6 +132,9 @@ class EditProfileForm(CloudinaryImageValidatorMixin,forms.ModelForm):
         self.fields['team_generation_choice'].required = True
         self.fields['team_generation_choice'].empty_label = None
         self.fields['team_generation_choice'].choices = TeamGenerationChoices
+        self.fields['team_generation_choice'].widget.attrs.update({
+            'class': ''
+        })
 
         self.fields['team_generation'].widget.attrs.update({
             'placeholder': 'Въведете набор/отбор...'

@@ -1,70 +1,109 @@
 nav {
     background-color: darkgrey;
+    flex-wrap: wrap;
 }
 
 nav a {
-    font-size: 2em;
-    color: blue;
+    font-size: 2rem;
+    color: #ECEBDE;
     text-decoration: none;
+    padding: 1rem;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    color: black;
+    background-color: #ECEBDE;
+    border-radius: 20px;
+    text-decoration: none;
 }
 
 header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-.nav-image{
+.nav-image {
     display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-header nav p{
+header nav p {
     text-align: center;
+    font-size: 0.9rem;
+    margin: 0;
 }
 
-
-header nav a{
-    color: #ECEBDE;
-    padding: 1rem;
+nav .nav-schedule{
+    padding-right: 3.5rem;
 }
 
-
-
-#nav-div-image a:hover{
-    padding: 1rem;
-    background-color: darkgrey;
+#nav-image {
+    width: 200px;
+    height: auto;
 }
 
-
-header nav a:hover{
-    color: black;
-    padding: 1rem;
-    background-color: #ECEBDE;
-    border-radius: 20px;
-    text-decoration: none;
-}
-
-
-
-#nav-image{
-    width: 300px;
-    height: 100px;
-}
-
-.nav-schedule{
-    padding-right: 10.5rem;
+#nav-div-image a:hover {
+    background-color: transparent;
+    padding:  1rem;
 }
 
 footer {
-      background-color: darkgrey; /* Footer background color */
-      color: #ECEBDE; /* Footer text color */
-      padding: 2rem; /* Padding for the footer content */
-      text-align: center; /* Center-align the text */
-      position: absolute;
-      bottom: 0;
-      width: 100%;
+    background-color: darkgrey;
+    color: #ECEBDE;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+
+    nav .nav-schedule{
+    padding-right: 0;
     }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-schedule, .nav-profile {
+        padding: 1rem 0;
+    }
+
+    #nav-image {
+        width: 150px;
+    }
+
+    nav a {
+        font-size: 1rem;
+    }
+
+    header nav p {
+        font-size: 0.8rem;
+    }
+
+     footer {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+}
