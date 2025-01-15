@@ -14,7 +14,13 @@ class WeekForm(forms.ModelForm):
         exclude = ('author',)
 
     start_date = forms.DateField(
-        widget=DateInput(attrs={'type': 'date'})  # Using HTML5 date input
+        widget=forms.DateInput(
+            attrs={
+                'id': 'start_date',
+                'type': 'date',  # HTML5 date input
+                'data-week-start': '1' , # Week starts on Monday (if using a library like Bootstrap Datepicker)
+            }
+        )
     )
 
     monday_time = forms.TimeField(
@@ -49,10 +55,24 @@ class WeekForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        for field in self.fields.values():
+        for field_name, field in self.fields.items():
             field.widget.attrs.update({
                 'class': 'wide-input-small'
             })
+
+            if '_type' in field_name:
+                field.label = 'Вид'
+            elif '_time' in field_name:
+                field.label = 'Час'
+            elif '_place' in field_name:
+                field.label = 'Място'
+            elif 'start' in field_name:
+                field.label = 'Начална дата'
+
+            if field.required:
+                field.label = f'{field.label}*'
+
+
 
 class WeekEditForm(WeekForm):
     pass

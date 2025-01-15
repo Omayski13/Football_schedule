@@ -1,58 +1,58 @@
+
 <section id="create-schedule" class=" p-2 m-5">
     <h2 class="text-center"> Създай Седмица</h2>
     <form id="create-schedule-form" method="post">
         {% csrf_token %}
-        <h3 class="text-center">Начална дата</h3>
+        <h3 class="text-center">{{ form.start_date.label }}</h3>
         <p class="text-center">{{ form.start_date }}</p>
         <h3 class="text-center">Понеделник</h3>
         <div id="monday" class="">
-            <p class="text-center">Вид: {{ form.monday_type }}</p>
-            <p class="text-center">Време: {{ form.monday_time }}</p>
-            <p class="text-center">Място: {{ form.monday_place }}</p>
+            <p class="text-center">{{ form.monday_type.label }}: {{ form.monday_type }}</p>
+            <p class="text-center">{{ form.monday_time.label }}: {{ form.monday_time }}</p>
+            <p class="text-center">{{ form.monday_place.label }}: {{ form.monday_place }}</p>
         </div>
         
         <h3 class="text-center">Вторник</h3>
         <div id="monday" class="">
-            <p class="text-center">Вид: {{ form.tuesday_type }}</p>
-            <p class="text-center">Време: {{ form.tuesday_time }}</p>
-            <p class="text-center">Място: {{ form.tuesday_place }}</p>
+            <p class="text-center">{{ form.tuesday_type.label }}: {{ form.tuesday_type }}</p>
+            <p class="text-center">{{ form.tuesday_time.label }}: {{ form.tuesday_time }}</p>
+            <p class="text-center">{{ form.tuesday_place.label }}: {{ form.tuesday_place }}</p>
         </div>
         
         <h3 class="text-center">Сряда</h3>
         <div id="monday" class="">
-            <p class="text-center">Вид: {{ form.wednesday_type }}</p>
-            <p class="text-center">Време: {{ form.wednesday_time }}</p>
-            <p class="text-center">Място: {{ form.wednesday_place }}</p>
+            <p class="text-center">{{ form.wednesday_type.label }}: {{ form.wednesday_type }}</p>
+            <p class="text-center">{{ form.wednesday_time.label }}: {{ form.wednesday_time }}</p>
+            <p class="text-center">{{ form.wednesday_place.label }}: {{ form.wednesday_place }}</p>
         </div>
         
         <h3 class="text-center">Четвъртък</h3>
         <div id="monday" class="">
-            <p class="text-center">Вид: {{ form.thursday_type }}</p>
-            <p class="text-center">Време: {{ form.thursday_time }}</p>
-            <p class="text-center">Място: {{ form.thursday_place }}</p>
+            <p class="text-center">{{ form.thursday_type.label }}: {{ form.thursday_type }}</p>
+            <p class="text-center">{{ form.thursday_time.label }}: {{ form.thursday_time }}</p>
+            <p class="text-center">{{ form.thursday_place.label }}: {{ form.thursday_place }}</p>
         </div>
         
         <h3 class="text-center">Петък</h3>
         <div id="monday" class="">
-            <p class="text-center">Вид: {{ form.friday_type }}</p>
-            <p class="text-center">Време: {{ form.friday_time }}</p>
-            <p class="text-center">Място: {{ form.friday_place }}</p>
+            <p class="text-center">{{ form.friday_type.label }}: {{ form.friday_type }}</p>
+            <p class="text-center">{{ form.friday_time.label }}: {{ form.friday_time }}</p>
+            <p class="text-center">{{ form.friday_place.label }}: {{ form.friday_place }}</p>
         </div>
         
         <h3 class="text-center">Събота</h3>
         <div id="monday" class="">
-            <p class="text-center">Вид: {{ form.saturday_type }}</p>
-            <p class="text-center">Време: {{ form.saturday_time }}</p>
-            <p class="text-center">Място: {{ form.saturday_place }}</p>
+            <p class="text-center">{{ form.saturday_type.label }}: {{ form.saturday_type }}</p>
+            <p class="text-center">{{ form.saturday_time.label }}: {{ form.saturday_time }}</p>
+            <p class="text-center">{{ form.saturday_place.label }}: {{ form.saturday_place }}</p>
         </div>
         
         <h3 class="text-center">Неделя</h3>
         <div id="monday" class="">
-            <p class="text-center">Вид: {{ form.sunday_type }}</p>
-            <p class="text-center">Време: {{ form.sunday_time }}</p>
-            <p class="text-center">Място: {{ form.sunday_place }}</p>
+            <p class="text-center">{{ form.sunday_type.label }}: {{ form.sunday_type }}</p>
+            <p class="text-center">{{ form.sunday_time.label }}: {{ form.sunday_time }}</p>
+            <p class="text-center">{{ form.sunday_place.label }}: {{ form.sunday_place }}</p>
         </div>
-{#        {{ form }}#}
         <div class="d-flex justify-content-center">
             <button type="submit" name="submit_form" class="btn px-5 py-2  btn-primary text-center">Създай седмица</button>
         </div>
