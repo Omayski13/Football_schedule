@@ -85,6 +85,15 @@ class DisplayForm(CloudinaryImageValidatorMixin, forms.ModelForm):
         widgets = {
             'team_generation_choice': forms.RadioSelect,
         }
+        labels = {
+            'club_emblem': 'Клубна Емблема',
+            'club': 'Клуб',
+            'team_generation_choice': 'Отбор/Набор',
+            'team_generation': 'Отбор/Набор',
+            'coach': 'Треньор',
+            'coach_photo': 'Снимка на треньор',
+            'month': 'Месец',
+        }
 
     def clean_club_emblem(self):
         # Validate only if the field has a value
