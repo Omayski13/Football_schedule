@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -137,6 +139,11 @@ class Week(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        start_date = self.start_date.strftime("%d.%m.%Y")
+        end_date = (self.start_date + timedelta(days=6)).strftime("%d.%m.%Y")
+        return f"{start_date} - {end_date}"
+
 class DisplayScheduleData(models.Model):
     user=models.ForeignKey(
         to=UserModel,
@@ -185,3 +192,9 @@ class DisplayScheduleData(models.Model):
         null=True,
         blank=True,
     )
+
+    def __str__(self):
+        if self.month:
+            return f"{self.club} - {self.team_generation} - {self.month}"
+        else:
+            return f"{self.club} - {self.team_generation}"

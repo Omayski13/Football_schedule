@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/bg.js"></script>
+
+
 {% extends 'base.html' %}
 
 
@@ -5,68 +10,65 @@
 {% block content %}
     {% include 'head.html' with bootstrap=True %}
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <section id="schedule-edit" class="reset-password d-flex flex-column justify-content-center align-items-center p-2 m-5">
-            <form id="schedule-edit-form" class="d-flex flex-column justify-content-center" method="post" enctype="multipart/form-data">
+        <section id="schedule-edit"
+                 class="reset-password d-flex flex-column justify-content-center align-items-center p-2 m-5">
+            <form id="schedule-edit-form" class="d-flex flex-column justify-content-center" method="post"
+                  enctype="multipart/form-data">
                 {% csrf_token %}
-                <h3 class="text-center">Начална дата</h3>
+                <h3 class="text-center">{{ form.start_date.label }}</h3>
                 <p class="text-center">{{ form.start_date }}</p>
                 <h3 class="text-center">Понеделник</h3>
-                <div id="monday" class="d-flex justify-content-around">
-                    <p class="text-center"><strong>Вид:</strong> {{ form.monday_type }}</p>
-                    <p class="text-center"><strong>Време:</strong> {{ form.monday_time }}</p>
-                    <p class="text-center"><strong>Място:</strong> {{ form.monday_place }}</p>
+                <div id="monday" class="">
+                    <p class="text-center">{{ form.monday_type.label }}: {{ form.monday_type }}</p>
+                    <p class="text-center">{{ form.monday_time.label }}: {{ form.monday_time }}</p>
+                    <p class="text-center">{{ form.monday_place.label }}: {{ form.monday_place }}</p>
                 </div>
 
                 <h3 class="text-center">Вторник</h3>
-                <div id="monday" class="d-flex justify-content-around">
-                    <p class=""><strong>Вид:</strong> {{ form.tuesday_type }}</p>
-                    <p class="text-center"><strong>Време:</strong> {{ form.tuesday_time }}</p>
-                    <p class="text-center"><strong>Място:</strong> {{ form.tuesday_place }}</p>
+                <div id="monday" class="">
+                    <p class="text-center">{{ form.tuesday_type.label }}: {{ form.tuesday_type }}</p>
+                    <p class="text-center">{{ form.tuesday_time.label }}: {{ form.tuesday_time }}</p>
+                    <p class="text-center">{{ form.tuesday_place.label }}: {{ form.tuesday_place }}</p>
                 </div>
 
                 <h3 class="text-center">Сряда</h3>
-                <div id="monday" class="d-flex justify-content-around">
-                    <p class=""><strong>Вид:</strong> {{ form.wednesday_type }}</p>
-                    <p class="text-center"><strong>Време:</strong> {{ form.wednesday_time }}</p>
-                    <p class="text-center"><strong>Място:</strong> {{ form.wednesday_place }}</p>
+                <div id="monday" class="">
+                    <p class="text-center">{{ form.wednesday_type.label }}: {{ form.wednesday_type }}</p>
+                    <p class="text-center">{{ form.wednesday_time.label }}: {{ form.wednesday_time }}</p>
+                    <p class="text-center">{{ form.wednesday_place.label }}: {{ form.wednesday_place }}</p>
                 </div>
 
                 <h3 class="text-center">Четвъртък</h3>
-                <div id="monday" class="d-flex justify-content-around">
-                    <p class=""><strong>Вид:</strong> {{ form.thursday_type }}</p>
-                    <p class="text-center"><strong>Време:</strong> {{ form.thursday_time }}</p>
-                    <p class="text-center"><strong>Място:</strong> {{ form.thursday_place }}</p>
+                <div id="monday" class="">
+                    <p class="text-center">{{ form.thursday_type.label }}: {{ form.thursday_type }}</p>
+                    <p class="text-center">{{ form.thursday_time.label }}: {{ form.thursday_time }}</p>
+                    <p class="text-center">{{ form.thursday_place.label }}: {{ form.thursday_place }}</p>
                 </div>
 
                 <h3 class="text-center">Петък</h3>
-                <div id="monday" class="d-flex justify-content-around">
-                    <p class=""><strong>Вид:</strong> {{ form.friday_type }}</p>
-                    <p class="text-center"><strong>Време:</strong> {{ form.friday_time }}</p>
-                    <p class="text-center"><strong>Място:</strong> {{ form.friday_place }}</p>
+                <div id="monday" class="">
+                    <p class="text-center">{{ form.friday_type.label }}: {{ form.friday_type }}</p>
+                    <p class="text-center">{{ form.friday_time.label }}: {{ form.friday_time }}</p>
+                    <p class="text-center">{{ form.friday_place.label }}: {{ form.friday_place }}</p>
                 </div>
 
                 <h3 class="text-center">Събота</h3>
-                <div id="monday" class="d-flex justify-content-around">
-                    <p class=""><strong>Вид:</strong> {{ form.saturday_type }}</p>
-                    <p class="text-center"><strong>Време:</strong> {{ form.saturday_time }}</p>
-                    <p class="text-center"><strong>Място:</strong> {{ form.saturday_place }}</p>
+                <div id="monday" class="">
+                    <p class="text-center">{{ form.saturday_type.label }}: {{ form.saturday_type }}</p>
+                    <p class="text-center">{{ form.saturday_time.label }}: {{ form.saturday_time }}</p>
+                    <p class="text-center">{{ form.saturday_place.label }}: {{ form.saturday_place }}</p>
                 </div>
 
                 <h3 class="text-center">Неделя</h3>
-                <div id="monday" class="d-flex justify-content-around">
-                    <p class=""><strong>Вид:</strong> {{ form.sunday_type }}</p>
-                    <p class="text-center"><strong>Време:</strong> {{ form.sunday_time }}</p>
-                    <p class="text-center"><strong>Място:</strong> {{ form.sunday_place }}</p>
+                <div id="monday" class="">
+                    <p class="text-center">{{ form.sunday_type.label }}: {{ form.sunday_type }}</p>
+                    <p class="text-center">{{ form.sunday_time.label }}: {{ form.sunday_time }}</p>
+                    <p class="text-center">{{ form.sunday_place.label }}: {{ form.sunday_place }}</p>
                 </div>
-                {#        {{ form }}#}
                 <div class="d-flex justify-content-center">
-                    <button class="btn px-4 py-2 m-2 btn-primary text-center"><i class="fa-solid fa-pen"></i> Редактирай
+                    <button type="submit" name="submit_form" class="btn px-5 py-2  btn-primary text-center">Създай
                         седмица
                     </button>
-                    <a class="btn px-5 py-2 m-2  btn-danger text-center" href="{% url 'delete-week' week.pk %}"
-                       onclick="return confirm('Сигурен ли си, че искаш да изтриеш тази седмица?');">
-                        <i class="fa-solid fa-trash"></i> изтрий
-                    </a>
                 </div>
             </form>
         </section>
@@ -74,3 +76,4 @@
 
 
 {% endblock %}
+
