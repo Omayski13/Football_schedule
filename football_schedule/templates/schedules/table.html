@@ -1,0 +1,191 @@
+{% load add_hours_str %}
+{% load add_days %}
+<table>
+{#------- BLUE#}
+    {% if display_data.color == 'blue' %}
+        <thead>
+        <tr>
+            <th class="blue" colspan="7">{{ week.start_date|date:"d.m" }}
+                - {{ week.start_date|add_days:6|date:"d.m" }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="days-blue">
+            <td>П</td>
+            <td>В</td>
+            <td>С</td>
+            <td>Ч</td>
+            <td>П</td>
+            <td>С</td>
+            <td>Н</td>
+        </tr>
+        <tr class="dates-blue">
+            <td>{{ week.start_date|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:1|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:2|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:3|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:4|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:5|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:6|date:"d.m" }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-blue">{{ week.monday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.tuesday_type }}-blue">{{ week.tuesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.wednesday_type }}-blue">{{ week.wednesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.thursday_type }}-blue">{{ week.thursday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.friday_type }}-blue">{{ week.friday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.saturday_type }}-blue">{{ week.saturday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.sunday_type }}-blue">{{ week.sunday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-blue">{{ week.monday_place }}</td>
+            <td class="{{ week.tuesday_type }}-blue">{{ week.tuesday_place }}</td>
+            <td class="{{ week.wednesday_type }}-blue">{{ week.wednesday_place }}</td>
+            <td class="{{ week.thursday_type }}-blue">{{ week.thursday_place }}</td>
+            <td class="{{ week.friday_type }}-blue">{{ week.friday_place }}</td>
+            <td class="{{ week.saturday_type }}-blue">{{ week.saturday_place }}</td>
+            <td class="{{ week.sunday_type }}-blue">{{ week.sunday_place }}</td>
+        </tr>
+        </tbody>
+{#------ YELLOW        #}
+    {% elif display_data.color == 'yellow' %}
+        <thead>
+        <tr>
+            <th class="yellow" colspan="7">{{ week.start_date|date:"d.m" }}
+                - {{ week.start_date|add_days:6|date:"d.m" }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="days-yellow">
+            <td>П</td>
+            <td>В</td>
+            <td>С</td>
+            <td>Ч</td>
+            <td>П</td>
+            <td>С</td>
+            <td>Н</td>
+        </tr>
+        <tr class="dates-yellow">
+            <td>{{ week.start_date|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:1|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:2|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:3|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:4|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:5|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:6|date:"d.m" }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-yellow">{{ week.monday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.tuesday_type }}-yellow">{{ week.tuesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.wednesday_type }}-yellow">{{ week.wednesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.thursday_type }}-yellow">{{ week.thursday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.friday_type }}-yellow">{{ week.friday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.saturday_type }}-yellow">{{ week.saturday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.sunday_type }}-yellow">{{ week.sunday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-yellow">{{ week.monday_place }}</td>
+            <td class="{{ week.tuesday_type }}-yellow">{{ week.tuesday_place }}</td>
+            <td class="{{ week.wednesday_type }}-yellow">{{ week.wednesday_place }}</td>
+            <td class="{{ week.thursday_type }}-yellow">{{ week.thursday_place }}</td>
+            <td class="{{ week.friday_type }}-yellow">{{ week.friday_place }}</td>
+            <td class="{{ week.saturday_type }}-yellow">{{ week.saturday_place }}</td>
+            <td class="{{ week.sunday_type }}-yellow">{{ week.sunday_place }}</td>
+        </tr>
+        </tbody>
+        
+{#------- RED        #}
+    {% elif display_data.color == 'red' %}
+        <thead>
+        <tr>
+            <th class="red" colspan="7">{{ week.start_date|date:"d.m" }}
+                - {{ week.start_date|add_days:6|date:"d.m" }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="days-red">
+            <td>П</td>
+            <td>В</td>
+            <td>С</td>
+            <td>Ч</td>
+            <td>П</td>
+            <td>С</td>
+            <td>Н</td>
+        </tr>
+        <tr class="dates-red">
+            <td>{{ week.start_date|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:1|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:2|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:3|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:4|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:5|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:6|date:"d.m" }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-red">{{ week.monday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.tuesday_type }}-red">{{ week.tuesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.wednesday_type }}-red">{{ week.wednesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.thursday_type }}-red">{{ week.thursday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.friday_type }}-red">{{ week.friday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.saturday_type }}-red">{{ week.saturday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.sunday_type }}-red">{{ week.sunday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-red">{{ week.monday_place }}</td>
+            <td class="{{ week.tuesday_type }}-red">{{ week.tuesday_place }}</td>
+            <td class="{{ week.wednesday_type }}-red">{{ week.wednesday_place }}</td>
+            <td class="{{ week.thursday_type }}-red">{{ week.thursday_place }}</td>
+            <td class="{{ week.friday_type }}-red">{{ week.friday_place }}</td>
+            <td class="{{ week.saturday_type }}-red">{{ week.saturday_place }}</td>
+            <td class="{{ week.sunday_type }}-red">{{ week.sunday_place }}</td>
+        </tr>
+        </tbody>
+        
+{#------- GREEN        #}
+    {% elif display_data.color == 'green' %}
+        <thead>
+        <tr>
+            <th class="green" colspan="7">{{ week.start_date|date:"d.m" }}
+                - {{ week.start_date|add_days:6|date:"d.m" }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="days-green">
+            <td>П</td>
+            <td>В</td>
+            <td>С</td>
+            <td>Ч</td>
+            <td>П</td>
+            <td>С</td>
+            <td>Н</td>
+        </tr>
+        <tr class="dates-green">
+            <td>{{ week.start_date|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:1|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:2|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:3|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:4|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:5|date:"d.m" }}</td>
+            <td>{{ week.start_date|add_days:6|date:"d.m" }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-green">{{ week.monday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.tuesday_type }}-green">{{ week.tuesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.wednesday_type }}-green">{{ week.wednesday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.thursday_type }}-green">{{ week.thursday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.friday_type }}-green">{{ week.friday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.saturday_type }}-green">{{ week.saturday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+            <td class="{{ week.sunday_type }}-green">{{ week.sunday_time|date:"H:i"|add_hours_str:' часа' }}</td>
+        </tr>
+        <tr>
+            <td class="{{ week.monday_type }}-green">{{ week.monday_place }}</td>
+            <td class="{{ week.tuesday_type }}-green">{{ week.tuesday_place }}</td>
+            <td class="{{ week.wednesday_type }}-green">{{ week.wednesday_place }}</td>
+            <td class="{{ week.thursday_type }}-green">{{ week.thursday_place }}</td>
+            <td class="{{ week.friday_type }}-green">{{ week.friday_place }}</td>
+            <td class="{{ week.saturday_type }}-green">{{ week.saturday_place }}</td>
+            <td class="{{ week.sunday_type }}-green">{{ week.sunday_place }}</td>
+        </tr>
+        </tbody>        
+    {% endif %}
+</table>

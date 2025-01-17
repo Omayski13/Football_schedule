@@ -107,6 +107,17 @@ class EditProfileForm(CloudinaryImageValidatorMixin,forms.ModelForm):
         widgets = {
             'team_generation_choice': forms.RadioSelect,
         }
+        labels = {
+            'first_name': 'Име',
+            'last_name': 'Фамилия',
+            'club': 'Клуб',
+            'club_emblem': 'Клубна емблема',
+            'team_generation_choice': 'Отбор/Набор',
+            'team_generation': 'Отбор/Набор',
+            'profile_picture': 'Профилна снимка',
+            'license': 'Лиценз',
+            'color': 'Графика цвят',
+        }
 
     def clean_club_emblem(self):
         return self.validate_field('club_emblem')

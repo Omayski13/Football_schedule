@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from football_schedule.accounts.choices import AccountsLicenceChoices, TeamGenerationChoices
 from football_schedule.accounts.managers import AppUserManager
+from football_schedule.schedules.choices import ColorChoices
 
 
 # Create your models here.
@@ -96,6 +97,12 @@ class Profile(models.Model):
         folder='accounts',
         null=True,
         blank=True,
+    )
+
+    color = models.CharField(
+        max_length=20,
+        choices=ColorChoices.choices,
+        default=ColorChoices.BLUE
     )
 
     license = models.CharField(

@@ -111,7 +111,21 @@
             {% endif %}
 
         </div>
+    
+        <div id="month" class="d-flex  align-items-center ml-5 mb-3">
+            <label for="{{ display_form.color.id_for_label }}" class="form-label me-2 pr-2">
+                {{ display_form.color.label }}:
+            </label>
+            <p>{{ display_form.color }}</p>
+        </div>
+    
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <p class="form-display-p mx-5">
+                Избраният цвят ще бъде основен при редовете на таблицата в създадения график.
+            </p>
 
+        </div>
+        
         <!-- Month Section -->
         <div id="month" class="d-flex  align-items-center ml-5 mb-3">
             <label for="{{ display_form.month.id_for_label }}" class="form-label me-2 pr-2">

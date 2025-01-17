@@ -19,3 +19,10 @@ class MonthChoices(models.TextChoices):
     OCTOBER = 'Октомври', 'Октомври'
     NOVEMBER = 'Ноември', 'Ноември'
     DECEMBER = 'Декември', 'Декември'
+
+
+class ColorChoices(models.TextChoices):
+    BLUE = 'blue', 'син'
+    YELLOW = 'yellow', 'жълт'
+    RED = 'red', 'червен'
+    GREEN = 'green', 'зелен'
