@@ -93,6 +93,7 @@ class DisplayForm(CloudinaryImageValidatorMixin, forms.ModelForm):
             'coach': 'Треньор',
             'coach_photo': 'Снимка на треньор',
             'month': 'Месец',
+            'color': 'Цвят',
         }
 
     def clean_club_emblem(self):

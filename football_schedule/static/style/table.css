@@ -1,3 +1,4 @@
+
 #schedule-text {
     display: flex;
     flex-direction: column;
@@ -71,29 +72,118 @@ table {
     width: 100%;
     table-layout: fixed;
 }
+/*------COLORS*/
 
-tr th {
+/*---BLUE*/
+
+tr th.blue {
     background-color: #295F98;
     color: whitesmoke;
 }
 
-tr.days {
+tr.days-blue {
     background-color: cornflowerblue;
 }
 
-tr.dates {
+tr.dates-blue {
     background-color: lightsteelblue;
 }
 
-td.training {
+td.training-blue {
     background-color: #aacd92;
 }
 
-td.mach {
+td.mach-blue {
     background-color: #D17A7A;
 }
 
-td.None {
+td.None-blue {
+    color: #ECEBDE;
+}
+
+/*------ YELLOW*/
+
+tr th.yellow {
+    background-color: #FFCA28;
+    color: black;
+}
+
+tr.days-yellow {
+    background-color: #FFF9C4;
+}
+
+tr.dates-yellow {
+    background-color: #FFFDE7;
+}
+
+td.training-yellow {
+    background-color: #C4E1A1;
+}
+
+td.mach-yellow {
+    background-color: cornflowerblue;
+}
+
+td.None-yellow {
+    color: #ECEBDE;
+}
+
+/*------- RED*/
+
+tr th.red {
+    /*background-color: #FF7043;*/
+    background-color: red;
+    color: black;
+}
+
+tr.days-red {
+    background-color: #FF6F61;
+}
+
+tr.dates-red {
+    background-color: #FFCDD2;
+}
+
+td.training-red {
+    background-color: #aacd92;
+}
+
+td.mach-red {
+    /*background-color: #8BB9E8;*/
+    background-color: cornflowerblue;
+}
+
+td.None-red {
+    color: #ECEBDE;
+}
+
+
+/*------- GREEN**/
+
+tr th.green {
+    /*background-color: #66BB6A;*/
+    background-color: green;
+    color: black;
+}
+
+tr.days-green {
+    background-color: #66BB6A;
+}
+
+tr.dates-green {
+    background-color: #C8E6C9;
+}
+
+td.training-green {
+    background-color: cornflowerblue;
+}
+
+td.mach-green {
+    background-color: #D17A7A;
+}
+
+
+td.None-green {
     color: #ECEBDE;
 }
 

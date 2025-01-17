@@ -11,7 +11,7 @@
                   enctype="multipart/form-data">
                 {% csrf_token %}
                 <img id="profile-edit-profile-picture" src="{{ appuser.profile.profile_picture.url }}">
-                <h5><strong>Профилна снимка:</strong> {{ form.profile_picture }}</h5>
+                <h5><strong>{{ form.profile_picture.label }}:</strong> {{ form.profile_picture }}</h5>
                 {% if form.profile_picture.errors %}
                     <ul class="text-danger">
                         {% for error in form.profile_picture.errors %}
@@ -19,11 +19,11 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
-                <h5><strong>Име:</strong> {{ form.first_name }}</h5>
-                <h5><strong>Фамилия:</strong> {{ form.last_name }}</h5>
-                <h5><strong>Клуб:</strong> {{ form.club }}</h5>
+                <h5><strong>{{ form.first_name.label }}:</strong> {{ form.first_name }}</h5>
+                <h5><strong>{{ form.last_name.label }}:</strong> {{ form.last_name }}</h5>
+                <h5><strong>{{ form.club.label }}:</strong> {{ form.club }}</h5>
                 <img id="profile-edit-club-emblem" src="{{ appuser.profile.club_emblem.url }}">
-                <h5><strong>Клубна емблема:</strong> {{ form.club_emblem }}</h5>
+                <h5><strong>{{ form.club_emblem.label }}:</strong> {{ form.club_emblem }}</h5>
                 {% if form.club_emblem.errors %}
                     <ul class="text-danger">
                         {% for error in form.club_emblem.errors %}
@@ -32,7 +32,7 @@
                     </ul>
                 {% endif %}
 
-                <h5><strong>Отбор/Набор:</strong> </h5>
+                <h5><strong>{{ form.team_generation_choice.label }}:</strong> </h5>
                 <div class="team-generation-choices">
                     {% for radio in form.team_generation_choice %}
                         <div class="form-check fs-4 form-check-inline">
@@ -41,8 +41,9 @@
                     {% endfor %}
                 </div>
             
-                <h5><strong>Отбор/Набор: {{ form.team_generation }}</h5>
-                <h5><strong>Лиценз: {{ form.license }}</h5>
+                <h5><strong>{{ form.team_generation.label }}</strong>: {{ form.team_generation }}</h5>
+                <h5><strong>{{ form.color.label }}:</strong> {{ form.color }}</h5>
+                <h5><strong>{{ form.license.label }}:</strong> {{ form.license }}</h5>
                 <div class="d-flex justify-content-center">
                     <button class="btn px-2 py-2 m-2 btn-primary text-center ">Редакция</button>
                 </div>

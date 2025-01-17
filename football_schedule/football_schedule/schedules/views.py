@@ -29,6 +29,7 @@ class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View
             'team_generation_choice': user_profile.team_generation_choice,
             'team_generation': user_profile.team_generation,
             'coach': user_profile.get_full_name,
+            'color': user_profile.color,
         }
 
     def get(self, request, *args, **kwargs):

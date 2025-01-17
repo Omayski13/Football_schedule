@@ -72,6 +72,10 @@ div label {
     align-items: center;
 }
 
+#to-screenshot{
+    padding: 1.5rem;
+}
+
 .form-display-p {
     font-style: italic;
     text-align: center;
@@ -99,6 +103,11 @@ div label {
 
 
 @media (max-width: 768px) {
+
+    #to-screenshot{
+    padding: 0;
+}
+
     .wide-input-small{
     width: 190px;
     }

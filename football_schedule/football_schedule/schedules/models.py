@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from football_schedule.accounts.choices import TeamGenerationChoices
-from football_schedule.schedules.choices import TypeChoices, MonthChoices
+from football_schedule.schedules.choices import TypeChoices, MonthChoices, ColorChoices
 
 UserModel = get_user_model()
 
@@ -191,6 +191,11 @@ class DisplayScheduleData(models.Model):
         choices=MonthChoices.choices,
         null=True,
         blank=True,
+    )
+    color = models.CharField(
+        max_length=20,
+        choices=ColorChoices.choices,
+        default=ColorChoices.BLUE
     )
 
     def __str__(self):
