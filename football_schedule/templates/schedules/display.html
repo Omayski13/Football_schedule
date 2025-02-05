@@ -6,7 +6,10 @@
     {% include 'head.html' with bootstrap=False %}
 
     <div id="display-page">
-        <button id="download-screenshot">Свали график</button>
+        <button id="download-screenshot">Свали график (.jpg)</button>
+        <a href="{% url 'download_excel' %}">
+            <button id="download-screenshot">Свали таблица (.xlxs)</button>
+        </a>
         <!-- Div to capture -->
         <div id="to-screenshot">
             <section id="display-page-section">
