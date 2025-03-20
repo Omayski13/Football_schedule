@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% include 'head.html' with bootstrap=True %}
+    
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+
+        {% include 'programs/create-match.html' %}
+    
+        {% include 'programs/matches.html' %}
+    
+    </div>
+
+{% endblock %}

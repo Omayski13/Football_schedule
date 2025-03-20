@@ -1,0 +1,60 @@
+<section id="weeks" class="p-2 m-5">
+
+    <div>
+        <h2 class="text-center">Създадени Мачове</h2>
+    </div>
+
+    <div class="d-flex justify-content-around">
+
+        {% if matches %}
+            <ul>
+                {% for match in matches %}
+                    <li>
+                        
+                        <div class="pr-4 mr-3">
+                            {{ match.team_1 }} - {{ match.team_2 }}
+                        </div>
+                        <div class="pr-4 mr-3">
+                            {{ match.date|date:"d.m.Y" }} {{ match.time|time:"H:i" }}
+                        </div>
+                        <div class="pr-4 mr-3">
+                            {{ match.place }}
+                        </div>
+                        <div >
+                            <div class="weeks-li-a">
+                                <a class="week-a" href="{% url 'edit-match' match.pk %}">
+                                    <i class="fa-solid fa-pen"></i>редактирай
+                                </a>
+                                <a class="week-delete" href="{% url 'delete-match' match.pk %}"
+                                   onclick="return confirm('Сигурен ли си, че искаш да изтриеш тази мач?');">
+                                    <i class="fa-solid fa-trash"></i>изтрий
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2 id="no-weeks"> Все още няма създадени мачове</h2>
+        {% endif %}
+
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <a href="" class="btn px-3 py-3 btn-primary text-center bg-primary">Създай Програма</a>
+    </div>
+
+    <form class="px-5 d-flex align-items-center justify-content-center" method="post"
+          action="{% url 'delete-all-matches' %}" onsubmit="return confirmDelete()">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger px-3 py-3">Изтрий всички мачове</button>
+    </form>
+
+
+</section>
+
+<script>
+    function confirmDelete() {
+        return confirm("Сигурен ли си, че искаш да изтриеш всички създадени мачове?");
+    }
+</script>
