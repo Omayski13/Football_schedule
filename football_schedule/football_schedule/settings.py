@@ -37,6 +37,7 @@ MY_APPS =[
     'football_schedule.accounts',
     'football_schedule.schedules',
     'football_schedule.common',
+    'football_schedule.programs',
 ]
 
 ADDITIONAL_APPS = [

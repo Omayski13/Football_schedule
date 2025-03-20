@@ -89,11 +89,11 @@ tr.dates-blue {
     background-color: lightsteelblue;
 }
 
-td.training-blue {
+td.Тренировка-blue {
     background-color: #aacd92;
 }
 
-td.mach-blue {
+td.Мач-blue {
     background-color: #D17A7A;
 }
 
@@ -116,11 +116,11 @@ tr.dates-yellow {
     background-color: #FFFDE7;
 }
 
-td.training-yellow {
+td.Тренировка-yellow {
     background-color: #C4E1A1;
 }
 
-td.mach-yellow {
+td.Мач-yellow {
     background-color: cornflowerblue;
 }
 
@@ -144,11 +144,11 @@ tr.dates-red {
     background-color: #FFCDD2;
 }
 
-td.training-red {
+td.Тренировка-red {
     background-color: #aacd92;
 }
 
-td.mach-red {
+td.Мач-red {
     /*background-color: #8BB9E8;*/
     background-color: cornflowerblue;
 }
@@ -174,11 +174,11 @@ tr.dates-green {
     background-color: #C8E6C9;
 }
 
-td.training-green {
+td.Тренировка-green {
     background-color: cornflowerblue;
 }
 
-td.mach-green {
+td.Мач-green {
     background-color: #D17A7A;
 }
 

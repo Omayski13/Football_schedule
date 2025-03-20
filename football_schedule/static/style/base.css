@@ -32,7 +32,8 @@ li{
     margin: 0.5rem;
 }
 
-.week-a{
+.week-a,
+.week-delete{
     color: #ECEBDE;
     padding: 0.3rem;
     background-color: darkgrey;
@@ -40,9 +41,19 @@ li{
     margin: 0.5rem;
 }
 
-.week-a:hover{
+.week-a:hover,
+.week-delete:hover{
     background-color: #444444;
     text-decoration: none;
     color: #ECEBDE;
 }
+
+.week-a:hover {
+    background-color: #444444;
+}
+
+.week-delete:hover {
+    background-color: red ;
+}
+
 
