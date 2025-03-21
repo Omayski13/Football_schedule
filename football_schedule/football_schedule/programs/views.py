@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views import View
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, ListView
 
 from football_schedule.programs.forms import MatchCreateForm, MatchEditForm
 from football_schedule.programs.models import Match
@@ -53,9 +53,36 @@ class DeleteAllMatchesView(View):
         # Delete all weeks created by the logged-in user
         matches_deleted, _ = Match.objects.filter(author=request.user).delete()
         messages.success(request, f"Successfully deleted {matches_deleted} matches.")
-        return redirect('create-program')  # Redirect to a relevant page
+        return redirect('create-program')
 
 def delete_match(request, pk):
-    match = get_object_or_404(Match, pk=pk, author=request.user)  # Ensure user owns the week
+    match = get_object_or_404(Match, pk=pk, author=request.user)
     match.delete()
-    return redirect('create-program')  # Redirect to the list view or another appropriate page
+    return redirect('create-program')
+
+class DisplayProgramView(ListView):
+    template_name = 'programs/display-program.html'
+    model = Match
+
+
+    def get_queryset(self):
+
+        queryset = Match.objects.filter(author=self.request.user).order_by('date','time')
+
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        dates = []
+        matches = Match.objects.filter(author=self.request.user).order_by('date','time')
+        for match in matches:
+            if match.date not in dates:
+                dates.append(match.date)
+
+        context['dates'] = dates
+
+
+
+        return context
+
