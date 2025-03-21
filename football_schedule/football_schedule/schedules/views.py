@@ -73,7 +73,7 @@ class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View
 
 
 class ScheduleDisplayView(LoginRequiredMixin,ListView):
-    template_name = 'schedules/display.html'
+    template_name = 'schedules/display-schedule.html'
     context_object_name = 'weeks'
 
     def get_queryset(self):

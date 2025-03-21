@@ -1,0 +1,87 @@
+section#program{
+    padding: 2rem;
+    margin: 5rem;
+}
+
+/*div#program-image {*/
+/*    background-image: url('/static/images/program-background.png');*/
+/*    background-size: contain; !* Ensures the full image is shown *!*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    width: 100%; !* Adjust width as needed *!*/
+/*    height: 100vh; !* Full viewport height *!*/
+/*}*/
+
+
+div#program-image {
+    background-image: url('/static/images/program-background.png');
+    background-size: contain; /* Covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    width: 100%; /* Full width */
+    height: 100vh; /* Full screen height */
+    display: flex; /* Enables centering content */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    color: white; /* Ensures text is visible on the background */
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+
+
+div#matches {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.date-header {
+    font-weight: bold;
+}
+
+table#program {
+    width: 40%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+table#program td {
+    border: none;
+    padding-bottom: 0.2rem;  /* Removes all padding */
+    margin: 0;   /* Removes extra spacing */
+    white-space: collapse; /* Prevents line breaks */
+    font-size: 0.8rem;
+}
+
+table#program th {
+    font-weight: bold;
+}
+
+
+img.program-emblem{
+    height: 35px;
+    width: 35px;
+}
+
+td#small {
+    width: 2px !important;  /* Force a very small width */
+    min-width: 2px !important;
+    max-width: 2px !important;
+    text-align: center; /* Keeps the "-" centered */
+    padding: 0 !important; /* Removes any padding */
+    margin: 0 !important; /* Ensures no extra space */
+    white-space: nowrap !important; /* Prevents wrapping */
+    overflow: hidden; /* Ensures no extra content expands the cell */
+}
+
+#matches {
+    font-size: 4rem !important;
+    font-weight: bold;
+    color: white;
+}
