@@ -4,7 +4,7 @@ section#program{
 }
 
 /*div#program-image {*/
-/*    background-image: url('/static/images/program-background.png');*/
+/*    background-image: url('/static/images/program-background-ball-tree.png');*/
 /*    background-size: contain; !* Ensures the full image is shown *!*/
 /*    background-position: center;*/
 /*    background-repeat: no-repeat;*/
@@ -14,14 +14,14 @@ section#program{
 
 
 div#program-image {
-    background-image: url('/static/images/program-background.png');
+    background-image: url('/static/images/program-background-ball-tree.png');
     background-size: contain; /* Covers the entire div */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling */
     width: 100%; /* Full width */
     height: 100vh; /* Full screen height */
-    display: flex; /* Enables centering content */
-    justify-content: center; /* Centers horizontally */
+    /*display: flex; !* Enables centering content *!*/
+    /*justify-content: center; !* Centers horizontally *!*/
     align-items: center; /* Centers vertically */
     color: white; /* Ensures text is visible on the background */
     text-align: center;
@@ -84,4 +84,16 @@ td#small {
     font-size: 4rem !important;
     font-weight: bold;
     color: white;
+}
+
+#create-program-emblem{
+    height: 100px;
+    width: auto;
+    padding-right: 2rem;
+}
+
+.program-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

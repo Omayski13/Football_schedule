@@ -10,6 +10,23 @@
     
 <section id="program" class="p-2 m-5">
     <div id="program-image">
+    
+        <div class="program-info">
+            <div class="">
+                <img id="create-program-emblem" src="{{ display_program_data.club_emblem.url }}">
+                
+            </div>
+            
+            <div>
+                <h3>{{ display_program_data.club}}</h3>
+                <h3>Програма мачове</h3>
+                {% if last_date %}
+                    <h3>{{ first_date|date:'d.m' }} - {{ last_date|date:'d.m' }}</h3>
+                {% endif %}
+            </div>
+            
+        </div>
+        
         <div id="matches">
             {% for date in dates %}
                 <h3 class="date-header">{{ date|date:"l d F"|default:"" }}</h3>

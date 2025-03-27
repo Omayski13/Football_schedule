@@ -1,6 +1,6 @@
 from django import forms
 
-from football_schedule.programs.models import Match
+from football_schedule.programs.models import Match, DisplayProgramData
 
 
 class MatchBaseForm(forms.ModelForm):
@@ -36,6 +36,11 @@ class MatchCreateForm(MatchBaseForm):
 
 class MatchEditForm(MatchBaseForm):
     pass
+
+class DisplayProgramForm(forms.ModelForm):
+    class Meta:
+        model = DisplayProgramData
+        exclude = ('user',)
 
 
 

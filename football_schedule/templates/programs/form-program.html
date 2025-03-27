@@ -1,0 +1,21 @@
+<section id="create-schedule" class="p-2 m-5">
+    <h2 class="text-center">Създай Програма</h2>
+    <form id="create-schedule-form" method="post" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+         <input type="hidden" name="form_type" value="display_program_form">  <!-- Hidden field to identify form -->
+        
+        <h3 class="text-center py-2">Отбор</h3>
+        <div class="text-center">
+            {{ display_program_form.club }}
+        </div>
+
+        <h3 class="text-center pb-2">Емблема</h3>
+        <div class="text-center">
+            {{ display_program_form.club_emblem }}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn px-3 py-3 btn-primary text-center bg-primary">Създай Програма</button>
+        </div>
+    </form>
+</section>
