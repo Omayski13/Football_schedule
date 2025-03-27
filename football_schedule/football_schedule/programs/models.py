@@ -43,4 +43,25 @@ class Match(models.Model):
     )
 
 
+class DisplayProgramData(models.Model):
+    user=models.ForeignKey(
+        to=UserModel,
+        on_delete=models.CASCADE,
+        related_name='display_program'
+    )
+
+    club = models.CharField(
+        max_length=50,
+        null=True,
+        blank=True,
+    )
+
+    club_emblem = CloudinaryField(
+    'club_emblem',
+        folder='accounts',
+        null=True,
+        blank=True,
+    )
+
+
 
