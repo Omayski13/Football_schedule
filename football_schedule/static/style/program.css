@@ -3,16 +3,6 @@ section#program{
     margin: 5rem;
 }
 
-/*div#program-image {*/
-/*    background-image: url('/static/images/program-background-ball-tree.png');*/
-/*    background-size: contain; !* Ensures the full image is shown *!*/
-/*    background-position: center;*/
-/*    background-repeat: no-repeat;*/
-/*    width: 100%; !* Adjust width as needed *!*/
-/*    height: 100vh; !* Full viewport height *!*/
-/*}*/
-
-
 div#program-image {
     background-image: url('/static/images/program-background-ball-tree.png');
     background-size: contain; /* Covers the entire div */
@@ -20,16 +10,12 @@ div#program-image {
     background-repeat: no-repeat; /* Prevents tiling */
     width: 100%; /* Full width */
     height: 100vh; /* Full screen height */
-    /*display: flex; !* Enables centering content *!*/
-    /*justify-content: center; !* Centers horizontally *!*/
     align-items: center; /* Centers vertically */
     color: white; /* Ensures text is visible on the background */
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
 }
-
-
 
 div#matches {
     display: flex;
@@ -96,4 +82,9 @@ td#small {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#form-program-club-emblem{
+    height: 100px;
+    width: auto;
 }
