@@ -5,7 +5,7 @@
     {% include 'head.html' with bootstrap=False %}
 
     <div id="display-page">
-        <button id="download-screenshot">Свали график (.jpg)</button>
+        <button id="download-screenshot">Свали програма (.jpg)</button>
     </div>
     
 <section id="program" class="p-2 m-5">
@@ -65,54 +65,51 @@
 </section>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
 <script>
 document.getElementById("download-screenshot").addEventListener("click", function () {
-    let section = document.getElementById("program-image"); // Background container
-    let table = document.getElementById("matches"); // Table container
+    let section = document.getElementById("program-image"); // The section we want to capture
 
-    let computedStyle = window.getComputedStyle(section);
-    let bgImage = computedStyle.backgroundImage;
+    // Capture the entire section exactly as it appears on the screen
+    html2canvas(section, { 
+        backgroundColor: null,  // Avoid default black background
+        scale: 2,               // Higher scale for better quality
+        useCORS: true,          // Allow cross-origin resources (like images)
+        logging: false,         // Disable logging for cleaner code
+        scrollX: 0,             // No scrolling offsets
+        scrollY: 0,             // No scrolling offsets
+    }).then(canvas => {
+        // Get the original width and height of the captured content
+        let originalWidth = canvas.width;
+        let originalHeight = canvas.height;
 
-    if (bgImage.startsWith("url(")) {
-        bgImage = bgImage.slice(5, -2); // Extract the URL from `url("...")`
-    }
+        // Define how much to crop from the left and right (200px from each side)
+        let cropMargin = 750; // 200px from the left and right
+        let newWidth = originalWidth - (2 * cropMargin); // Crop from both sides
+        let newHeight = originalHeight; // Height remains the same
 
-    let img = new Image();
-    img.crossOrigin = "anonymous"; // Fix for images not loading
-    img.src = bgImage;
+        // Create a new canvas for the cropped content
+        let croppedCanvas = document.createElement("canvas");
+        croppedCanvas.width = newWidth;
+        croppedCanvas.height = newHeight;
+        let ctx = croppedCanvas.getContext("2d");
 
-    img.onload = function () {
-        let portraitWidth = 1400; // Adjust portrait width
-        let portraitHeight = 2200; // Adjust portrait height
+        // Draw the cropped section onto the new canvas (skip the left and right margins)
+        ctx.drawImage(canvas, cropMargin, 0, newWidth, newHeight, 0, 0, newWidth, newHeight);
 
-        let canvas = document.createElement("canvas");
-        canvas.width = portraitWidth;
-        canvas.height = portraitHeight;
-        let ctx = canvas.getContext("2d");
-
-        // Draw the background image first
-        ctx.drawImage(img, 0, 0, portraitWidth, portraitHeight);
-
-        // Ensure table images load before capturing
-        setTimeout(() => {
-            html2canvas(table, { backgroundColor: null, scale: 2, useCORS: true }).then(tableCanvas => {
-                let tableX = (portraitWidth - tableCanvas.width) / 2; // Center table
-                let tableY = 100; // Adjust position from the top
-
-                ctx.drawImage(tableCanvas, tableX, tableY);
-
-                // Convert to JPG and download
-                let link = document.createElement("a");
-                link.href = canvas.toDataURL("image/jpeg", 0.95);
-                link.download = "schedule_with_table.jpg"; // Filename
-                link.click(); // Trigger download
-            });
-        }, 1000); // 1s delay ensures images load
-    };
+        // Convert cropped canvas to JPG format
+        let link = document.createElement("a");
+        link.href = croppedCanvas.toDataURL("image/jpeg", 0.95); // 95% JPG quality
+        link.download = "program.jpg"; // The downloaded file name
+        link.click(); // Trigger the download
+    });
 });
-
-
 </script>
+
+
+
+
+
 
 {% endblock %}
 
