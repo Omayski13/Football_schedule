@@ -1,3 +1,4 @@
+{% load count_programs %}
 {% load count_schedules %}
 {% load static %}
 
@@ -8,11 +9,24 @@
             <a class="text-decoration-none" href="{% url 'home' %}">
                 <img id="nav-image" src="{% static 'images/fs-3-blue.png' %}">
             </a>
-            {% count_schedules as count_schedules %}
-            {% if count_schedules %}
-                <p style="color:#ECEBDE; margin-bottom: 0" class="text-center">Общо<br>създадени<br>графици<br><strong
-                        style="font-size: 1.5rem">{{ count_schedules }}</strong></p>
-            {% endif %}
+            
+            <div class="count-text">
+                <p style="color:#ECEBDE; margin-bottom: 0" class="text-center">Общо създадени</p>
+                <div class="nav-count">
+                    {% count_schedules as count_schedules %}
+                    {% if count_schedules %}
+                    <p style="color:#ECEBDE; margin-bottom: 0" class="text-center" id="count-schedules"><strong
+                            style="font-size: 1.5rem">{{ count_schedules }}</strong><br>графици</p>
+                    {% endif %}
+                
+                    {% count_programs as count_programs %}
+                    {% if count_programs %}
+                    <p style="color:#ECEBDE; margin-bottom: 0" class="text-center" id="count-programs"><strong
+                            style="font-size: 1.5rem">{{ count_programs }}</strong><br>програми</p>
+                    {% endif %}
+                    
+                </div>
+            </div>
         </div>
     
         <div class="nav-schedule">

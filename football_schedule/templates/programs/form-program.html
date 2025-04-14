@@ -9,13 +9,18 @@
             {{ display_program_form.club }}
         </div>
 
-        <h3 class="text-center pb-2">Емблема</h3>
+        <h3 class="text-center py-2">Емблема</h3>
         <p class="text-center" style="font-style: italic; font-weight: inherit">Ако не добавите клубна емблема от полето по-долу ще бъде използвана тази снимка</p>
         <div class="text-center">
             <img id="form-program-club-emblem" src="{{ display_program_form.initial.club_emblem.url }}"> 
         </div>
         <div class="text-center">
             {{ display_program_form.club_emblem }}
+        </div>
+        
+        <div class="text-center">
+            <h3 class="text-center py-2">Използвай емблеми на отборите в програмата</h3>
+            <p class="text-center" style="font-weight: inherit">Използвай емблеми  {{ display_program_form.use_emblems}}</p>
         </div>
 
         <div class="d-flex justify-content-center">

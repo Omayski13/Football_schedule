@@ -63,5 +63,9 @@ class DisplayProgramData(models.Model):
         blank=True,
     )
 
+    use_emblems = models.BooleanField(
+        default=True
+    )
+
 
 

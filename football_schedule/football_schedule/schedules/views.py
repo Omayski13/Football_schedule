@@ -8,7 +8,6 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, ListView, UpdateView, FormView
-
 from football_schedule.common.mixins import DeleteCloudinaryFormValidMixin
 from football_schedule.schedules.forms import WeekForm, WeekEditForm, DisplayForm
 from football_schedule.schedules.models import Week, DisplayScheduleData

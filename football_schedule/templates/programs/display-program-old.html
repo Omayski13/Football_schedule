@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'head.html' with bootstrap=False %}
+
+    <div id="display-page">
+        <button id="download-screenshot">Свали програма (.jpg)</button>
+    </div>
+    
+<section id="program" class="p-2 m-5">
+    <div id="program-image">
+    
+        <div class="program-info">
+            <div class="">
+                <img id="create-program-emblem" src="{{ display_program_data.club_emblem.url }}">
+                
+            </div>
+            
+            <div>
+                <h3>{{ display_program_data.club}}</h3>
+                <h3>Програма мачове</h3>
+                {% if last_date %}
+                    <h3>{{ first_date|date:'d.m' }} - {{ last_date|date:'d.m' }}</h3>
+                {% endif %}
+            </div>
+            
+        </div>
+        
+        <div id="matches">
+            {% for date in dates %}
+                <h3 class="date-header">{{ date|date:"l d F"|default:"" }}</h3>
+                <table id="program">
+                    <thead>
+                        <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for match in match_list %}
+                            {% if match.date == date %}
+                                <tr >
+                                    <td>{{ match.time|time:"H:i" }} часа</td>
+                                    {% if match.team_1_emblem %}
+                                        <td><img class="program-emblem" src="{{ match.team_1_emblem.url }}"></td>
+                                    {% else %}
+                                        <td><img class="program-emblem" src="{% static 'images/default-emblem.png' %}"></td>
+                                    {% endif %}
+                                    <td>{{ match.team_1 }}</td>
+                                    <td id="small">-</td>
+                                    <td>{{ match.team_2 }}</td>
+                                    {% if match.team_2_emblem %}
+                                        <td><img class="program-emblem" src="{{ match.team_2_emblem.url }}"></td>
+                                    {% else %}
+                                        <td><img class="program-emblem" src="{% static 'images/default-emblem.png' %}"></td>
+                                    {% endif %}
+                                    <td>{{ match.place }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+<script>
+document.getElementById("download-screenshot").addEventListener("click", function () {
+    let section = document.getElementById("program-image"); // The section we want to capture
+
+    // Capture the entire section exactly as it appears on the screen
+    html2canvas(section, { 
+        backgroundColor: null,  // Avoid default black background
+        scale: 2,               // Higher scale for better quality
+        useCORS: true,          // Allow cross-origin resources (like images)
+        logging: false,         // Disable logging for cleaner code
+        scrollX: 0,             // No scrolling offsets
+        scrollY: 0,             // No scrolling offsets
+    }).then(canvas => {
+        // Get the original width and height of the captured content
+        let originalWidth = canvas.width;
+        let originalHeight = canvas.height;
+
+        // Define how much to crop from the left and right (200px from each side)
+        let cropMargin = 750; // 200px from the left and right
+        let newWidth = originalWidth - (2 * cropMargin); // Crop from both sides
+        let newHeight = originalHeight; // Height remains the same
+
+        // Create a new canvas for the cropped content
+        let croppedCanvas = document.createElement("canvas");
+        croppedCanvas.width = newWidth;
+        croppedCanvas.height = newHeight;
+        let ctx = croppedCanvas.getContext("2d");
+
+        // Draw the cropped section onto the new canvas (skip the left and right margins)
+        ctx.drawImage(canvas, cropMargin, 0, newWidth, newHeight, 0, 0, newWidth, newHeight);
+
+        // Convert cropped canvas to JPG format
+        let link = document.createElement("a");
+        link.href = croppedCanvas.toDataURL("image/jpeg", 0.95); // 95% JPG quality
+        link.download = "program.jpg"; // The downloaded file name
+        link.click(); // Trigger the download
+    });
+});
+</script>
+
+
+
+
+
+
+{% endblock %}
+
