@@ -30,6 +30,20 @@ header nav {
     gap: 1rem;
 }
 
+
+.nav-count{
+    display: flex;
+}
+
+#count-programs{
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+}
+
+#count-schedules{
+    padding-top: 0.5rem;
+}
+
 header nav p {
     text-align: center;
     font-size: 0.9rem;

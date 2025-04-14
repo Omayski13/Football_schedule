@@ -5,33 +5,9 @@ from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.views import View
 from django.views.generic import CreateView, UpdateView, ListView
-
 from football_schedule.programs.forms import MatchCreateForm, MatchEditForm, DisplayProgramForm
 from football_schedule.programs.models import Match, DisplayProgramData
 
-
-# Create your views here.
-
-
-# class CreateMatchView(LoginRequiredMixin,CreateView):
-#     template_name = 'programs/create-program.html'
-#     form_class = MatchCreateForm
-#     success_url = reverse_lazy('create-program')
-#
-#     def form_valid(self, form):
-#
-#         match = form.save(commit=False)
-#         match.author = self.request.user
-#
-#         return super().form_valid(form)
-#
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#
-#         context['matches'] = Match.objects.filter(author=self.request.user).order_by('date','time')
-#
-#         return context
 
 class CreateMatchView(LoginRequiredMixin, View):
     template_name = 'programs/create-program.html'
@@ -114,7 +90,7 @@ def delete_match(request, pk):
     match.delete()
     return redirect('create-program')
 
-class DisplayProgramView(ListView):
+class DisplayProgramView(LoginRequiredMixin,ListView):
     template_name = 'programs/display-program.html'
     model = Match
 
@@ -144,8 +120,6 @@ class DisplayProgramView(ListView):
         context['display_program_data'] = DisplayProgramData.objects.filter(user_id=self.request.user.id).first()
         context['first_date'] = first_date
         context['last_date'] = last_date
-
-
 
         return context
 

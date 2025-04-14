@@ -1,0 +1,37 @@
+{% load static %}
+<div id="matches">
+    {% for date in dates %}
+        <h3 class="date-header">{{ date|date:"l d F"|default:"" }}</h3>
+        <table id="program">
+            <thead>
+            <tr>
+            </tr>
+            </thead>
+            <tbody>
+            {% for match in match_list %}
+                {% if match.date == date %}
+                    <tr>
+                        <td class="no-bold-text no-text-colapse">{{ match.time|time:"H:i" }}</td>
+                        {% if match.team_1_emblem %}
+                            <td><img class="program-emblem" src="{{ match.team_1_emblem.url }}"></td>
+                        {% else %}
+                            <td><img class="program-emblem" src="{% static 'images/default-emblem.png' %}">
+                            </td>
+                        {% endif %}
+                        <td>{{ match.team_1 }}</td>
+                        <td id="small">-</td>
+                        <td>{{ match.team_2 }}</td>
+                        {% if match.team_2_emblem %}
+                            <td><img class="program-emblem" src="{{ match.team_2_emblem.url }}"></td>
+                        {% else %}
+                            <td><img class="program-emblem" src="{% static 'images/default-emblem.png' %}">
+                            </td>
+                        {% endif %}
+                        <td class="no-bold-text">{{ match.place }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</div>

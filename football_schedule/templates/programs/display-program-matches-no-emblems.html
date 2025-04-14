@@ -1,0 +1,25 @@
+{% load static %}
+<div id="matches">
+    {% for date in dates %}
+        <h3 class="date-header">{{ date|date:"l d F"|default:"" }}</h3>
+        <table id="program">
+            <thead>
+            <tr>
+            </tr>
+            </thead>
+            <tbody>
+            {% for match in match_list %}
+                {% if match.date == date %}
+                    <tr>
+                        <td class="no-bold-text no-text-colapse">{{ match.time|time:"H:i" }}</td>
+                        <td>{{ match.team_1 }}</td>
+                        <td id="small">-</td>
+                        <td>{{ match.team_2 }}</td>
+                        <td class="no-bold-text">{{ match.place }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</div>
