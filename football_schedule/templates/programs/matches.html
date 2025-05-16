@@ -9,29 +9,30 @@
         {% if matches %}
             <ul>
                 {% for match in matches %}
-                    <li>
-                        
-                        <div class="pr-4 mr-3">
-                            {{ match.team_1 }} - {{ match.team_2 }}
-                        </div>
-                        <div class="pr-4 mr-3">
-                            {{ match.date|date:"d.m.Y" }} {{ match.time|time:"H:i" }}
-                        </div>
-                        <div class="pr-4 mr-3">
-                            {{ match.place }}
-                        </div>
-                        <div >
-                            <div class="weeks-li-a">
-                                <a class="week-a" href="{% url 'edit-match' match.pk %}">
-                                    <i class="fa-solid fa-pen"></i>редактирай
-                                </a>
-                                <a class="week-delete" href="{% url 'delete-match' match.pk %}"
-                                   onclick="return confirm('Сигурен ли си, че искаш да изтриеш тази мач?');">
-                                    <i class="fa-solid fa-trash"></i>изтрий
-                                </a>
+                    <div class="d-flex justify-content-between">
+                        <li>
+                            <div class="pr-4 mr-3">
+                                {{ match.team_1 }} - {{ match.team_2 }}
                             </div>
-                        </div>
-                    </li>
+                            <div class="pr-4 mr-3">
+                                {{ match.date|date:"d.m.Y" }} {{ match.time|time:"H:i" }}
+                            </div>
+                            <div class="pr-4 mr-3">
+                                {{ match.place }}
+                            </div>
+                            <div>
+                                <div class="weeks-li-a">
+                                    <a class="week-a" href="{% url 'edit-match' match.pk %}">
+                                        <i class="fa-solid fa-pen"></i>редактирай
+                                    </a>
+                                    <a class="week-delete" href="{% url 'delete-match' match.pk %}"
+                                       onclick="return confirm('Сигурен ли си, че искаш да изтриеш тази мач?');">
+                                        <i class="fa-solid fa-trash"></i>изтрий
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
                 {% endfor %}
             </ul>
         {% else %}
@@ -40,7 +41,6 @@
 
     </div>
 
-    
 
     <form class="px-5 d-flex align-items-center justify-content-center" method="post"
           action="{% url 'delete-all-matches' %}" onsubmit="return confirmDelete()">

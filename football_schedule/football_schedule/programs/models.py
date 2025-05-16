@@ -17,6 +17,10 @@ class Match(models.Model):
         max_length=50
     )
 
+    use_team_1_profile_emblem = models.BooleanField(
+        default=False
+    )
+
     team_1_emblem = CloudinaryField(
         'club_emblem',
         folder='programs',
@@ -27,6 +31,11 @@ class Match(models.Model):
     team_2 = models.CharField(
         max_length=50
     )
+
+    use_team_2_profile_emblem = models.BooleanField(
+        default=False
+    )
+
     team_2_emblem = CloudinaryField(
         'club_emblem',
         folder='programs',

@@ -1,17 +1,12 @@
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import CreateView, ListView, UpdateView, FormView
+from django.views.generic import ListView, UpdateView
 from football_schedule.common.mixins import DeleteCloudinaryFormValidMixin
 from football_schedule.schedules.forms import WeekForm, WeekEditForm, DisplayForm
 from football_schedule.schedules.models import Week, DisplayScheduleData
-
 
 # Create your views here.
 
@@ -32,22 +27,27 @@ class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View
         }
 
     def get(self, request, *args, **kwargs):
+
         form = WeekForm()
         display_form = DisplayForm(initial=self.get_user_profile_data())
+
         context = {
             'form': form,
             'display_form': display_form,
             'weeks': Week.objects.filter(author=request.user),
         }
+
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
+
         initial_display_data = self.get_user_profile_data()
         form = WeekForm()
         display_form = DisplayForm(initial=initial_display_data)
 
         if 'submit_form' in request.POST:
             form = WeekForm(request.POST)
+
             if form.is_valid():
                 week = form.save(commit=False)
                 week.author = request.user
@@ -56,6 +56,7 @@ class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View
 
         elif 'submit_display_form' in request.POST:
             display_form = DisplayForm(request.POST, request.FILES, initial=initial_display_data)
+
             if display_form.is_valid():
                 display_data = display_form.save(commit=False)
                 display_data.user = request.user
@@ -86,9 +87,7 @@ class ScheduleDisplayView(LoginRequiredMixin,ListView):
 
         display_data = DisplayScheduleData.objects.last()
 
-        # Add DisplayScheduleData to the context
         context['display_data'] = display_data
-
 
         return context
 
@@ -99,18 +98,20 @@ class ScheduleWeekEditView(LoginRequiredMixin,UpdateView):
     success_url = reverse_lazy('create-schedule')
 
 
-
 class DeleteAllWeeksView(View):
     def post(self, request, *args, **kwargs):
-        # Delete all weeks created by the logged-in user
+
         weeks_deleted, _ = Week.objects.filter(author=request.user).delete()
         messages.success(request, f"Successfully deleted {weeks_deleted} weeks.")
-        return redirect('create-schedule')  # Redirect to a relevant page
+
+        return redirect('create-schedule')
 
 def delete_week(request, pk):
-    week = get_object_or_404(Week, pk=pk, author=request.user)  # Ensure user owns the week
+
+    week = get_object_or_404(Week, pk=pk, author=request.user)
     week.delete()
-    return redirect('create-schedule')  # Redirect to the list view or another appropriate page
+
+    return redirect('create-schedule')
 
 
 

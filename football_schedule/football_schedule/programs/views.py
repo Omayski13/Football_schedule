@@ -1,10 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views import View
-from django.views.generic import CreateView, UpdateView, ListView
+from django.views.generic import UpdateView, ListView
 from football_schedule.programs.forms import MatchCreateForm, MatchEditForm, DisplayProgramForm
 from football_schedule.programs.models import Match, DisplayProgramData
 
@@ -14,7 +14,7 @@ class CreateMatchView(LoginRequiredMixin, View):
     success_url = reverse_lazy('create-program')
 
     def get_user_profile_data(self):
-        """ Fetch initial data for the DisplayProgramForm from the user's profile. """
+
         user_profile = getattr(self.request.user, 'profile', None)
         return {
             'club': user_profile.club if user_profile else '',
@@ -22,48 +22,62 @@ class CreateMatchView(LoginRequiredMixin, View):
         }
 
     def get_context_data(self, **kwargs):
-        """ Prepare context for rendering the page. """
+
         context = kwargs
-        context.setdefault('form', MatchCreateForm())
+        context.setdefault('form', kwargs.get('form', MatchCreateForm()))
         context.setdefault('display_program_form', DisplayProgramForm(initial=self.get_user_profile_data()))
         context['matches'] = Match.objects.filter(author=self.request.user).order_by('date', 'time')
+
         return context
 
     def get(self, request, *args, **kwargs):
-        """ Handle GET request and render the page. """
         return render(request, self.template_name, self.get_context_data())
 
     def post(self, request, *args, **kwargs):
-        form_type = request.POST.get("form_type")  # Identify which form was submitted
+        form_type = request.POST.get("form_type")
 
-        if form_type == "display_program_form":
+        if form_type == "match_form":
+            match_form = MatchCreateForm(request.POST, request.FILES)
+
+            if match_form.is_valid():
+                match = match_form.save(commit=False)
+                match.author = request.user
+
+                profile = getattr(request.user, 'profile', None)
+
+                if match.use_team_1_profile_emblem and profile:
+                    match.team_1_emblem = profile.club_emblem
+
+                if match.use_team_2_profile_emblem and profile:
+                    match.team_2_emblem = profile.club_emblem
+
+                match.save()
+                return redirect(self.success_url)
+
+            return render(request, self.template_name, self.get_context_data(form=match_form))
+
+        elif form_type == "display_program_form":
             display_program_form = DisplayProgramForm(request.POST, request.FILES)
 
             if display_program_form.is_valid():
                 display_program = display_program_form.save(commit=False)
-                display_program.user = request.user  # Assign the user
+                display_program.user = request.user
 
-                # 🛠 Check if "Изчисти" (Clear) is ticked
                 if "club_emblem-clear" in request.POST:
-                    display_program.club_emblem = None  # Clear the emblem
-
-                # 🛠 If no new emblem is uploaded and "Изчисти" is NOT checked, keep the old emblem
+                    display_program.club_emblem = None
                 elif not request.FILES.get("club_emblem"):
                     user_profile = getattr(request.user, 'profile', None)
                     if user_profile:
-                        display_program.club_emblem = user_profile.club_emblem  # Keep profile emblem
-
+                        display_program.club_emblem = user_profile.club_emblem
                 display_program.save()
-                return redirect(reverse('display-program'))  # Redirect after saving
+                return redirect(reverse_lazy('display-program'))
 
-            # If form has errors, re-render the page
             return render(request, self.template_name, self.get_context_data(display_program_form=display_program_form))
 
-        return redirect(self.success_url)  # Default redirect
+        return redirect(self.success_url)
 
 
-
-class EditMatchView(LoginRequiredMixin,UpdateView):
+class EditMatchView(LoginRequiredMixin, UpdateView):
     template_name = 'programs/edit-match.html'
     form_class = MatchEditForm
     model = Match
@@ -71,34 +85,44 @@ class EditMatchView(LoginRequiredMixin,UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
-
-        if self.request.user != self.object.author:
-            if not self.request.user.is_superuser:
-                raise PermissionDenied
-
+        if self.request.user != self.object.author and not self.request.user.is_superuser:
+            raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        match = form.save(commit=False)
+        profile = getattr(self.request.user, 'profile', None)
+
+        if match.use_team_1_profile_emblem and profile:
+            match.team_1_emblem = profile.club_emblem
+
+        if match.use_team_2_profile_emblem and profile:
+            match.team_2_emblem = profile.club_emblem
+
+        match.save()
+        return super().form_valid(form)
 
 class DeleteAllMatchesView(View):
     def post(self, request, *args, **kwargs):
-        # Delete all weeks created by the logged-in user
+
         matches_deleted, _ = Match.objects.filter(author=request.user).delete()
         messages.success(request, f"Successfully deleted {matches_deleted} matches.")
+
         return redirect('create-program')
 
 def delete_match(request, pk):
+
     match = get_object_or_404(Match, pk=pk, author=request.user)
     match.delete()
+
     return redirect('create-program')
 
 class DisplayProgramView(LoginRequiredMixin,ListView):
     template_name = 'programs/display-program.html'
     model = Match
 
-
     def get_queryset(self):
-
         queryset = Match.objects.filter(author=self.request.user).order_by('date','time')
-
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
