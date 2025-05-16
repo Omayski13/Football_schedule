@@ -12,9 +12,9 @@
                 {% if match.date == date %}
                     <tr>
                         <td class="no-bold-text no-text-colapse">{{ match.time|time:"H:i" }}</td>
-                        <td>{{ match.team_1 }}</td>
+                        <td class="team-name">{{ match.team_1 }}</td>
                         <td id="small">-</td>
-                        <td>{{ match.team_2 }}</td>
+                        <td class="team-name">{{ match.team_2 }}</td>
                         <td class="no-bold-text">{{ match.place }}</td>
                     </tr>
                 {% endif %}
