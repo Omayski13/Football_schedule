@@ -15,16 +15,19 @@
                 <div class="">
                     <img id="display-program-emblem" src="{{ display_program_data.club_emblem.url }}">
                 </div>
-            
+
                 <div class="program-info-text">
                     <h3 style="font-size: 3rem; margin:  0.5rem 0">{{ display_program_data.club }}</h3>
                     <h3 style="font-size: 2rem; margin:  0.5rem 0">Програма мачове</h3>
                     {% if last_date %}
-                        <h3 style="font-size: 2rem; margin: 0.5rem 0">{{ first_date|date:'d.m' }} - {{ last_date|date:'d.m' }}</h3>
+                        <h3 style="font-size: 2rem; margin: 0.5rem 0">{{ first_date|date:'d.m' }}
+                            - {{ last_date|date:'d.m' }}</h3>
                     {% endif %}
                 </div>
             </div>
-            
+
+
+
             {% if display_program_data.use_emblems %}
                 {% include 'programs/display-program-matches-emblems.html' %}
             {% else %}
