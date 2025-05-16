@@ -13,8 +13,10 @@ class MatchBaseForm(forms.ModelForm):
         }
         labels = {
             'team_1': 'Отбор',
+            'use_team_1_profile_emblem': 'Използвай клубна емблема',
             'team_1_emblem': 'Отбор Емблема',
             'team_2': 'Противник',
+            'use_team_2_profile_emblem': 'Използвай клубна емблема',
             'team_2_emblem': 'Противник Емблема',
             'date': 'Дата',
             'time': 'Час',
