@@ -18,9 +18,9 @@
                             <td><img class="program-emblem" src="{% static 'images/default-emblem.png' %}">
                             </td>
                         {% endif %}
-                        <td>{{ match.team_1 }}</td>
+                        <td class="team-name">{{ match.team_1 }}</td>
                         <td id="small">-</td>
-                        <td>{{ match.team_2 }}</td>
+                        <td class="team-name">{{ match.team_2 }}</td>
                         {% if match.team_2_emblem %}
                             <td><img class="program-emblem" src="{{ match.team_2_emblem.url }}"></td>
                         {% else %}

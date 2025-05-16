@@ -111,6 +111,10 @@ td#small {
     margin: 0.5rem 0;
 }
 
+.team-name{
+    font-weight: bold;
+}
+
 /* --------------------------
    📱 Responsive Design
 --------------------------- */
