@@ -1,0 +1,146 @@
+#profile-details {
+    max-width: 35%;
+    margin: auto;
+    padding: 1.5rem;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ECEBDE;
+}
+
+#profile-edit-form a{
+    color: #ECEBDE;
+}
+
+#profile-details-profile-picture {
+    border-radius: 20px;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+}
+
+.team-generation-choices{
+    text-align: center;
+}
+
+#profile-details-club-emblem {
+    max-width: 90px;
+    height: auto;
+    margin-left: 1rem;
+}
+
+#div-profile-details-club-emblem {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+#profile-edit-profile-picture,
+#profile-edit-club-emblem {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+    display: block;
+}
+
+
+h3 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    font-size: 1rem;
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    #profile-details {
+        max-width: 95%;
+        padding: 1rem;
+    }
+
+    #profile-details-profile-picture {
+        max-width: 80%;
+    }
+
+    #profile-details-club-emblem {
+        max-width: 70px;
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    #profile-edit-profile-picture,
+    #profile-edit-club-emblem {
+        margin-left: 0;
+        max-width: 200px;
+        display: block;
+        margin: 1rem auto;
+    }
+
+    #profile-edit-form{
+        max-width: 80%;
+        display: block;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #profile-details {
+        padding: 0.5rem;
+    }
+
+    #profile-details-profile-picture {
+        max-width: 60%;
+    }
+
+    #profile-details-club-emblem {
+        max-width: 50px;
+        margin: 0 auto 0.5rem;
+    }
+
+    #profile-edit-profile-picture,
+    #profile-edit-club-emblem {
+        margin-left: 0;
+        max-width: 100px;
+        display: block;
+        margin: 1rem auto;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        width: 100%;
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+
+    #div-profile-details-club-emblem {
+        justify-content: center;
+    }
+}
+

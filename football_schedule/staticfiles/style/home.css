@@ -1,0 +1,52 @@
+#home-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+#home-page-schedule-image {
+    max-width: 90%;
+    width: 700px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+h5 {
+    padding: 0.5rem 0;
+    text-align: center;
+}
+
+h5 a {
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background-color: darkgrey;
+    color: #ECEBDE;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+h5 a:hover {
+    background-color: #444444;
+    text-decoration: none;
+    color: #ECEBDE;
+}
+
+@media (max-width: 768px) {
+    #home-page-schedule-image {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    h1, h4, h5 {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+    }
+
+    h5 a {
+        font-size: 1rem;
+        padding: 0.3rem 0.8rem;
+    }
+}
+

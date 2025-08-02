@@ -1,0 +1,196 @@
+
+
+/*.program-info-text{*/
+/*    margin-bottom: 0.5rem;*/
+/*    margin-top: 0.5rem;*/
+/*}*/
+
+
+section#program {
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+div#program-image {
+    background-image: url('/static/images/program-background-ball-tree.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+div#matches {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+}
+
+.date-header {
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+
+table#program {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-size: 1.6rem;
+}
+
+table#program td {
+    border: none;
+    padding-bottom: 1.2rem;
+    margin: 0;
+    white-space: normal;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+table#program th {
+    font-weight: bold;
+}
+
+img.program-emblem {
+    height: 30px;
+    width: 30px;
+}
+
+td#small {
+    width: 1.5rem;
+    min-width: 1.5rem;
+    max-width: 1.5rem;
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden;
+}
+
+#create-program-emblem,
+#form-program-club-emblem {
+    height: 80px;
+    width: auto;
+    padding-right: 1rem;
+}
+
+#display-program-emblem {
+    height: 120px;
+    width: auto;
+    padding-right: 1rem;
+}
+
+.program-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.no-bold-text {
+    font-weight: normal;
+}
+
+.program-info-text {
+    font-size: 2.5rem;
+    margin: 0.5rem 0;
+}
+
+.team-name{
+    font-weight: bold;
+}
+
+/* --------------------------
+   📱 Responsive Design
+--------------------------- */
+@media (max-width: 768px) {
+
+    table#program td {
+        font-size: 1.5rem;
+        padding: 0.3rem;
+        white-space: normal;
+    }
+
+    .date-header {
+        font-size: 1.8rem;
+    }
+
+    table#program {
+        font-size: 1.3rem;
+        width: 100%;
+    }
+
+    img.program-emblem {
+        height: 25px;
+        width: 25px;
+    }
+
+    .program-info-text {
+        font-size: 1.8rem;
+    }
+
+    #display-program-emblem {
+        height: 100px;
+    }
+
+    #program-image {
+        font-size: 1.2rem;
+        height: auto;
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+     .program-emblem {
+        display: none !important;
+    }
+
+    table#program {
+        font-size: 1.2rem;
+        table-layout: auto;
+    }
+
+    .date-header {
+        font-size: 1.5rem;
+    }
+
+    table#program td {
+        font-size: 1.1rem;
+        padding: 0.3rem;
+        white-space: normal;
+    }
+
+    .program-info {
+        flex-direction: column;
+    }
+
+    .program-info-text {
+        font-size: 1.5rem;
+    }
+
+    #display-program-emblem {
+        height: 80px;
+    }
+
+    #program-image {
+        background-size: cover;
+        padding: 1rem;
+        height: auto;
+    }
+}

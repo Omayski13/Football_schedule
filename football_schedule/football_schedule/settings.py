@@ -29,7 +29,11 @@ SECRET_KEY = os.getenv('SECRET_KEY',config('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG',config('DEBUG')) == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com',
+]
 
 
 # Application definition
@@ -143,6 +147,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 cloudinary.config(
     cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME',config('CLOUDINARY_CLOUD_NAME')),

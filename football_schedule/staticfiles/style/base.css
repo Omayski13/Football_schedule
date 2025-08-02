@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    font-family: Cousine;
+    background-color: #ECEBDE;
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.btn-primary {
+    background-color: darkgrey !important;
+    color: #ECEBDE !important;
+    border-color: darkgrey !important;
+}
+
+.btn-primary:hover {
+    background-color:#444444  !important;
+    border-color: #444444 !important;
+}
+
+form a{
+    color: darkgrey; !important;
+    font-weight: bold;
+}
+
+form a:hover{
+    color: #444444;
+}
+
+li{
+    margin: 0.5rem;
+}
+
+.week-a,
+.week-delete{
+    color: #ECEBDE;
+    padding: 0.3rem;
+    background-color: darkgrey;
+    border-radius: 20px;
+    margin: 0.5rem;
+}
+
+.week-a:hover,
+.week-delete:hover{
+    background-color: #444444;
+    text-decoration: none;
+    color: #ECEBDE;
+}
+
+.week-a:hover {
+    background-color: #444444;
+}
+
+.week-delete:hover {
+    background-color: red ;
+}
+
+
