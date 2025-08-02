@@ -34,7 +34,7 @@ class ScheduleCreateView(LoginRequiredMixin,DeleteCloudinaryFormValidMixin, View
         context = {
             'form': form,
             'display_form': display_form,
-            'weeks': Week.objects.filter(author=request.user),
+            'weeks': Week.objects.filter(author=request.user).order_by('start_date'),
         }
 
         return render(request, self.template_name, context)
