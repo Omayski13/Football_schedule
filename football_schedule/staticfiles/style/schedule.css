@@ -1,0 +1,239 @@
+#form-display div:not(#generation-choices,.form-check){
+    margin: 0.3rem 10rem  !important;
+}
+
+#create-schedule,
+#weeks,
+#display,
+#schedule-edit{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+li {
+    display: flex;
+}
+
+div #monday {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+#create-schedule-form h3,
+#create-schedule-form p {
+    font-weight: bold;
+}
+
+#create-schedule-form h3,
+#schedule-edit-form h3{
+    color: darkgrey;
+    font-size: 2rem;
+}
+
+section h2 {
+    font-weight: bold;
+    color: #ECEBDE;
+    padding: 0.2rem;
+    background-color: darkgrey;
+    border-radius: 20px;
+    text-align: center;
+}
+
+h2#no-weeks {
+    font-weight: normal;
+    color: black;
+    text-align: center;
+}
+
+div label {
+    font-weight: bold;
+}
+
+.wide-input,
+.wide-input-small {
+    width: 100%;
+    max-width: 300px;
+    height: 35px;
+}
+
+.wide-input-small{
+    width: 250px;
+}
+
+#to-screenshot,
+#display-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#to-screenshot{
+    padding: 1.5rem;
+}
+
+.form-display-p {
+    font-style: italic;
+    text-align: center;
+}
+
+#form-display-club-emblem,
+#form-display-coach-photo {
+    width: 150px;
+    height: 150px;
+}
+
+#form-display-coach-photo {
+    border-radius: 20px;
+}
+
+
+@media (max-width: 1200px) {
+    #create-schedule,
+    #schedule-edit,
+    #weeks,
+    #display {
+        width: 90%;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    #to-screenshot{
+    padding: 0;
+}
+
+    .wide-input-small{
+    width: 190px;
+    }
+
+     li {
+        display: block;
+    }
+
+    #form-display{
+        align-items: stretch !important;
+    }
+
+    #form-display div:not(#generation-choices,.form-check){
+    margin: 1rem  !important;
+    }
+
+    #create-schedule,
+    #schedule-edit,
+    #weeks,
+    #display {
+        width: 100%;
+        margin: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .wide-input,
+    .wide-input-small {
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .form-display-p {
+        font-size: 0.9rem;
+        margin: 1rem 0;
+    }
+
+    #form-display-club-emblem,
+    #form-display-coach-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    #schedule-text {
+        margin-bottom: 2rem;
+    }
+
+    .d-flex.justify-content-center {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .d-flex.justify-content-around {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #display-weeks {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #form-display{
+        align-items: stretch !important;
+    }
+
+    #generation,
+    #coach{
+        align-items: start !important;
+    }
+
+    #create-schedule,
+    #schedule-edit,
+    #weeks,
+    #display {
+        width: 100%;
+    }
+
+    li {
+        display: block;
+    }
+
+    form-display{
+        align-items: stretch !important;
+    }
+
+    section h2 {
+        font-size: 1.25rem;
+    }
+
+    .wide-input,
+    .wide-input-small {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    #monday {
+        display: block !important;
+    }
+
+    .form-display-p {
+        font-size: 0.8rem;
+    }
+
+    #form-display-club-emblem,
+    #form-display-coach-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .d-flex.justify-content-center {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .d-flex.justify-content-around {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #display-weeks {
+        padding: 1rem;
+    }
+}
+

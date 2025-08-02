@@ -1,0 +1,312 @@
+
+#schedule-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#display-club-emblem-image {
+    padding: 2rem 2rem 0rem 0rem;
+}
+
+#schedule-info {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#display-weeks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+#display-page-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 5rem auto;
+    background-color: #ECEBDE;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+#display-club-emblem-image,
+#display-coach-photo-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+#display-coach-photo-image img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#display-club-emblem-image img {
+    width: 170px;
+    height: auto;
+    max-width: 100%;
+}
+
+#schedule-text h1 {
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+/*------COLORS*/
+
+/*---BLUE*/
+
+tr th.blue {
+    background-color: #295F98;
+    color: whitesmoke;
+}
+
+tr.days-blue {
+    background-color: cornflowerblue;
+}
+
+tr.dates-blue {
+    background-color: lightsteelblue;
+}
+
+td.Тренировка-blue {
+    background-color: #aacd92;
+}
+
+td.Мач-blue {
+    background-color: #D17A7A;
+}
+
+td.None-blue {
+    color: #ECEBDE;
+}
+
+/*------ YELLOW*/
+
+tr th.yellow {
+    background-color: #FFCA28;
+    color: black;
+}
+
+tr.days-yellow {
+    background-color: #FFF9C4;
+}
+
+tr.dates-yellow {
+    background-color: #FFFDE7;
+}
+
+td.Тренировка-yellow {
+    background-color: #C4E1A1;
+}
+
+td.Мач-yellow {
+    background-color: cornflowerblue;
+}
+
+td.None-yellow {
+    color: #ECEBDE;
+}
+
+/*------- RED*/
+
+tr th.red {
+    /*background-color: #FF7043;*/
+    background-color: red;
+    color: black;
+}
+
+tr.days-red {
+    background-color: #FF6F61;
+}
+
+tr.dates-red {
+    background-color: #FFCDD2;
+}
+
+td.Тренировка-red {
+    background-color: #aacd92;
+}
+
+td.Мач-red {
+    /*background-color: #8BB9E8;*/
+    background-color: cornflowerblue;
+}
+
+td.None-red {
+    color: #ECEBDE;
+}
+
+
+/*------- GREEN**/
+
+tr th.green {
+    /*background-color: #66BB6A;*/
+    background-color: green;
+    color: black;
+}
+
+tr.days-green {
+    background-color: #66BB6A;
+}
+
+tr.dates-green {
+    background-color: #C8E6C9;
+}
+
+td.Тренировка-green {
+    background-color: cornflowerblue;
+}
+
+td.Мач-green {
+    background-color: #D17A7A;
+}
+
+
+td.None-green {
+    color: #ECEBDE;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 0.3rem;
+    text-align: center;
+    /*word-wrap: break-word;*/
+    vertical-align: middle;
+    font-size: 0.9rem;
+    min-height: 5px;
+    height: 5px;
+}
+
+#download-screenshot {
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    background-color: darkgrey;
+    color: #ECEBDE;
+    border-color: #ECEBDE;
+    border-radius: 10px;
+}
+
+#download-screenshot:hover{
+    background-color: #444444;
+    border-color: #444444;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #display-page-section {
+        margin: 2rem 1rem;
+        padding: 1rem;
+        width: calc(100% - 2rem);
+        box-sizing: border-box;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #schedule-text{
+        margin-bottom: 0 !important;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    th, td {
+        font-size: 0.8rem;
+        min-height: 5px;
+        height: 5px;
+    }
+
+    #download-screenshot {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #display-weeks{
+        padding: 0 !important;
+    }
+
+    #display-coach-photo-image img {
+        width: 75px;
+        height: auto;
+        border-radius: 50%;
+        object-fit: cover;
+        max-width: 100%;
+    }
+
+    #display-club-emblem-image img {
+        width: 75px;
+        height: auto;
+        max-width: 150%;
+    }
+
+    #display-page-section {
+        padding: 1rem;
+        margin: 1rem;
+        width: calc(100% - 2rem);
+    }
+
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    th, td {
+        font-size: 0.6rem;
+        height: 4px;
+        min-height: 40px;
+    }
+
+    #schedule-text h1 {
+        font-size: 0.8rem;
+        margin: 0;
+        padding: 0.2rem
+    }
+
+    #schedule-text{
+        margin-bottom: 0.3rem !important;
+    }
+
+    .smaller-h1{
+        font-weight: normal;
+    }
+
+    #download-screenshot {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+}
+
+

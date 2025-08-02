@@ -1,0 +1,126 @@
+nav {
+    background-color: darkgrey;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-size: 2rem;
+    color: #ECEBDE;
+    text-decoration: none;
+    padding: 1rem;
+}
+
+nav a:hover {
+    color: black;
+    background-color: #ECEBDE;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-image {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.nav-count{
+    display: flex;
+}
+
+#count-programs{
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+}
+
+#count-schedules{
+    padding-top: 0.5rem;
+}
+
+header nav p {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+nav .nav-schedule{
+    padding-right: 3.5rem;
+}
+
+
+
+#nav-image {
+    width: 200px;
+    height: auto;
+}
+
+#nav-div-image a:hover {
+    background-color: transparent;
+    padding:  1rem;
+}
+
+footer {
+    background-color: darkgrey;
+    color: #ECEBDE;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+
+    nav .nav-schedule{
+    padding-right: 0;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-schedule, .nav-profile {
+        padding: 1rem 0;
+    }
+
+    #nav-image {
+        width: 150px;
+    }
+
+    nav a {
+        font-size: 1rem;
+    }
+
+    header nav p {
+        font-size: 0.8rem;
+    }
+
+     footer {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+}
+
