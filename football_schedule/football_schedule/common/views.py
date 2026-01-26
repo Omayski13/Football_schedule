@@ -144,10 +144,8 @@ def download_schedule_excel(request):
 def process_xlsm(input_path: str, output_dir: str):
     os.makedirs(output_dir, exist_ok=True)
 
-    # === Read the uploaded file, NOT a hardcoded path ===
-    absence_file = pd.read_excel(input_path)
+    absence_file = pd.read_excel(input_path, engine='openpyxl')
 
-    # Example: dynamically create file paths
     output_path = os.path.join(output_dir, "01_")
     os.makedirs(output_path, exist_ok=True)
 
@@ -162,54 +160,42 @@ def process_xlsm(input_path: str, output_dir: str):
     generation = absence_file.iloc[0, 3]
     month = absence_file.iloc[1, 3]
 
-    # ********** month
+    # ********** MONTH
 
     MONTH_MAP = {
-        # January
         "януари": "януари", "ян": "януари", "яну": "януари",
         "january": "януари", "jan": "януари",
 
-        # February
         "февруари": "февруари", "фев": "февруари", "февр": "февруари",
         "february": "февруари", "feb": "февруари",
 
-        # March
         "март": "март", "мар": "март",
         "march": "март", "mar": "март",
 
-        # April
         "април": "април", "апр": "април",
         "april": "април", "apr": "април",
 
-        # May
         "май": "май",
         "may": "май",
 
-        # June
         "юни": "юни", "юн": "юни",
         "june": "юни", "jun": "юни",
 
-        # July
         "юли": "юли", "юл": "юли",
         "july": "юли", "jul": "юли",
 
-        # August
         "август": "август", "авг": "август",
         "august": "август", "aug": "август",
 
-        # September
         "септември": "септември", "сеп": "септември", "септ": "септември",
         "september": "септември", "sep": "септември", "sept": "септември",
 
-        # October
         "октомври": "октомври", "окт": "октомври",
         "october": "октомври", "oct": "октомври",
 
-        # November
         "ноември": "ноември", "ное": "ноември", "ноем": "ноември",
         "november": "ноември", "nov": "ноември",
 
-        # December
         "декември": "декември", "дек": "декември",
         "december": "декември", "dec": "декември",
     }
@@ -267,7 +253,6 @@ def process_xlsm(input_path: str, output_dir: str):
 
         fig, ax = plt.subplots(figsize=(8, 8))
 
-        # Custom autopct to show both percentage and value
         def autopct_format(pct, all_vals):
             absolute = int(round(pct / 100. * sum(all_vals)))
             return f"{pct:.0f}%\n({absolute})"
@@ -279,7 +264,6 @@ def process_xlsm(input_path: str, output_dir: str):
             colors=["#c21919", "#43c01d"]
         )
 
-        # Improve text size for better readability
         for autotext in autotexts:
             autotext.set_fontsize(12)
 
@@ -287,7 +271,6 @@ def process_xlsm(input_path: str, output_dir: str):
 
         ax.legend(wedges, labels, loc="upper right")
 
-        # Add summary text at bottom
         ax.text(
             0.5, 0.05,
             f"Общо тренировки за месеца: {trainings_count}\n"
@@ -317,12 +300,9 @@ def process_xlsm(input_path: str, output_dir: str):
 
         block_match = match_df.iloc[0:24, 1:6]
 
-        matches_dates = block_match.loc[:1, block_match.columns.notna()]
-
-        matches_count = block_match.iloc[0].count()
+        # matches_dates = block_match.loc[:1, block_match.columns.notna()]
         match_absence_count = (block_match == 0).sum().sum()
         match_presence_count = (block_match == 1).sum().sum()
-        avg_players_on_match = round(match_presence_count / len(matches_dates.columns))
 
         matches = {}
 
@@ -343,15 +323,13 @@ def process_xlsm(input_path: str, output_dir: str):
         print("no data inputed for players ")
 
     else:
-        colors = ["#c21919", "#B8CCE4"]  # Отсъстващи, Присъстващи
+        colors = ["#c21919", "#B8CCE4"]
         labels = ['Отсъстващи', 'Присъстващи']
 
-        # Right-side grid size (for the small pies)
         num_matches = len(matches)
         right_ncols = min(3, max(1, int(math.ceil(math.sqrt(num_matches)))))  # cap at 3 cols for readability
         right_nrows = int(math.ceil(num_matches / right_ncols))
 
-        # Figure size and layout proportions
         fig = plt.figure(figsize=(6 + 4 * right_ncols, 4.5 * max(1, right_nrows)))  # scale with grid
         outer = fig.add_gridspec(nrows=max(1, right_nrows), ncols=2, width_ratios=[1.2, 2.0], wspace=0.25)
 
@@ -394,7 +372,6 @@ def process_xlsm(input_path: str, output_dir: str):
         # ----- RIGHT: GRID WITH SMALL PIES PER MATCH -----
         right = outer[:, 1].subgridspec(nrows=right_nrows, ncols=right_ncols, hspace=0.35, wspace=0.30)
 
-        # Flatten the axes in row-major order
         axes = [fig.add_subplot(right[i, j]) for i in range(right_nrows) for j in range(right_ncols)]
 
         for ax, (match, info) in zip(axes, matches.items()):
@@ -404,16 +381,13 @@ def process_xlsm(input_path: str, output_dir: str):
 
             ax.pie(
                 values,
-                # labels=labels,
                 autopct=make_autopct(values, show_percent=True),  # counts only
                 startangle=90,
                 colors=colors,
                 textprops={'fontsize': 9}
             )
             ax.set_title(f"Мач №{match} — {info[0]} {month}", fontsize=10)
-            # ax.legend(wedges, labels, loc="upper right")
 
-            # Optional small caption inside the axis
             ax.text(
                 0.5, 0.05,
                 f"Присъствали: {present}\nОтсъствали: {absent}",
@@ -423,22 +397,15 @@ def process_xlsm(input_path: str, output_dir: str):
                 transform=ax.transAxes
             )
 
-        # Hide any extra axes (if grid > number of matches)
         for i in range(num_matches, len(axes)):
             axes[i].axis('off')
 
-        # Tight layout for minimal overlaps
         plt.tight_layout()
 
-        # ----- SAVE ONE IMAGE -----
         export_path = f"{output_path}Информация_мачове_{month}.png"
         plt.savefig(export_path, dpi=300, bbox_inches='tight')
 
-        # ***************** players info for tr and matches
-
-    # players_df = absence_file.iloc[4:28, 1:24]
-    # players_df.columns = absence_file.iloc[4, 1:24]
-    # players_df = players_df.drop(players_df.columns[1], axis=1)
+        # PLAYERS INFO FOR TRAININGS AND MATCHES
 
     players_df = absence_file.iloc[5:28, 1:24].copy()  # slice players rows
     players_df = players_df.drop(players_df.columns[1], axis=1)  # drop unwanted column
@@ -448,21 +415,29 @@ def process_xlsm(input_path: str, output_dir: str):
         player_row = players_df.iloc[index]
         player_name = str(player_row.iloc[0])  # make sure it's a string
 
-        # Skip empty rows
         if not player_name or player_name.lower() == 'nan':
             continue
 
-        # Skip if the name does not match players_count entry
         if player != player_name:
             continue
 
-        # Training/match presence lists
-        player_trainings = player_row.iloc[1:16].fillna(0).astype(int).tolist()
-        player_matches = player_row.iloc[16:].fillna(0).astype(int).tolist()
+        player_trainings = (
+            player_row.iloc[1:16]
+            .fillna(0)
+            .infer_objects()  # lets pandas infer proper dtype
+            .astype(int)
+            .tolist()
+        )
 
-        # Training and match data
-        # player_trainings = player_row.iloc[1:16].fillna(0).astype(int).tolist()
-        # player_matches = player_row.iloc[16:].fillna(0).astype(int).tolist()
+        player_matches = (
+            player_row.iloc[16:]
+            .fillna(0)
+            .infer_objects()
+            .astype(int)
+            .tolist()
+        )
+
+        # TRAINING AND MATCH DATA
 
         training_presence_dates = []
         training_absence_dates = []
@@ -525,19 +500,6 @@ def process_xlsm(input_path: str, output_dir: str):
         export_file = os.path.join(output_path, f"{player_name}_Информация_{month}_месец.png")
         plt.savefig(export_file, dpi=300, bbox_inches='tight')
         plt.close()
-
-
-    # ⛔ REMOVE hardcoded paths
-    # output_path = "c:/Users/..."
-    output_path = output_dir + "/"
-
-    # keep ALL your existing logic
-    # just make sure every plt.savefig uses output_path
-
-    # example:
-    # plt.savefig(os.path.join(output_path, "file.png"))
-
-    # === YOUR CODE ENDS HERE ===
 
     return output_dir
 
