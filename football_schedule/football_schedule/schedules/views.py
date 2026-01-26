@@ -77,7 +77,7 @@ class ScheduleDisplayView(LoginRequiredMixin,ListView):
     context_object_name = 'weeks'
 
     def get_queryset(self):
-        return Week.objects.filter(author=self.request.user).order_by('id')
+        return Week.objects.filter(author=self.request.user).order_by('start_date')
 
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(*args,**kwargs)

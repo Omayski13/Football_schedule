@@ -23,4 +23,5 @@ urlpatterns = [
     path('accounts/', include('football_schedule.accounts.urls')),
     path('schedule/', include('football_schedule.schedules.urls')),
     path('program/', include('football_schedule.programs.urls')),
+    path('report/', include('football_schedule.reports.urls')),
 ]

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'head.html' with bootstrap=True %}
+
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <section id="create-schedule" class="p-2 m-5">
+            <h2 class="text-center"> Създай репорт</h2>
+
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <!-- 🔽 Download template -->
+                <div style="margin-bottom: 20px;">
+                    <a href="{{ template_absence_file }}"
+                       class="btn px-5 py-2 m-2  btn-primary text-center"
+                       download>
+                        Свали Шаблон
+                    </a>
+                </div>
+
+
+
+                {% if error %}
+                    <p style="color:red;">{{ error }}</p>
+                {% endif %}
+
+                <form method="post"
+                      class="d-flex flex-column align-items-center"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <label class="mb-2">Качи попълнен файл:</label>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <label class="btn btn-outline-secondary rounded-3 mb-0">
+                            Choose file
+                            <input type="file"
+                                   name="file"
+                                   accept=".xlsm"
+                                   required
+                                   hidden
+                                   onchange="updateFileName(this)">
+                        </label>
+
+                        <span id="file-name" class="text-muted">No file chosen</span>
+                    </div>
+
+                    <button class="px-5 py-2 mt-4 btn btn-primary rounded-3" type="submit">
+                        Generate Report
+                    </button>
+                </form>
+
+            </div>
+        </section>
+    </div>
+
+<script>
+    function updateFileName(input) {
+        const fileName = input.files.length
+            ? input.files[0].name
+            : "No file chosen";
+        document.getElementById("file-name").textContent = fileName;
+    }
+</script>
+
+{% endblock %}
+
+

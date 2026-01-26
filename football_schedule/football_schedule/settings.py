@@ -44,6 +44,7 @@ MY_APPS =[
     'football_schedule.schedules',
     'football_schedule.common',
     'football_schedule.programs',
+    'football_schedule.reports',
 ]
 
 ADDITIONAL_APPS = [
