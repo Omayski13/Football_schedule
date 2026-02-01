@@ -300,7 +300,7 @@ def process_xlsm(input_path: str, output_dir: str):
 
         block_match = match_df.iloc[0:24, 1:6]
 
-        # matches_dates = block_match.loc[:1, block_match.columns.notna()]
+        matches_dates = block_match.loc[:1, block_match.columns.notna()]
         match_absence_count = (block_match == 0).sum().sum()
         match_presence_count = (block_match == 1).sum().sum()
 
