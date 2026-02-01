@@ -171,12 +171,12 @@
                 // ✅ SAFE reload — long enough for download to start
                 setTimeout(() => {
                     window.location.href = window.location.pathname;
-                }, 8000); // ⬅️ IMPORTANT
+                }, 15000); // ⬅️ IMPORTANT
             }
 
             bar.style.width = progress + "%";
             bar.textContent = progress + "%";
-        }, 230);
+        }, 300);
     }
 </script>
 
