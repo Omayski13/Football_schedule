@@ -169,9 +169,7 @@
                 clearInterval(interval);
 
                 // ✅ SAFE reload — long enough for download to start
-                setTimeout(() => {
-                    window.location.href = window.location.pathname;
-                }, 15000); // ⬅️ IMPORTANT
+                
             }
 
             bar.style.width = progress + "%";
