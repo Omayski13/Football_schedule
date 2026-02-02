@@ -284,6 +284,7 @@ def process_xlsm(input_path: str, output_dir: str):
 
         export_path = f"{output_path}Информация_тренировки_{month}.png"
         plt.savefig(export_path, dpi=300, bbox_inches='tight')
+        plt.close()
 
 
     if not match_dates:
@@ -404,6 +405,7 @@ def process_xlsm(input_path: str, output_dir: str):
 
         export_path = f"{output_path}Информация_мачове_{month}.png"
         plt.savefig(export_path, dpi=300, bbox_inches='tight')
+        plt.close()
 
         # PLAYERS INFO FOR TRAININGS AND MATCHES
 

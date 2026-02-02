@@ -1,10 +1,11 @@
 import os
+import shutil
 import tempfile
 import zipfile
 
 from django.views import View
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.templatetags.static import static
@@ -59,13 +60,25 @@ class ReportCreateView(LoginRequiredMixin,View):
                     zipf.write(full_path, arcname=file)
 
         # 5️⃣ Return ZIP as download
-        with open(zip_path, "rb") as f:
-            response = HttpResponse(
-                f.read(),
-                content_type="application/zip"
-            )
-            response["Content-Disposition"] = (
-                'attachment; filename="results.zip"'
-            )
-            return response
+        # with open(zip_path, "rb") as f:
+        #     response = HttpResponse(
+        #         f.read(),
+        #         content_type="application/zip"
+        #     )
+        #     response["Content-Disposition"] = (
+        #         'attachment; filename="results.zip"'
+        #     )
+        #     return response
+
+        response = FileResponse(
+            open(zip_path, "rb"),
+            as_attachment=True,
+            filename="results.zip",
+            content_type="application/zip"
+        )
+
+        shutil.rmtree(temp_input_dir, ignore_errors=True)
+        shutil.rmtree(temp_output_dir, ignore_errors=True)
+
+        return response
 
