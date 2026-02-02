@@ -1,39 +1,116 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% include 'head.html' with bootstrap=True %}
+{% include 'head.html' with bootstrap=True %}
 
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <section id="create-schedule" class="p-2 m-5">
-            <h2 class="text-center">Свали репорт</h2>
+<div class="d-flex flex-column justify-content-center align-items-center">
+    <section id="create-schedule" class="p-2 m-5 text-center">
+        <h2>Свали репорт</h2>
 
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <h2>Your download will begin shortly…</h2>
-                <p>Please wait.</p>
+        <div class="d-flex flex-column justify-content-center align-items-center mt-4">
 
-                <div class="spinner-border text-primary"></div>
-
+            <!-- Status message -->
+            <div id="processing-message" class="mb-5">
+                <p class="lead">Моля, изчакай</p>
+                <h5>Файлът се обработва и свалянето ще започне скоро…</h5>
             </div>
-        </section>
-    </div>
 
-    <script>
-        const jobId = "{{ job_id }}";
-        const statusUrl = "{% url 'job-status' job_id=job_id %}";
+            <!-- Circle loader -->
+            <div id="circle-loader" class="circle-loader ">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
 
-        function pollStatus() {
-            fetch(statusUrl)
-                .then(r => r.json())
-                .then(data => {
-                    if (data.status === "done") {
-                        window.location.href = "{% url 'report-download' job_id=job_id %}";
-                    } else {
-                        setTimeout(pollStatus, 1000);
-                    }
-                });
-        }
+            <!-- Disabled button while processing -->
+            <a href="{% url 'create-report' %}" 
+               class="btn btn-primary px-5 py-2 my-5" 
+               id="upload-button" 
+               disabled>
+                Качи нов файл
+            </a>
 
-        pollStatus();
-    </script>
+        </div>
+    </section>
+</div>
 
+<style>
+/* Circle loader container */
+.circle-loader {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual circles */
+.circle-loader .circle {
+  width: 15px;
+  height: 15px;
+  background-color: #444; /* Bootstrap primary color */
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+/* Delay for each circle */
+.circle-loader .circle:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.circle-loader .circle:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-15px); }
+}
+</style>
+
+<script>
+const jobId = "{{ job_id }}";
+const statusUrl = "{% url 'job-status' job_id=job_id %}";
+const downloadUrl = "{% url 'report-download' job_id=job_id %}";
+const processingMessage = document.getElementById('processing-message');
+const uploadButton = document.getElementById('upload-button');
+const circleLoader = document.getElementById('circle-loader');
+
+// Stop loader
+function stopLoader() {
+    circleLoader.style.display = 'none';
+}
+
+// Polling function
+function pollStatus() {
+    fetch(statusUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "done") {
+                stopLoader();
+                window.location.href = downloadUrl;
+            } else if (data.status === "error") {
+                stopLoader();
+                processingMessage.innerHTML = `
+                    <p class="text-danger">Възникна грешка при обработката.</p>
+                    <p>Моля, опитайте отново.</p>
+                `;
+                uploadButton.disabled = false;
+            } else {
+                setTimeout(pollStatus, 1000);
+            }
+        })
+        .catch(err => {
+            stopLoader();
+            processingMessage.innerHTML = `
+                <p class="text-warning">Възникна проблем с връзката.</p>
+                <p>Моля, опитайте отново.</p>
+            `;
+            uploadButton.disabled = false;
+        });
+}
+
+// Start polling
+pollStatus();
+</script>
 {% endblock %}
+
