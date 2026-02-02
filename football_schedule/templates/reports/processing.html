@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'head.html' with bootstrap=True %}
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <section id="create-schedule" class="p-2 m-5">
+            <h2 class="text-center">Свали репорт</h2>
+
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h2>Your download will begin shortly…</h2>
+                <p>Please wait.</p>
+
+                <div class="spinner-border text-primary"></div>
+
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const jobId = "{{ job_id }}";
+        const statusUrl = "{% url 'job-status' job_id=job_id %}";
+
+        function pollStatus() {
+            fetch(statusUrl)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.status === "done") {
+                        window.location.href = "{% url 'report-download' job_id=job_id %}";
+                    } else {
+                        setTimeout(pollStatus, 1000);
+                    }
+                });
+        }
+
+        pollStatus();
+    </script>
+
+{% endblock %}
