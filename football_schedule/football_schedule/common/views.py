@@ -20,6 +20,12 @@ from io import BytesIO
 
 from football_schedule.schedules.models import Week, DisplayScheduleData
 
+matplotlib.use("Agg")
+
+# 🔥 GLOBAL matplotlib defaults (add THIS here)
+plt.rcParams["savefig.format"] = "png"
+plt.rcParams["savefig.dpi"] = 150
+
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -251,7 +257,7 @@ def process_xlsm(input_path: str, output_dir: str):
         labels = ['Отсъстващи', 'Присъстващи']
         values = [absence_count, presence_count]
 
-        fig, ax = plt.subplots(figsize=(8, 8))
+        fig, ax = plt.subplots(figsize=(6, 6))
 
         def autopct_format(pct, all_vals):
             absolute = int(round(pct / 100. * sum(all_vals)))
@@ -283,8 +289,8 @@ def process_xlsm(input_path: str, output_dir: str):
         )
 
         export_path = f"{output_path}Информация_тренировки_{month}.png"
-        plt.savefig(export_path, dpi=300, bbox_inches='tight')
-        plt.close()
+        plt.savefig(export_path, dpi=150, bbox_inches='tight')
+        plt.close("all")
 
 
     if not match_dates:
@@ -331,7 +337,7 @@ def process_xlsm(input_path: str, output_dir: str):
         right_ncols = min(3, max(1, int(math.ceil(math.sqrt(num_matches)))))  # cap at 3 cols for readability
         right_nrows = int(math.ceil(num_matches / right_ncols))
 
-        fig = plt.figure(figsize=(6 + 4 * right_ncols, 4.5 * max(1, right_nrows)))  # scale with grid
+        fig = plt.figure(figsize=(5 + 3 * right_ncols, 3.5 * right_nrows))
         outer = fig.add_gridspec(nrows=max(1, right_nrows), ncols=2, width_ratios=[1.2, 2.0], wspace=0.25)
 
         # ----- LEFT: BIG SUMMARY PIE -----
@@ -404,8 +410,8 @@ def process_xlsm(input_path: str, output_dir: str):
         plt.tight_layout()
 
         export_path = f"{output_path}Информация_мачове_{month}.png"
-        plt.savefig(export_path, dpi=300, bbox_inches='tight')
-        plt.close()
+        plt.savefig(export_path, dpi=150, bbox_inches='tight')
+        plt.close("all")
 
         # PLAYERS INFO FOR TRAININGS AND MATCHES
 
@@ -469,7 +475,7 @@ def process_xlsm(input_path: str, output_dir: str):
         if not pies_to_draw:
             continue
 
-        fig, axes = plt.subplots(1, len(pies_to_draw), figsize=(8 * len(pies_to_draw), 8))
+        fig, axes = plt.subplots(1, len(pies_to_draw), figsize=(6 * len(pies_to_draw), 6))
         if len(pies_to_draw) == 1:
             axes = [axes]
 
@@ -501,7 +507,7 @@ def process_xlsm(input_path: str, output_dir: str):
         plt.tight_layout(rect=[0, 0, 1, 0.95])
         export_file = os.path.join(output_path, f"{player_name}_Информация_{month}_месец.png")
         plt.savefig(export_file, dpi=300, bbox_inches='tight')
-        plt.close()
+        plt.close("all")
 
     return output_dir
 
