@@ -9,6 +9,7 @@ from django.http import HttpResponse, FileResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import FileResponse, Http404
+from django.views.generic import TemplateView
 
 from football_schedule.common.views import process_xlsm
 
@@ -92,3 +93,7 @@ def download_report(request, job_id):
         as_attachment=True,
         filename="results.zip"
     )
+
+
+class InstructionsView(TemplateView):
+    template_name = 'reports/instructions.html'

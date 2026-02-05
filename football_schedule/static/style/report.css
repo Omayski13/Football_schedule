@@ -3,3 +3,22 @@
 body.loading {
     cursor: progress !important;
 }
+
+.numbered-list {
+    list-style-type: decimal !important;
+    font-weight: bold;
+}
+
+.numbered-list li {
+    display: list-item !important;
+    color: indianred;
+
+}
+
+.numbered-list a {
+    color: indianred;
+}
+
+.numbered-list a:hover {
+    color: black;
+}

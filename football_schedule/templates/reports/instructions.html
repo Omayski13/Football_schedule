@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'head.html' with bootstrap=True %}
+
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <section id="create-schedule" class="p-2 m-5">
+            <h2 class="text-center">Инструкции за създаване на репорт</h2>
+            
+            <ol class="numbered-list pl-3 ml-5">
+                <li><a href=""> Обяснение</a></li>
+                <li><a href="">Сваляне на Шаблон</a></li>
+                <li><a href="">Попълване на играчи в шаблон</a></li>
+                <li><a href="">Попълване на тренировки в шаблон</a></li>
+                <li><a href="">Попълване на мачове в шаблон</a></li>
+                <li><a href="">Генериране на репорт</a></li>
+            </ol>
+            
+            <section class="ml-3 " id="instructions">
+                <h4>Обяснение</h4>
+                <p>
+                    Lorem   
+                </p>
+            </section>
+            
+            
+            
+        </section>
+    
+        
+    
+    </div>
+{% endblock %}
