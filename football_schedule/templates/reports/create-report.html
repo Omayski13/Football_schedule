@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     {% include 'head.html' with bootstrap=True %}
@@ -11,7 +12,7 @@
 
                 <!-- 🔽 Download template -->
                 <div style="margin-bottom: 20px;">
-                    <a href="{{ template_absence_file }}"
+                    <a href="{% static 'files/template.xlsm' %}"
                        class="btn px-5 py-2 m-2 btn-primary text-center"
                        download>
                         Свали Шаблон
