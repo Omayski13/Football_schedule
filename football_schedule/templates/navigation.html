@@ -19,11 +19,11 @@
                             style="font-size: 1.5rem">{{ count_schedules }}</strong><br>графици</p>
                     {% endif %}
                 
-                    {% count_programs as count_programs %}
-                    {% if count_programs %}
-                    <p style="color:#ECEBDE; margin-bottom: 0" class="text-center" id="count-programs"><strong
-                            style="font-size: 1.5rem">{{ count_programs }}</strong><br>програми</p>
-                    {% endif %}
+<!--                    {% count_programs as count_programs %}-->
+<!--                    {% if count_programs %}-->
+<!--                    <p style="color:#ECEBDE; margin-bottom: 0" class="text-center" id="count-programs"><strong-->
+<!--                            style="font-size: 1.5rem">{{ count_programs }}</strong><br>програми</p>-->
+<!--                    {% endif %}-->
                     
                 </div>
             </div>
@@ -31,7 +31,7 @@
     
         <div class="nav-schedule">
             <a class="text-decoration-none" href="{% url 'create-schedule' %}">Създай графикa</a>
-            <a class="text-decoration-none" href="{% url 'create-program' %}">Създай Програма</a>
+            <a class="text-decoration-none" href="{% url 'create-report' %}">Създай Репорт</a>
         </div>
 
         <div class="nav-profile">
