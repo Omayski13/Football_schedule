@@ -1,4 +1,12 @@
 
+section#create-schedule{
+    color: grey;
+}
+
+section#create-schedule h4{
+    color:black;
+}
+
 
 body.loading {
     cursor: progress !important;
@@ -11,14 +19,44 @@ body.loading {
 
 .numbered-list li {
     display: list-item !important;
-    color: indianred;
+    color: black;
 
 }
 
 .numbered-list a {
-    color: indianred;
+    color: black;
 }
 
 .numbered-list a:hover {
-    color: black;
+    color: blue;
+}
+
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    position: relative;
+    padding-left: 30px;
+}
+
+ul li::before {
+    content: "⚽";
+    position: absolute;
+    left: 0;
+    filter: grayscale(100%);
+}
+
+.instruction-image {
+    width: auto;
+    height: 300px;
+     border-radius: 10px;
+}
+
+.download-template-image {
+    width: auto;
+    height: 400px;
+     border-radius: 10px;
 }

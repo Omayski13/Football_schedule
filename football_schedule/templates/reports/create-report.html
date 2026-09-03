@@ -5,16 +5,16 @@
     {% include 'head.html' with bootstrap=True %}
 
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <section id="create-schedule" class="p-2 m-5">
+        <section id="create-schedule" class="p-2 m-5 ">
             <h2 class="text-center">Създай репорт</h2>
 
             <div class="d-flex flex-column justify-content-center align-items-center">
                 
                 <div style="margin-bottom: 0px;">
-                    <a href=""
-                       class="btn px-5 py-2 m-2 btn-primary text-center"
+                    <a href="{% url 'instructions' %}"
+                       class="btn px-5 py-2 m-2 mt-4 btn-primary text-center"
                        >
-                        ИНСТРУКЦИИ ЗА НАПРАВА НА РЕПОРТ
+                        ИНСТРУКЦИИ ЗА СЪЗДАВАНЕ НА РЕПОРТ
                     </a>
                 </div>
                 
@@ -53,7 +53,7 @@
                     </div>
 
                     <button id="submit-btn"
-                            class="px-5 py-2 mt-4 btn btn-primary rounded-3"
+                            class="px-5 py-2 mt-4 mb-5 btn btn-primary rounded-3"
                             type="submit">
                         Генерирай репорт
                     </button>
