@@ -20,15 +20,21 @@ The system combines four main parts:
 The project is built using **Django** and designed for deployment in a production environment.
  
 ### Backend
-- Django (Python)
-- PostgreSQL database
-- Pandas & OpenPyXL for data processing
+- **Django (Python)**
+- **PostgreSQL** database
+- **Pandas** & **OpenPyXL** for data processing
  
 ### Media Storage
-- Cloudinary for storing and serving uploaded media files, including club emblems, coach photos, and generated assets
+- **Cloudinary** for storing and serving uploaded media files, including club emblems, coach photos, and generated assets
+
+### Database
+- PostgreSQL relational database hosted on **Neon**
+- Connection managed through the **DATABASE_URL** environment variable
+- AWS EU Central (eu-central-1) database infrastructure
+- Used for persistent storage of users, profiles, schedules, matches, reports, and application data
  
 ### Deployment
-- Hosted on Render
+- Hosted on **Render**
 - Production-ready configuration with environment variables and secure settings
 - PostgreSQL integration for persistent data storage
  
