@@ -144,16 +144,18 @@ Detailed istructions how to start the pipeline in English and Bulgarian:
 Users can create and manage weekly schedules for their teams.
 
 ### 1. Schedule Capabilities
-- Planning from Monday through Sunday
-- Training type selection
-- Time and location assignment
-- Weekly start date configuration
-- Schedule editing and deletion
+- Plan a complete weekly schedule from Monday through Sunday for each team or club
+- Select the type of session, such as training session or match
+- Assign a start time, end time, and training location for each session
+- Configure the weekly start date so plans match the club or competition calendar
+- Keep schedules organized by team, club, or training program for easier management
 
 ### 2. Output
-- Calendar view of the weekly training plan
-- Club-specific schedule display
-- Excel export for printing and sharing
+- View the weekly plan in a calendar-style layout for quick overview and planning
+- Display club-specific or team-specific schedules in an easy-to-read format
+- Review the full week at a glance to avoid clashes, double bookings, or missed sessions
+- Export the schedule to Excel for printing, sharing, and documentation purposes
+- Support better coordination between coaches, staff, and players across the training week
 
 
 # 📁Project Structure
