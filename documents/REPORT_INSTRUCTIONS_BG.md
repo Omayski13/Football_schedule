@@ -28,11 +28,11 @@
 - Графика и процентно съотношение на присъствията и отсъствията от мачове
 - Дати на присъствие и отсъствие от мачове
 
-![Индивидуална информация за футболист](football_schedule/static/images/player_info.png)
+![Индивидуална информация за футболист](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/player_info.png)
 
-![Информация за мачовете](football_schedule/static/images/matches_info.png)
+![Информация за мачовете](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/matches_info.png)
 
-![Информация за тренировките](football_schedule/static/images/trainings_info.png)
+![Информация за тренировките](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/trainings_info.png)
 
 ## 1. Сваляне на шаблона
 
@@ -42,7 +42,7 @@
 4. Отворете файла и попълнете заглавната информация за отбора.
 5. Добавете емблемата на клуба и я позиционирайте и оразмерете на подходящото място.
 
-![Изтегляне на шаблона](football_schedule/static/images/download-template.png)
+![Изтегляне на шаблона](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/download-template.png)
 
 ## 2. Попълване на играчите
 
@@ -52,7 +52,7 @@
 - В колоната **„№“** въведете номерата на фланелките. Ако не използвате номера, оставете подредбата по подразбиране от 1 до 23.
 - Под списъка на футболистите редът **„Общо“** показва броя на добавените футболисти.
 
-![Попълване на играчите](football_schedule/static/images/populate-players.png)
+![Попълване на играчите](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/populate-players.png)
 
 ## 3. Попълване на тренировките
 
@@ -64,7 +64,7 @@
 - Редът под данните показва общия брой присъствали футболисти за съответната тренировка.
 - Колоните **„Участия“** и **„Отсъствия“** показват общия брой присъствия и отсъствия за всеки футболист.
 
-![Попълване на посещаемостта на тренировките](football_schedule/static/images/populate-absence.png)
+![Попълване на посещаемостта на тренировките](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/populate-absence.png)
 
 ## 4. Попълване на мачовете
 
@@ -76,7 +76,7 @@
 - Редът под данните показва общия брой присъствали футболисти за съответния мач.
 - Колоната **„Участия Мачове“** показва общия брой участия и отсъствия на футболиста.
 
-![Попълване на посещаемостта на мачовете](football_schedule/static/images/populate-matches.png)
+![Попълване на посещаемостта на мачовете](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/populate-matches.png)
 
 ## 5. Генериране и изтегляне на репорта
 
@@ -88,9 +88,9 @@
 6. След приключване на обработката ZIP файлът с резултатите започва да се изтегля автоматично.
 7. За да създадете друг репорт, натиснете **„Генерирай нов репорт“**.
 
-![Качване на попълнения файл](football_schedule/static/images/generate-report-1.png)
+![Качване на попълнения файл](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/generate-report-1.png)
 
-![Обработка на репорта](football_schedule/static/images/generate-report-2.png)
+![Обработка на репорта](https://github.com/Omayski13/Football_schedule/blob/main/football_schedule/static/images/generate-report-2.png)
 
 ## Обобщение на обработката
 
