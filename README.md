@@ -136,8 +136,8 @@ ZIP archive / downloadable report
 
 ### ▶️Instructions how to start the pipeline
 Detailed istructions how to start the pipeline in English and Bulgarian:
-- [Instructions EN]
-- [Instructions BG]
+- [Instructions EN](https://github.com/Omayski13/Football_schedule/blob/main/documents/REPORT_INSTRUCTIONS_EN.md)
+- [Instructions BG](https://github.com/Omayski13/Football_schedule/blob/main/documents/REPORT_INSTRUCTIONS_BG.md)
 
 ## 🗓️ 3. Weekly Training Schedule Management
 
