@@ -1,10 +1,14 @@
-# Football Schedule
+# ⚽Football Schedule
 
 Football Schedule is a Django-based web application for football coaches and team staff to manage training schedules, maintain club profiles, and generate attendance reports from Excel files. The app is designed to simplify daily planning, improve communication with players, and provide a clear overview of team activity in one place.
 
 This project combines football team management with an ETL and analytics workflow for processing attendance reports from Excel files.
 
-# Overview
+### 🌐Deployment
+You can view the live version of the project here: [Live Demo](https://football-schedule.onrender.com/). <br>
+<strong>*Note:</strong> The application is hosted on a free-tier service. The first load may **take a few minutes** while the server wakes up.
+
+# 📖Overview
 
 The system combines four main parts:
 
@@ -29,18 +33,19 @@ The project is built using **Django** and designed for deployment in a productio
 - PostgreSQL integration for persistent data storage
  
 
-## I. App Main Features
+# 🌟Features
 
-### 1. User Accounts & Profiles
+##  👤 1. User Accounts & Profiles setup
+### User Account
 
 The platform provides a complete authentication and profile management system for football clubs and coaches.
 
-<strong>Features:
+**Features:**
   - Custom user authentication using email as the username
   - User registration and login
   - Password reset functionality
 
-### 2. Club Profile Setup
+###  Club Profile Setup
 Users can configure their club profile with:
 
 - First and last name
@@ -51,7 +56,7 @@ Users can configure their club profile with:
 - Club colors
 - License information
 
-## II. Report Processing & Analytics Pipeline
+## 📊 2. Report Processing & Analytics Pipeline
 
 One of the core functionalities of the application is automated report processing. The pipeline transforms raw attendance data into structured analytics and downloadable outputs.
 
@@ -109,7 +114,7 @@ These KPIs support performance evaluation and reporting.
 - Package processed data and visual assets
 - Generate a downloadable ZIP archive
 
-### Data pipeline architecture
+### ⚙️Data pipeline architecture
 
 ```text
 Excel/XLSM file
@@ -128,15 +133,13 @@ Chart generation with Matplotlib
     ↓
 ZIP archive / downloadable report
 ```
-### Result
-The entire workflow follows a modern data engineering and analytics process.
 
-### Instructions how to start the pipeline
+### ▶️Instructions how to start the pipeline
 Detailed istructions how to start the pipeline in English and Bulgarian:
 - [Instructions EN]
 - [Instructions BG]
 
-## III. Weekly Training Schedule Management
+## 🗓️ 3. Weekly Training Schedule Management
 
 Users can create and manage weekly schedules for their teams.
 
@@ -153,7 +156,7 @@ Users can create and manage weekly schedules for their teams.
 - Excel export for printing and sharing
 
 
-# Project Structure
+# 📁Project Structure
 
 ```text
 Football_schedule/
@@ -173,7 +176,7 @@ Football_schedule/
 └── README.md
 ```
 
-# Technology Stack
+# 🛠️Technology Stack
 
 This application uses the following technologies:
 
@@ -189,7 +192,7 @@ This application uses the following technologies:
 - Gunicorn for serving the app in production
 - SMTP email backend for password reset and notifications
 
-# Environment Variables
+# 🔑Environment Variables
 
 Create a `.env` file in the project root with the following variables:
 
@@ -210,7 +213,7 @@ DEFAULT_FROM_EMAIL=no-reply@example.com
 
 Note: the project is configured to run in a deployment environment such as Render, so the `ALLOWED_HOSTS` includes `.onrender.com`.
 
-# Requirements
+# 📋Requirements
 
 - Python 3.10+
 - pip
@@ -218,11 +221,11 @@ Note: the project is configured to run in a deployment environment such as Rende
 - Cloudinary account
 - SMTP email configuration
 
-# Installation
+# 🚀Installation
 
 1. Clone the repository:
 
-```bash
+```terminal
 git clone https://github.com/Omayski13/Football_schedule.git
 cd Football_schedule
 ```
@@ -261,7 +264,7 @@ http://127.0.0.1:8000/
 ```
 
 
-# Use Cases
+# 🎯Use Cases
 
 This app is useful for:
 
@@ -271,9 +274,9 @@ This app is useful for:
 - clubs handling match calendars
 - staff analyzing team attendance trends
 
-# License
+# ⚖️License
 
-This project is distributed under the MIT license. See the LICENSE file for details.
+This project is distributed under the MIT license. See the [LICENSE](https://github.com/Omayski13/Football_schedule/blob/main/LICENSE) file for details.
 
 
 
