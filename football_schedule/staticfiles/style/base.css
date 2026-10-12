@@ -20,7 +20,7 @@ body {
 }
 
 form a{
-    color: darkgrey; !important;
+    color: darkgrey !important;
     font-weight: bold;
 }
 
@@ -57,3 +57,17 @@ li{
 }
 
 
+a#footer-link {
+    color: blue;
+    text-decoration: underline;
+    padding: 0
+}
+
+a#footer-link:hover {
+    color: cyan;
+    text-decoration: underline;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    
+}
