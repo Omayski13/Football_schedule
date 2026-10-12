@@ -55,23 +55,3 @@ class DeleteCloudinaryFormValidMixin:
                     print(f"Error deleting old file from Cloudinary for field '{field}': {e}")
 
         return response
-
-# class DeleteCloudinaryFormValidMixin():
-#     cloudinary_delete_field = None
-#
-#     def form_valid(self, form):
-#         if not self.cloudinary_delete_field:
-#             raise ValueError("The 'cloudinary_delete_field' attribute must be set.")
-#
-#         old_picture = getattr(self.get_object(), self.cloudinary_delete_field)
-#         response = super().form_valid(form)
-#         new_picture = getattr(self.object, self.cloudinary_delete_field)
-#
-#         if old_picture and old_picture != new_picture:
-#             try:
-#                 destroy(old_picture.public_id)
-#             except Exception as e:
-#                 print(f"Error deleting old file from Cloudinary: {e}")
-#
-#         return response
-

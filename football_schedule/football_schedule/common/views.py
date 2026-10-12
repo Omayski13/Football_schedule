@@ -24,7 +24,6 @@ from football_schedule.schedules.models import Week, DisplayScheduleData
 
 matplotlib.use("Agg")
 
-# 🔥 GLOBAL matplotlib defaults (add THIS here)
 plt.rcParams["savefig.format"] = "png"
 plt.rcParams["savefig.dpi"] = 150
 
@@ -35,10 +34,8 @@ class HomeView(TemplateView):
 
 
 def download_schedule_excel(request):
-    # Fetch the schedule data for the logged-in user
     weeks = Week.objects.filter(author=request.user).order_by('id')
 
-    # Prepare data for DataFrame
     data = []
     schedule_date = DisplayScheduleData.objects.last()
     data.append([schedule_date.club])
@@ -50,7 +47,7 @@ def download_schedule_excel(request):
         week_dates = [
             f"{week.start_date.strftime('%d.%m')}-{(week.start_date + timedelta(days=6)).strftime('%d.%m')}"
         ]
-        # First row: Days of the week
+
         days_of_week = [
             "П", "В", "С", "Ч", "П", "С", "Н"
         ]
@@ -87,27 +84,24 @@ def download_schedule_excel(request):
             week.sunday_place if week.sunday_place else "",
         ]
 
-        # Add the rows to data
+        # Add the rows
         data.append(week_dates)
         data.append(days_of_week)
         data.append(types)
         data.append(times)
         data.append(places)
 
-    # Create DataFrame
+
     df = pd.DataFrame(data)
 
-    # Create an in-memory buffer to store the Excel file
     output = BytesIO()
 
-    # Save DataFrame to Excel in memory
     with pd.ExcelWriter(output, engine='openpyxl') as writer:
         df.to_excel(writer, sheet_name="Schedule", index=False, header=False)  # Do not include index or header
 
-    # Load the workbook from the in-memory buffer
     output.seek(0)
     wb = load_workbook(output)
-    ws = wb.active  # Get the active sheet (Schedule)
+    ws = wb.active  
 
     merged_rows = [1,2,3,4,5,10,15,20,25]
     date_fill = PatternFill(start_color="0066ff",end_color="0066ff", fill_type="solid")
@@ -120,7 +114,6 @@ def download_schedule_excel(request):
             for c in range(1,8):
                 ws.cell(row=row, column=c).fill = day_fill
 
-    # Define border style
     thin_border = Border(
         left=Side(style='thin'),
         right=Side(style='thin'),
@@ -128,13 +121,11 @@ def download_schedule_excel(request):
         bottom=Side(style='thin')
     )
 
-    # Apply border and center alignment to all cells
     for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=1, max_col=ws.max_column):
         for cell in row:
             cell.border = thin_border
             cell.alignment = Alignment(horizontal="center", vertical="center")
 
-    # Save the styled workbook back to the in-memory buffer
     output = BytesIO()
     wb.save(output)
     output.seek(0)
@@ -475,7 +466,6 @@ def get_training_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     training_df.columns = df.iloc[4, 1:19]
 
-    # Remove unwanted column
     training_df = training_df.drop(
         training_df.columns[1],
         axis=1,
